@@ -1,58 +1,66 @@
-.navbar {
+:root {
+    --navbar-height: 70px;
+    --navbar-padding: 30px;
+    --logo-font-size: 30px;
+    --navlink-font-size: 20px;
+    --search-width: 250px;
+    --icon-size: 30px;
+    --gap-size: 25px;
+  }
+  
+  .navbar {
     background-color: rgb(97, 27, 248);
     border-radius: 20px;
     width: calc(100% - 80px);
     max-width: 1200px;
-    height: 70px;
+    height: var(--navbar-height);
     margin: 20px auto;
-    padding: 0 30px;
+    padding: 0 var(--navbar-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
   }
   
   .logoContainer {
     display: flex;
     align-items: center;
-    gap: 25px;
-    margin-right: 60px;
+    gap: var(--gap-size);
+    margin-right: auto;
   }
   
   .bookIcon {
-    width: 30px;
-    height: 30px;
+    width: var(--icon-size);
+    height: var(--icon-size);
   }
   
   .logoText {
     color: white;
     font-family: 'Lato', sans-serif;
-    font-size: 30px;
+    font-size: var(--logo-font-size);
     font-weight: 700;
     text-decoration: none;
+    white-space: nowrap;
   }
   
   .searchContainer {
     position: relative;
-    width: 250px;
+    width: var(--search-width);
     height: 40px;
-    left: -160px;
+    margin: 0 auto;
+    flex-shrink: 0;
   }
-
+  
   .userContainer {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
     width: 36px;
     height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #510EE1; 
-    border-radius: 50%; 
+    background-color: #510EE1;
+    border-radius: 50%;
     padding: 3px;
+    margin-left: auto;
   }
   
   .searchInput {
@@ -71,7 +79,6 @@
   
   .searchInput::placeholder {
     color: rgb(201, 201, 201);
-    opacity: 1;
   }
   
   .searchIcon {
@@ -79,36 +86,35 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px; 
+    width: 20px;
     height: 20px;
     filter: brightness(0) saturate(100%) invert(88%) sepia(0%) saturate(0%) hue-rotate(193deg) brightness(85%) contrast(84%);
-    pointer-events: none; 
-    right: -20px;
+    pointer-events: none;
   }
-
+  
   .userIcon {
-    width: 24px; 
+    width: 24px;
     height: 24px;
     object-fit: contain;
-    filter: brightness(0) invert(1); 
+    filter: brightness(0) invert(1);
   }
   
   .navLinks {
     display: flex;
-    gap: 25px;
-    position: relative;
-    left: -100px;
+    gap: var(--gap-size);
+    margin: 0 20px;
   }
   
   .navLink {
     color: white;
     font-family: 'Lato', sans-serif;
-    font-size: 20px;
+    font-size: var(--navlink-font-size);
     font-weight: 500;
     text-decoration: none;
     padding: 8px 12px;
     border-radius: 6px;
     transition: all 0.3s ease;
+    white-space: nowrap;
   }
   
   .navLink:hover {
@@ -118,4 +124,74 @@
   .navLink.active {
     font-weight: 700;
     background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  @media (max-width: 1100px) {
+    :root {
+      --navbar-height: 60px;
+      --logo-font-size: 24px;
+      --navlink-font-size: 18px;
+      --search-width: 200px;
+      --icon-size: 24px;
+      --gap-size: 15px;
+    }
+  }
+  
+  @media (max-width: 950px) {
+    :root {
+      --navbar-padding: 20px;
+    }
+    
+    .searchContainer {
+      display: none;
+    }
+    
+    .navLinks {
+      margin-left: auto;
+      margin-right: 20px;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    :root {
+      --navbar-height: 50px;
+      --logo-font-size: 20px;
+      --navlink-font-size: 16px;
+      --icon-size: 20px;
+    }
+    
+    .navbar {
+      width: calc(100% - 40px);
+    }
+    
+    .userContainer {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .userIcon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    .logoText {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 1600px) {
+    :root {
+      --navbar-height: 90px;
+      --logo-font-size: 36px;
+      --navlink-font-size: 24px;
+      --search-width: 300px;
+      --icon-size: 36px;
+      --gap-size: 30px;
+    }
+    
+    .searchInput {
+      font-size: 18px;
+    }
   }

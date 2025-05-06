@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Catalog from './pages/Catalog';
-import Authors from './pages/Authors';
-import Rules from './pages/Rules';
+import Home from './pages/Home/Home';
+import Catalog from './pages/Catalog/Catalog';
+import Authors from './pages/Authors/Authors';
+import Rules from './pages/Rules/Rules';
 
 function App() {
   return (
