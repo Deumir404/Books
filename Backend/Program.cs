@@ -5,10 +5,10 @@ using System.Runtime;
 
 internal class Program
 {
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        var Dbconfig = builder.Configuration["DefaultConnection"];
+        var Dbconfig = builder.Configuration.GetConnectionString("DefaultConnection");
         builder.Services.AddDbContext<ApplicationDbContext>(option =>
         {
             option.LogTo(Console.WriteLine);
@@ -21,8 +21,6 @@ internal class Program
         var app = builder.Build();
 
         app.MapGet("/", () => "Hello World!");
-
-        app.UseWelcomePage();
         app.Run();
     }
 }
