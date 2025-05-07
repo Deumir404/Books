@@ -15,7 +15,7 @@ const Navbar = () => {
       <div className={styles.navLinks}>
         <Link to="/" className={styles.navLink}>Главная</Link>
         <Link to="/catalog" className={styles.navLink}>Каталог</Link>
-        <Link to="/authors" className={styles.navLink}>Авторы</Link>
+        <Link to="/bookmarks" className={styles.navLink}>Закладки</Link>
         <Link to="/rules" className={styles.navLink}>Правила</Link>
       </div>
 

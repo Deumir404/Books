@@ -1,9 +1,13 @@
-import Navbar from '../../components/Navbar/Navbar';
+import WelcomeFrame from '../../components/WelcomeFrame/WelcomeFrame';
+import Categories from '../../components/Categories/Categories';
+import PopularBooks from '../../components/PopularBooks/PopularBooks';
 
 export default function Home() {
   return (
     <div className="home-page">
-      <Navbar /> 
+      <WelcomeFrame />
+      <Categories /> 
+      <PopularBooks /> 
 
       <main>
         <h1>Главная страница</h1>

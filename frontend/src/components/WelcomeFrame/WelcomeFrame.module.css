@@ -1,0 +1,100 @@
+.welcomeFrame {
+    width: calc(100% - 40px);
+    max-width: 1250px;
+    height: 400px;
+    margin: 20px auto;
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .textSection {
+    flex: 1;
+    background-color: #6D2CF7;
+    padding: 50px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .textSection h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .textSection p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  
+  .buttonsRow {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .startReadingBtn {
+    display: inline-block;
+    background-color: white;
+    color: #6D2CF7;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .becomeAuthorBtn {
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: 2px solid white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .startReadingBtn:hover,
+  .becomeAuthorBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .becomeAuthorBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .imageSection {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .imageSection img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 768px) {
+    .welcomeFrame {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .textSection, .imageSection {
+      flex: none;
+      height: 300px;
+    }
+    
+    .buttonsRow {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }

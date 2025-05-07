@@ -11,7 +11,7 @@
   .navbar {
     background-color: rgb(97, 27, 248);
     border-radius: 20px;
-    width: calc(100% - 80px);
+    width: calc(100% - 0px);
     max-width: 1200px;
     height: var(--navbar-height);
     margin: 20px auto;

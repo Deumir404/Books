@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog';
-import Authors from './pages/Authors/Authors';
+import Bookmarks from './pages/Bookmarks/Bookmarks';
 import Rules from './pages/Rules/Rules';
+import './App.css';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
-            <Route path="/authors" element={<Authors />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
             <Route path="/rules" element={<Rules />} />
             {/* Страница 404 для несуществующих маршрутов */}
             <Route path="*" element={<div>Страница не найдена</div>} />
