@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ORM;
 
@@ -11,9 +12,11 @@ using ORM;
 namespace ORM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250508101030_CategoryTagChapter")]
+    partial class CategoryTagChapter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,29 +162,6 @@ namespace ORM.Migrations
                     b.ToTable("Chapters");
                 });
 
-            modelBuilder.Entity("ORM.MarkBook", b =>
-                {
-                    b.Property<int>("IdMarkbook")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdMarkbook"));
-
-                    b.Property<int>("IdChapter")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdUserBook")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdMarkbook");
-
-                    b.HasIndex("IdChapter");
-
-                    b.HasIndex("IdUserBook");
-
-                    b.ToTable("MarkBooks");
-                });
-
             modelBuilder.Entity("ORM.Tag", b =>
                 {
                     b.Property<int>("IdTag")
@@ -198,59 +178,6 @@ namespace ORM.Migrations
                     b.HasKey("IdTag");
 
                     b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("ORM.User", b =>
-                {
-                    b.Property<int>("IdUser")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdUser"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("varchar(250)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("varchar(250)");
-
-                    b.HasKey("IdUser");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ORM.UserBook", b =>
-                {
-                    b.Property<int>("IdUserBook")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdUserBook"));
-
-                    b.Property<int>("IdBook")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdUserBook");
-
-                    b.HasIndex("IdBook");
-
-                    b.HasIndex("IdUser");
-
-                    b.ToTable("UserBooks");
                 });
 
             modelBuilder.Entity("BookCategory", b =>
@@ -303,54 +230,6 @@ namespace ORM.Migrations
                         .IsRequired();
 
                     b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("ORM.MarkBook", b =>
-                {
-                    b.HasOne("ORM.Chapter", "Chapter")
-                        .WithMany()
-                        .HasForeignKey("IdChapter")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ORM.UserBook", "UserBook")
-                        .WithMany("MarkBooks")
-                        .HasForeignKey("IdUserBook")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Chapter");
-
-                    b.Navigation("UserBook");
-                });
-
-            modelBuilder.Entity("ORM.UserBook", b =>
-                {
-                    b.HasOne("ORM.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("IdBook")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ORM.User", "User")
-                        .WithMany("UserBooks")
-                        .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ORM.User", b =>
-                {
-                    b.Navigation("UserBooks");
-                });
-
-            modelBuilder.Entity("ORM.UserBook", b =>
-                {
-                    b.Navigation("MarkBooks");
                 });
 #pragma warning restore 612, 618
         }

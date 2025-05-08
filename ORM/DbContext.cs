@@ -1,7 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.Configuration;
 
 
 
@@ -25,4 +23,24 @@ public class ApplicationDbContext: DbContext
     }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Chapter> Chapters { get; set; }
+
+    public DbSet<User> Users { get; set; }
+    public DbSet<UserBook> UserBooks { get; set; }
+    public DbSet<MarkBook> MarkBooks { get; set; }
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Book>()
+            .HasMany(s => s.Categories)
+            .WithMany(c => c.Books)
+            .UsingEntity(j => j.ToTable("BookCategory"));
+        modelBuilder.Entity<Book>()
+            .HasMany(s => s.Tags)
+            .WithMany(c => c.Books)
+            .UsingEntity(j => j.ToTable("BookTag"));
+    }
 }
