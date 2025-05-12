@@ -17,10 +17,11 @@ internal class Program
                 new MySqlServerVersion(new Version(8, 0, 11)));
         }
         );
+        builder.Services.AddControllers();
 
         var app = builder.Build();
-
-        app.MapGet("/", () => "Hello World!");
+        app.UseRouting();
+        app.MapControllers();
         app.Run();
     }
 }

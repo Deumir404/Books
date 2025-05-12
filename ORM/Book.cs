@@ -71,6 +71,7 @@ namespace ORM
         public Author Author { get; set; } = null!;
 
         public float Rating {  get; set; }
+
         [Required]
         public StatusBook Status { get; set; }
 
