@@ -29,7 +29,8 @@ namespace ORM
 
     public enum UserBookCategory
     {
-        Ongoing,
+        Reading,
+        Plans,
         Suspended,
         Completed
     }

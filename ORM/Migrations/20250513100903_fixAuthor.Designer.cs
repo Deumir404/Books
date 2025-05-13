@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ORM;
 
@@ -11,9 +12,11 @@ using ORM;
 namespace ORM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250513100903_fixAuthor")]
+    partial class fixAuthor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,7 +289,7 @@ namespace ORM.Migrations
             modelBuilder.Entity("ORM.Book", b =>
                 {
                     b.HasOne("ORM.Author", "Author")
-                        .WithMany("Categories")
+                        .WithMany()
                         .HasForeignKey("IdAuthor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -341,11 +344,6 @@ namespace ORM.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ORM.Author", b =>
-                {
-                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("ORM.User", b =>

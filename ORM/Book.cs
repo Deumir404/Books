@@ -34,17 +34,17 @@ namespace ORM
         [Key]
         public int IdAuthor { get; set; }
 
-        [Required]
         [MaxLength(250)]
         public string Surname { get; set; } = string.Empty ;
 
-        [Required]
         [MaxLength(250)]
         public string Firstname { get; set; } = string.Empty ;
 
         [Required]
         [MaxLength(250)]
         public string Nickname { get; set; } = string.Empty ;
+
+        public ICollection<Book> Books { get; set; } = new List<Book>();
 
     }
 

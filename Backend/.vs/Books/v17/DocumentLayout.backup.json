@@ -3,22 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\bookdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\bookdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -36,67 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\User.cs",
-              "RelativeDocumentMoniker": "..\\ORM\\User.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\User.cs",
-              "RelativeToolTip": "..\\ORM\\User.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T13:43:52.245Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\Book.cs",
-              "RelativeDocumentMoniker": "..\\ORM\\Book.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\Book.cs",
-              "RelativeToolTip": "..\\ORM\\Book.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAkwD0AAAASAAAAAAAAAA==",
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Author.cs",
+              "RelativeDocumentMoniker": "Contollers\\Author.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Author.cs*",
+              "RelativeToolTip": "Contollers\\Author.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAArwCoAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T13:42:52.718Z",
+              "WhenOpened": "2025-05-13T11:12:53.893Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BookDTO.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\BookDTO.cs",
-              "RelativeDocumentMoniker": "Contollers\\BookDTO.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\BookDTO.cs",
-              "RelativeToolTip": "Contollers\\BookDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Category.cs",
+              "RelativeDocumentMoniker": "Contollers\\Category.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Category.cs",
+              "RelativeToolTip": "Contollers\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T13:40:45.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
-              "RelativeDocumentMoniker": "Contollers\\Book.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
-              "RelativeToolTip": "Contollers\\Book.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T12:25:08.056Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T11:49:28.246Z",
+              "WhenOpened": "2025-05-13T11:10:16.081Z",
               "EditorCaption": ""
             }
           ]

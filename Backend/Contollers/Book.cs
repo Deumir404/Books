@@ -7,7 +7,7 @@ using System.Reflection;
 namespace Books.Contollers
 {
     [ApiController]
-    [Route("books")]
+    [Route("[controller]")]
     public class BooksController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -37,4 +37,6 @@ namespace Books.Contollers
         }
 
     }
+
+
 }
