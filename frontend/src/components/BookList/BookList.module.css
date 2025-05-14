@@ -1,0 +1,90 @@
+.bookListContainer {
+    padding: 40px;
+    background-color: white;
+    width: calc(100% - 40px); 
+    max-width: 1180px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.sortOptions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.sortLabel {
+    font-size: 16px;
+    color: #555;
+    margin-right: 10px;
+}
+
+.sortSelect {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.booksGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.bookCard {
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.bookCard:hover {
+    transform: translateY(-5px);
+}
+
+.bookCover {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.bookTitle {
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 5px 0;
+    font-weight: 600;
+}
+
+.bookAuthor {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 5px 0;
+}
+
+.bookPrice {
+    font-size: 16px;
+    color: #6D2CF7;
+    font-weight: 600;
+    margin: 0;
+}
+
+.bookCategory {
+    color: #666;
+    font-size: 13px;
+    margin: 5px 0;
+  }
+  
+  .bookFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .bookRating {
+    color: #FFA500;
+    font-weight: bold;
+  }

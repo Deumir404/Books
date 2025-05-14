@@ -1,0 +1,87 @@
+.rulesContainer {
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0;
+}
+
+.pageTitle {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.rulesFrame {
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.whiteFrame {
+    background-color: white;
+    border: 1px solid #eee;
+}
+
+.blueFrame {
+    background-color: #f0f8ff; /* Светло-голубой фон */
+    border: 1px solid #d0e3ff;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    color: #6D2CF7; /* Фиолетовый акцент как в других компонентах */
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(109, 44, 247, 0.1);
+}
+
+.ruleCard {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #6D2CF7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blueFrame .ruleCard {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.ruleCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ruleTitle {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.ruleText {
+    font-size: 16px;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .rulesContainer {
+        width: calc(100% - 20px);
+    }
+    
+    .rulesFrame {
+        padding: 20px;
+    }
+    
+    .pageTitle {
+        font-size: 28px;
+    }
+    
+    .sectionTitle {
+        font-size: 22px;
+    }
+}

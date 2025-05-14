@@ -1,0 +1,87 @@
+.filtersContainer {
+    padding: 20px;
+    background-color: white;
+    width: calc(100% - 40px);
+    max-width: 1220px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.filtersTitle {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 0px;  
+    margin-left: 20px;
+}
+
+.filterRow {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filterDropdown {
+    position: relative;
+    min-width: 200px;
+}
+
+.dropdownButton {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    margin-left: 20px;
+    transition: all 0.2s ease;
+}
+
+.dropdownButton:hover {
+    background-color: #eee;
+}
+
+.dropdownContent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    margin-top: 5px;
+}
+
+.dropdownItem {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdownItem:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdownItem.selected {
+    background-color: #6D2CF7;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .filterRow {
+        flex-direction: column;
+    }
+    
+    .filterDropdown {
+        width: 100%;
+    }
+}
