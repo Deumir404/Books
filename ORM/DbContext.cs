@@ -13,13 +13,7 @@ public class ApplicationDbContext: DbContext
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (!optionsBuilder.IsConfigured) 
-        {
-            optionsBuilder.LogTo(Console.WriteLine);
-            optionsBuilder.UseMySql(
-                Dbsettings.Dbconfig,
-                new MySqlServerVersion(new Version(8, 0, 11)));
-        }
+        
     }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }

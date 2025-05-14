@@ -70,7 +70,7 @@ namespace ORM
         [ForeignKey(nameof(IdAuthor))]
         public Author Author { get; set; } = null!;
 
-        public float Rating {  get; set; }
+        public float? Rating { get; set; } = null;
 
         [Required]
         public StatusBook Status { get; set; }

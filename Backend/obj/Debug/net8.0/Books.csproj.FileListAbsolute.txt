@@ -265,4 +265,10 @@ C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\runtimes\win\lib\net
 C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\deumir\source\repos\Books\Backend\obj\Debug\net8.0\Books.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\deumir\source\repos\Books\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
