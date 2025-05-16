@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "Books.Contollers.AuthorsController",
-    "Method": "GetAuthor",
+    "Method": "GetAuthors",
     "RelativePath": "Authors",
     "HttpMethod": "GET",
     "IsController": true,
@@ -66,6 +66,32 @@
     ]
   },
   {
+    "ContainingType": "Books.Contollers.BooksController",
+    "Method": "GetBook",
+    "RelativePath": "Books/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.BookWithAuthorDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Books.Contollers.CategoriesController",
     "Method": "GetCategory",
     "RelativePath": "Categories",
@@ -75,7 +101,53 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ORM.Category, ORM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Books.DTO.CategoryDto, Books, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.ChaptersController",
+    "Method": "GetText",
+    "RelativePath": "Chapters/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.ChapterDtoWithText",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.TagsController",
+    "Method": "GetCategory",
+    "RelativePath": "Tags",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Books.DTO.TagDto, Books, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

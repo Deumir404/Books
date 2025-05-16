@@ -17,9 +17,9 @@ namespace Books.Contollers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AuthorDto>>> GetAuthor()
+        public async Task<ActionResult<IEnumerable<AuthorDto>>> GetAuthors()
         {
-            var authors =  _context.Authors;
+            var authors =  await _context.Authors.ToListAsync();
             var answer = new List<AuthorDto>();
             foreach (var author in authors)
             {
@@ -34,13 +34,17 @@ namespace Books.Contollers
         [HttpGet("{id}")]
         public async Task<ActionResult<Author>> GetAuthorWithBooks(int id)
         {
-            var authors = _context.Authors.Include(a => a.Books).FirstOrDefault(a => a.IdAuthor == id);
+            var author = await _context.Authors.Include(a => a.Books).FirstOrDefaultAsync(a => a.IdAuthor == id);
+            if (author == null)
+            {
+                return NotFound();
+            }
             var answer = new AuthorWithBooksDto
             {
-                Firstname = authors.Firstname,
-                Surname = authors.Surname,
-                Nickname = authors.Nickname,
-                Books = authors.Books.Select(b => new BookDto { Title = b.Title, PublishedDate = b.PublishedDate }).ToList()
+                Firstname = author.Firstname,
+                Surname = author.Surname,
+                Nickname = author.Nickname,
+                Books = author.Books.Select(b => new BookDto { Title = b.Title, PublishedDate = b.PublishedDate }).ToList()
             };
             return Ok(answer);
         }

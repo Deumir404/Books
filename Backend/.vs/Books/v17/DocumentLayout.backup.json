@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +31,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAAAqAAAAAAAAAA==",
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Category.cs",
+              "RelativeDocumentMoniker": "Contollers\\Category.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Category.cs",
+              "RelativeToolTip": "Contollers\\Category.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBUAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T15:46:59.631Z",
+              "WhenOpened": "2025-05-16T10:07:23.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
+              "RelativeDocumentMoniker": "Contollers\\Book.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
+              "RelativeToolTip": "Contollers\\Book.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowBcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T09:30:28.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DTO.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\DTO.cs",
+              "RelativeDocumentMoniker": "Contollers\\DTO.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\DTO.cs",
+              "RelativeToolTip": "Contollers\\DTO.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAewD4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T08:55:59.761Z",
               "EditorCaption": ""
             }
           ]

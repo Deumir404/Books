@@ -66,6 +66,10 @@ namespace ORM
         [Required]
         public DateTime PublishedDate { get; set; } = DateTime.Now;
 
+        [Required]
+        [MaxLength(500)]
+        public string Description { get; set; } = string.Empty;
+
         public int IdAuthor { get; set; }
         [ForeignKey(nameof(IdAuthor))]
         public Author Author { get; set; } = null!;
@@ -75,6 +79,7 @@ namespace ORM
         [Required]
         public StatusBook Status { get; set; }
 
+        public ICollection<Chapter> Chapters { get; set; } = new List<Chapter>();
         public ICollection<Category> Categories { get; set; } = new List<Category>();
         public ICollection<Tag> Tags { get; set; } = new List<Tag>();
 
@@ -99,7 +104,18 @@ namespace ORM
         [ForeignKey(nameof(IdBook))]
         public Book Book { get; set; } = null!;
 
-       
+        public TextChapter TextChapters { get; set; } = null!;
 
+    }
+
+    public class TextChapter
+    {
+        [Key]
+        public int IdChapter { get; set; }
+        [Required]
+        public string Text {  get; set; } = string.Empty;
+
+        [ForeignKey(nameof(IdChapter))]
+        public Chapter Chapter { get; set; } = null!;
     }
 }

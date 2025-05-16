@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ORM;
 
@@ -11,9 +12,11 @@ using ORM;
 namespace ORM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250516090229_AddDescForBook")]
+    partial class AddDescForBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,20 +208,6 @@ namespace ORM.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("ORM.TextChapter", b =>
-                {
-                    b.Property<int>("IdChapter")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("IdChapter");
-
-                    b.ToTable("TextChapter");
-                });
-
             modelBuilder.Entity("ORM.User", b =>
                 {
                     b.Property<int>("IdUser")
@@ -316,7 +305,7 @@ namespace ORM.Migrations
             modelBuilder.Entity("ORM.Chapter", b =>
                 {
                     b.HasOne("ORM.Book", "Book")
-                        .WithMany("Chapters")
+                        .WithMany()
                         .HasForeignKey("IdBook")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -343,17 +332,6 @@ namespace ORM.Migrations
                     b.Navigation("UserBook");
                 });
 
-            modelBuilder.Entity("ORM.TextChapter", b =>
-                {
-                    b.HasOne("ORM.Chapter", "Chapter")
-                        .WithOne("TextChapters")
-                        .HasForeignKey("ORM.TextChapter", "IdChapter")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Chapter");
-                });
-
             modelBuilder.Entity("ORM.UserBook", b =>
                 {
                     b.HasOne("ORM.Book", "Book")
@@ -376,17 +354,6 @@ namespace ORM.Migrations
             modelBuilder.Entity("ORM.Author", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("ORM.Book", b =>
-                {
-                    b.Navigation("Chapters");
-                });
-
-            modelBuilder.Entity("ORM.Chapter", b =>
-                {
-                    b.Navigation("TextChapters")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ORM.User", b =>
