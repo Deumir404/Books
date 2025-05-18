@@ -24,6 +24,7 @@ namespace Books.Contollers
                 var bookDto = new BookWithAuthorDto
                 { 
                 Title = book.Title,
+                Rating = book.Rating,
                 PublishedDate = book.PublishedDate,
                 Author = new AuthorDto { 
                     Nickname = book.Author.Nickname,
@@ -48,6 +49,7 @@ namespace Books.Contollers
             {
                 Title = book.Title,
                 Description = book.Description,
+                Rating = book.Rating,
                 PublishedDate = book.PublishedDate,
                 Chapters = book.Chapters.Select(c => new ChapterDto { Title = c.Title, PublishedDate = c.PublishedDate }).ToList(),
                 Author = new AuthorDto

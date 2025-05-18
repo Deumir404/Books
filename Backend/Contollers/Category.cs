@@ -20,7 +20,7 @@ namespace Books.Contollers
         {
             var category = await _context.Categories.ToListAsync();
             var categoryDto = category.Select(tag => new TagDto { Name = tag.Name });
-            return Ok(category);
+            return Ok(categoryDto);
         }
 
     }

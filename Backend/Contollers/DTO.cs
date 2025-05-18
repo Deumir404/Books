@@ -21,6 +21,8 @@ namespace Books.DTO
         public string Description { get; set; } = string.Empty;
         public DateTime PublishedDate { get; set; }
 
+        public float? Rating { get; set; } = null;
+
         public List<ChapterDto> Chapters { get; set; } = new List<ChapterDto>();
         public AuthorDto Author { get; set; } = new();
     }
@@ -28,6 +30,8 @@ namespace Books.DTO
     public class BookWithAuthorDto
     {
         public string Title { get; set; } = string.Empty;
+
+        public float? Rating { get; set; } = null;
         public DateTime PublishedDate { get; set; }
 
         public AuthorDto Author { get; set; } = new();
