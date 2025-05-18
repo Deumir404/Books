@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Books.DTO;
 using ORM;
-using System.Reflection;
 
 namespace Books.Contollers
 {
@@ -17,10 +16,31 @@ namespace Books.Contollers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategory()
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategory()
         {
             var category = await _context.Categories.ToListAsync();
-            return Ok(category);
+            var categoryDto = category.Select(tag => new TagDto { Name = tag.Name });
+            return Ok(categoryDto);
+        }
+
+    }
+
+    [ApiController]
+    [Route("[controller]")]
+    public class TagsController : ControllerBase
+    {
+        private readonly ApplicationDbContext _context;
+        public TagsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<TagDto>>> GetCategory()
+        {
+            var tags = await _context.Tags.ToListAsync();
+            var tagsDto = tags.Select(tag => new TagDto { Name = tag.Name });
+            return Ok(tagsDto);
         }
 
     }
