@@ -94,7 +94,7 @@ namespace ORM.Migrations
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<float>("Rating")
+                    b.Property<float?>("Rating")
                         .HasColumnType("float");
 
                     b.Property<int>("Status")

@@ -12,8 +12,8 @@ using ORM;
 namespace ORM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250508103618_UserMarkbook")]
-    partial class UserMarkbook
+    [Migration("20250518091541_Create")]
+    partial class Create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,7 +97,7 @@ namespace ORM.Migrations
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<float>("Rating")
+                    b.Property<float?>("Rating")
                         .HasColumnType("float");
 
                     b.Property<int>("Status")
@@ -289,7 +289,7 @@ namespace ORM.Migrations
             modelBuilder.Entity("ORM.Book", b =>
                 {
                     b.HasOne("ORM.Author", "Author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("IdAuthor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -344,6 +344,11 @@ namespace ORM.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ORM.Author", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("ORM.User", b =>

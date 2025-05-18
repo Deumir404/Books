@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Books.csproj": {}
+    "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Books.csproj": {}
   },
   "projects": {
-    "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Books.csproj": {
+    "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Books.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Books.csproj",
+        "projectUniqueName": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Books.csproj",
         "projectName": "Books",
-        "projectPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Books.csproj",
-        "packagesPath": "C:\\Users\\deumir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Books.csproj",
+        "packagesPath": "C:\\Users\\Тимофей\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\deumir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Тимофей\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,8 +33,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\ORM.csproj": {
-                "projectPath": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\ORM.csproj"
+              "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\ORM\\ORM.csproj": {
+                "projectPath": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\ORM\\ORM.csproj"
               }
             }
           }
@@ -49,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -105,24 +105,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\ORM.csproj": {
+    "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\ORM\\ORM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\ORM.csproj",
+        "projectUniqueName": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\ORM\\ORM.csproj",
         "projectName": "ORM",
-        "projectPath": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\ORM.csproj",
-        "packagesPath": "C:\\Users\\deumir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\obj\\",
+        "projectPath": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\ORM\\ORM.csproj",
+        "packagesPath": "C:\\Users\\Тимофей\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\ORM\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\deumir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Тимофей\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -150,7 +150,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -183,7 +183,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
