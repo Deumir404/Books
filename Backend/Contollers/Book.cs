@@ -23,6 +23,7 @@ namespace Books.Contollers
             foreach (var book in books) {
                 var bookDto = new BookWithAuthorDto
                 { 
+                Id = book.IdBook,
                 Title = book.Title,
                 Rating = book.Rating,
                 PublishedDate = book.PublishedDate,
@@ -38,7 +39,7 @@ namespace Books.Contollers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BookWithAuthorDto>> GetBook(int id)
+        public async Task<ActionResult<FullBook>> GetBook(int id)
         {
             var book = await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.IdBook == id);
             if (book == null)
@@ -47,11 +48,12 @@ namespace Books.Contollers
             }
             var bookDto = new FullBook
             {
+                Id = book.IdBook,
                 Title = book.Title,
                 Description = book.Description,
                 Rating = book.Rating,
                 PublishedDate = book.PublishedDate,
-                Chapters = book.Chapters.Select(c => new ChapterDto { Title = c.Title, PublishedDate = c.PublishedDate }).ToList(),
+                Chapters = book.Chapters.Select(c => new ChapterDto {Id = c.IdChapter, Title = c.Title, PublishedDate = c.PublishedDate }).ToList(),
                 Author = new AuthorDto
                 {
                     Nickname = book.Author.Nickname,
@@ -83,6 +85,7 @@ namespace Books.Contollers
                 return NotFound();
             }
             var Chapter = new ChapterDtoWithText { 
+                Id = text.IdChapter,
                 Num = text.Num,
                 Title = text.Title,
                 PublishedDate = text.PublishedDate,

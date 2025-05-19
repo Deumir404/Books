@@ -3,6 +3,7 @@ namespace Books.DTO
 {
     public class ChapterDtoWithText
     {
+        public int Id { get; set; }
         public float Num { get; set; }
         public string Title { get; set; } = string.Empty;
         public DateTime PublishedDate { get; set; } = DateTime.Now;
@@ -11,12 +12,14 @@ namespace Books.DTO
     }
     public class ChapterDto
     {
+        public int Id { get; set; }
         public float Num { get; set; }
         public string Title { get; set; } = string.Empty;
         public DateTime PublishedDate { get; set; } = DateTime.Now;
     }
     public class FullBook
     {
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public DateTime PublishedDate { get; set; }
@@ -29,6 +32,7 @@ namespace Books.DTO
 
     public class BookWithAuthorDto
     {
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
 
         public float? Rating { get; set; } = null;
@@ -38,6 +42,7 @@ namespace Books.DTO
     }
     public class BookDto
     {
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public DateTime PublishedDate { get; set; }
     }
@@ -45,6 +50,7 @@ namespace Books.DTO
   
     public class AuthorDto
     {
+        public int Id { get; set; }
         public string Firstname { get; set; } = string.Empty;
         public string Surname { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;
@@ -52,6 +58,7 @@ namespace Books.DTO
 
     public class AuthorWithBooksDto
     {
+        public int Id { get; set; }
         public string Firstname { get; set; } = string.Empty;
         public string Surname { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;
@@ -61,11 +68,13 @@ namespace Books.DTO
 
     public class CategoryDto
     {
+        public int Id { get; set; }
         public string Name { get; set; } = null!;
     }
 
     public class TagDto
     {
+        public int Id { get; set; }
         public string Name { get; set; } = null!;
     }
 }

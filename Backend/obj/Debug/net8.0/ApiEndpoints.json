@@ -35,7 +35,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ORM.Author",
+        "Type": "Books.DTO.AuthorWithBooksDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -81,7 +81,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Books.DTO.BookWithAuthorDto",
+        "Type": "Books.DTO.FullBook",
         "MediaTypes": [
           "text/plain",
           "application/json",

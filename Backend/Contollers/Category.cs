@@ -19,7 +19,7 @@ namespace Books.Contollers
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategory()
         {
             var category = await _context.Categories.ToListAsync();
-            var categoryDto = category.Select(tag => new TagDto { Name = tag.Name });
+            var categoryDto = category.Select(c => new TagDto {Id = c.IdCategory, Name = c.Name });
             return Ok(categoryDto);
         }
 
@@ -39,7 +39,7 @@ namespace Books.Contollers
         public async Task<ActionResult<IEnumerable<TagDto>>> GetCategory()
         {
             var tags = await _context.Tags.ToListAsync();
-            var tagsDto = tags.Select(tag => new TagDto { Name = tag.Name });
+            var tagsDto = tags.Select(tag => new TagDto {Id = tag.IdTag, Name = tag.Name });
             return Ok(tagsDto);
         }
 
