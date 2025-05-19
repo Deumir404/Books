@@ -21,6 +21,32 @@
   },
   {
     "ContainingType": "Books.Contollers.AuthorsController",
+    "Method": "CreateAuthor",
+    "RelativePath": "Authors",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authorDto",
+        "Type": "Books.DTO.CreateAuthorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.AuthorWithBooksDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.AuthorsController",
     "Method": "GetAuthorWithBooks",
     "RelativePath": "Authors/{id}",
     "HttpMethod": "GET",
@@ -138,6 +164,32 @@
     ]
   },
   {
+    "ContainingType": "Books.Contollers.CategoriesController",
+    "Method": "CreateChapter",
+    "RelativePath": "Categories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryDto",
+        "Type": "Books.DTO.CreateCategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.CategoryDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Books.Contollers.ChaptersController",
     "Method": "CreateChapter",
     "RelativePath": "Chapters",
@@ -191,7 +243,7 @@
   },
   {
     "ContainingType": "Books.Contollers.TagsController",
-    "Method": "GetCategory",
+    "Method": "GetTag",
     "RelativePath": "Tags",
     "HttpMethod": "GET",
     "IsController": true,
@@ -200,6 +252,32 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[Books.DTO.TagDto, Books, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.TagsController",
+    "Method": "CreateTag",
+    "RelativePath": "Tags",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tagDto",
+        "Type": "Books.DTO.CreateTagDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.CategoryDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

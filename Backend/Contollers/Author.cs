@@ -32,6 +32,7 @@ namespace Books.Contollers
             }
             return Ok(answer);
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<AuthorWithBooksDto>> GetAuthorWithBooks(int id)
         {
@@ -49,6 +50,19 @@ namespace Books.Contollers
                 Books = author.Books.Select(b => new BookDto {Id = b.IdBook, Title = b.Title, PublishedDate = b.PublishedDate }).ToList()
             };
             return Ok(answer);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AuthorWithBooksDto>> CreateAuthor(CreateAuthorDto authorDto)
+        {
+            if (authorDto == null)
+            {
+                return BadRequest();
+            }
+            var author = new Author { Surname = authorDto.Surname , Firstname = authorDto.Firstname, Nickname = authorDto.Nickname};
+            _context.Authors.Add(author);
+            await _context.SaveChangesAsync();
+            return await GetAuthorWithBooks(author.IdAuthor);
         }
 
     }

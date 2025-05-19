@@ -1,4 +1,6 @@
 ﻿
+using ORM;
+
 namespace Books.DTO
 {
     public class ChapterDtoWithText
@@ -30,6 +32,8 @@ namespace Books.DTO
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public int Author { get; set; } 
+        public List<int> Categories { get; set; } = new List<int>();
+        public List<int> Tags { get; set; } = new List<int>();
     }
     public class FullBook
     {
@@ -42,6 +46,9 @@ namespace Books.DTO
 
         public List<ChapterDto> Chapters { get; set; } = new List<ChapterDto>();
         public AuthorDto Author { get; set; } = new();
+        public List<CategoryDto> Categories { get; set; } = new();
+        public List<TagDto> Tags { get; set; } = new();
+
     }
     public class BookWithAuthorDto
     {
@@ -60,7 +67,12 @@ namespace Books.DTO
         public DateTime PublishedDate { get; set; }
     }
 
-  
+    public class CreateAuthorDto
+    {
+        public string Firstname { get; set; } = string.Empty;
+        public string Surname { get; set; } = string.Empty;
+        public string Nickname { get; set; } = string.Empty;
+    }
     public class AuthorDto
     {
         public int Id { get; set; }
@@ -83,10 +95,18 @@ namespace Books.DTO
         public int Id { get; set; }
         public string Name { get; set; } = null!;
     }
+    public class CreateCategoryDto
+    {
+        public string Name { get; set; } = null!;
+    }
 
     public class TagDto
     {
         public int Id { get; set; }
+        public string Name { get; set; } = null!;
+    }
+    public class CreateTagDto
+    {
         public string Name { get; set; } = null!;
     }
 }

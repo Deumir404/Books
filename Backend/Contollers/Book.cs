@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Books.DTO;
 using ORM;
 using System.Reflection;
+using Humanizer;
 
 namespace Books.Contollers
 {
@@ -41,7 +42,7 @@ namespace Books.Contollers
         [HttpGet("{id}")]
         public async Task<ActionResult<FullBook>> GetBook(int id)
         {
-            var book = await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.IdBook == id);
+            var book = await _context.Books.Include(b => b.Author).Include(b => b.Categories).Include(b=> b.Tags).FirstOrDefaultAsync(b => b.IdBook == id);
             if (book == null)
             {
                 return NotFound();
@@ -51,6 +52,8 @@ namespace Books.Contollers
                 Id = book.IdBook,
                 Title = book.Title,
                 Description = book.Description,
+                Categories = book.Categories.Select(c => new CategoryDto { Name = c.Name}).ToList(),
+                Tags = book.Tags.Select(c => new TagDto { Name = c.Name }).ToList(),
                 Rating = book.Rating,
                 PublishedDate = book.PublishedDate,
                 Chapters = book.Chapters.Select(c => new ChapterDto {Id = c.IdChapter, Title = c.Title, PublishedDate = c.PublishedDate }).ToList(),
@@ -60,6 +63,7 @@ namespace Books.Contollers
                     Surname = book.Author.Surname,
                     Firstname = book.Author.Firstname,
                 }
+
             };
             return Ok(bookDto);
         }
@@ -71,7 +75,13 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var book = new Book { Title = bookdto.Title, Description = bookdto.Description , IdAuthor = bookdto.Author};
+            var categories = await _context.Categories
+                .Where(c => bookdto.Categories.Contains(c.IdCategory))
+                .ToListAsync();
+            var tags = await _context.Tags
+                .Where(c => bookdto.Tags.Contains(c.IdTag))
+                .ToListAsync();
+            var book = new Book { Title = bookdto.Title, Description = bookdto.Description , IdAuthor = bookdto.Author, Categories = categories, Tags = tags};
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
             var answer = await GetBook(id: book.IdBook);
