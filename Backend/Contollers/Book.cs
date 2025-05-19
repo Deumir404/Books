@@ -64,6 +64,19 @@ namespace Books.Contollers
             return Ok(bookDto);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<FullBook>> CreateBook(CreateBookDTO bookdto)
+        {
+            if (bookdto == null)
+            {
+                return BadRequest();
+            }
+            var book = new Book { Title = bookdto.Title, Description = bookdto.Description , IdAuthor = bookdto.Author};
+            _context.Books.Add(book);
+            await _context.SaveChangesAsync();
+            var answer = await GetBook(id: book.IdBook);
+            return answer;
+        }
     }
 
     [ApiController]
@@ -79,7 +92,7 @@ namespace Books.Contollers
         [HttpGet("{id}")]
         public async Task<ActionResult<ChapterDtoWithText>> GetText(int id)
         {
-            var text = await _context.Chapters.Include(c => c.TextChapters).FirstOrDefaultAsync(c => c.IdChapter == id);
+            var text = await _context.Chapters.Include(c => c.TextChapter).FirstOrDefaultAsync(c => c.IdChapter == id);
             if (text == null)
             {
                 return NotFound();
@@ -89,10 +102,27 @@ namespace Books.Contollers
                 Num = text.Num,
                 Title = text.Title,
                 PublishedDate = text.PublishedDate,
-                Text = text.TextChapters.Text,
+                Text = text.TextChapter.Text,
             };
             
-            return Ok(text);
+            return Ok(Chapter);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ChapterDtoWithText>> CreateChapter(CreateChapterDto chapterdto)
+        {
+            if (chapterdto == null)
+            {
+                return BadRequest();
+            }
+            var chapter = new Chapter { Title = chapterdto.Title, Num = chapterdto.Num, IdBook = chapterdto.Book};
+            _context.Chapters.Add(chapter);
+            await _context.SaveChangesAsync();
+            var textchapter = new TextChapter { IdChapter = chapter.IdChapter, Text = chapterdto.Text };
+            _context.TextChapters.Add(textchapter);
+            await _context.SaveChangesAsync();
+            var answer = await GetText(id: chapter.IdChapter);
+            return answer;
         }
 
     }

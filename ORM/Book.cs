@@ -104,7 +104,7 @@ namespace ORM
         [ForeignKey(nameof(IdBook))]
         public Book Book { get; set; } = null!;
 
-        public TextChapter TextChapters { get; set; } = null!;
+        public TextChapter TextChapter { get; set; } = null!;
 
     }
 

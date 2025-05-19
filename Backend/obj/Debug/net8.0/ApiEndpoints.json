@@ -67,6 +67,32 @@
   },
   {
     "ContainingType": "Books.Contollers.BooksController",
+    "Method": "CreateBook",
+    "RelativePath": "Books",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookdto",
+        "Type": "Books.DTO.CreateBookDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.FullBook",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.BooksController",
     "Method": "GetBook",
     "RelativePath": "Books/{id}",
     "HttpMethod": "GET",
@@ -102,6 +128,32 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[Books.DTO.CategoryDto, Books, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.ChaptersController",
+    "Method": "CreateChapter",
+    "RelativePath": "Chapters",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chapterdto",
+        "Type": "Books.DTO.CreateChapterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.ChapterDtoWithText",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -17,6 +17,20 @@ namespace Books.DTO
         public string Title { get; set; } = string.Empty;
         public DateTime PublishedDate { get; set; } = DateTime.Now;
     }
+    public class CreateChapterDto
+    {
+        public float Num { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Text { get; set; } = string.Empty;
+        public int Book {  get; set; }
+    }
+
+    public class CreateBookDTO
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public int Author { get; set; } 
+    }
     public class FullBook
     {
         public int Id { get; set; }
@@ -29,7 +43,6 @@ namespace Books.DTO
         public List<ChapterDto> Chapters { get; set; } = new List<ChapterDto>();
         public AuthorDto Author { get; set; } = new();
     }
-
     public class BookWithAuthorDto
     {
         public int Id { get; set; }
@@ -55,7 +68,6 @@ namespace Books.DTO
         public string Surname { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;
     }
-
     public class AuthorWithBooksDto
     {
         public int Id { get; set; }
