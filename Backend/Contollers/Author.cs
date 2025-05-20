@@ -65,6 +65,25 @@ namespace Books.Contollers
             return await GetAuthorWithBooks(author.IdAuthor);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<AuthorWithBooksDto>> ChangeAuthor(CreateAuthorDto authorDto, int id)
+        {
+            if (authorDto == null)
+            {
+                return BadRequest();
+            }
+            var author = await _context.Authors.FirstOrDefaultAsync(c => c.IdAuthor == id);
+            if (author == null)
+            {
+                return NotFound();
+            }
+            author.Surname = authorDto.Surname;
+            author.Firstname = authorDto.Firstname;
+            author.Nickname = authorDto.Nickname;
+            await _context.SaveChangesAsync();
+            return await GetAuthorWithBooks(id);
+        }
+
     }
 
     

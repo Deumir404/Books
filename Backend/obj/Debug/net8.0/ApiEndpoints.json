@@ -72,6 +72,37 @@
     ]
   },
   {
+    "ContainingType": "Books.Contollers.AuthorsController",
+    "Method": "ChangeAuthor",
+    "RelativePath": "Authors/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authorDto",
+        "Type": "Books.DTO.CreateAuthorDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.AuthorWithBooksDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Books.Contollers.BooksController",
     "Method": "GetBooks",
     "RelativePath": "Books",
@@ -190,6 +221,37 @@
     ]
   },
   {
+    "ContainingType": "Books.Contollers.CategoriesController",
+    "Method": "ChangeCategory",
+    "RelativePath": "Categories/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryDto",
+        "Type": "Books.DTO.CreateCategoryDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.CategoryDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Books.Contollers.ChaptersController",
     "Method": "CreateChapter",
     "RelativePath": "Chapters",
@@ -277,7 +339,38 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Books.DTO.CategoryDto",
+        "Type": "Books.DTO.TagDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.TagsController",
+    "Method": "ChangeTag",
+    "RelativePath": "Tags/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tagDto",
+        "Type": "Books.DTO.CreateTagDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.TagDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

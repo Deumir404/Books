@@ -35,6 +35,22 @@ namespace Books.Contollers
             await _context.SaveChangesAsync();
             return Ok(category);
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CategoryDto>> ChangeCategory(CreateCategoryDto categoryDto, int id)
+        {
+            if (categoryDto == null)
+            {
+                return BadRequest();
+            }
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.IdCategory == id);
+            if (category == null) {
+                return NotFound();
+            }
+            category.Name = categoryDto.Name;
+            await _context.SaveChangesAsync();
+            var answer = new CategoryDto {Id = category.IdCategory, Name = category.Name };
+            return Ok(answer);
+        }
 
     }
 
@@ -57,7 +73,7 @@ namespace Books.Contollers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CategoryDto>> CreateTag(CreateTagDto tagDto)
+        public async Task<ActionResult<TagDto>> CreateTag(CreateTagDto tagDto)
         {
             if (tagDto == null)
             {
@@ -65,8 +81,27 @@ namespace Books.Contollers
             }
             var tag = new Tag { Name = tagDto.Name };
             _context.Tags.Add(tag);
+            var answer = new TagDto {Id = tag.IdTag, Name = tag.Name };
             await _context.SaveChangesAsync();
-            return Ok(tag);
+            return Ok(answer);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TagDto>> ChangeTag(CreateTagDto tagDto, int id)
+        {
+            if (tagDto == null)
+            {
+                return BadRequest();
+            }
+            var tag = await _context.Tags.FirstOrDefaultAsync(c => c.IdTag == id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+            tag.Name = tagDto.Name;
+            var answer = new TagDto {Id = tag.IdTag, Name = tag.Name };
+            await _context.SaveChangesAsync();
+            return Ok(answer);
         }
 
     }
