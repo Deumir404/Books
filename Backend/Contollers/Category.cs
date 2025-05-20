@@ -51,6 +51,18 @@ namespace Books.Contollers
             var answer = new CategoryDto {Id = category.IdCategory, Name = category.Name };
             return Ok(answer);
         }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCategory(int id)
+        {
+            var category = await _context.Categories.FirstOrDefaultAsync(b => b.IdCategory == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+            return Ok("Category deleted");
+        }
 
     }
 
@@ -103,7 +115,18 @@ namespace Books.Contollers
             await _context.SaveChangesAsync();
             return Ok(answer);
         }
-
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTag(int id)
+        {
+            var tag = await _context.Tags.FirstOrDefaultAsync(b => b.IdTag == id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+            _context.Tags.Remove(tag);
+            _context.SaveChanges();
+            return Ok("Tag deleted");
+        }
     }
 
 

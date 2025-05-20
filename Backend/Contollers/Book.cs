@@ -87,6 +87,45 @@ namespace Books.Contollers
             var answer = await GetBook(id: book.IdBook);
             return answer;
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<FullBook>> ChangeBook(CreateBookDTO bookdto, int id)
+        {
+            if (bookdto == null)
+            {
+                return BadRequest();
+            }
+            var categories = await _context.Categories
+               .Where(c => bookdto.Categories.Contains(c.IdCategory))
+               .ToListAsync();
+            var tags = await _context.Tags
+                .Where(c => bookdto.Tags.Contains(c.IdTag))
+                .ToListAsync();
+            var book = await _context.Books.FirstOrDefaultAsync(c => c.IdBook == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            book.Title = bookdto.Title;
+            book.Description = bookdto.Description;
+            book.IdAuthor = bookdto.Author;
+            book.Categories = categories;
+            book.Tags = tags;
+            await _context.SaveChangesAsync();
+            return await GetBook(id);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBook(int id)
+        {
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.IdBook == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+            return Ok("Book deleted");
+        }
+
     }
 
     [ApiController]
@@ -133,6 +172,49 @@ namespace Books.Contollers
             await _context.SaveChangesAsync();
             var answer = await GetText(id: chapter.IdChapter);
             return answer;
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ChapterDtoWithText>> ChangeChapter(CreateChapterDto chapterDto, int id)
+        {
+            if (chapterDto == null)
+            {
+                return BadRequest();
+            }
+            var chapter = await _context.Chapters.FirstOrDefaultAsync(c => c.IdChapter == id);
+            if (chapter == null)
+            {
+                return NotFound();
+            }
+            chapter.Title = chapterDto.Title;
+            chapter.Num = chapterDto.Num;
+            chapter.IdBook = chapterDto.Book;
+            await _context.SaveChangesAsync();
+            var chapterText = await _context.TextChapters.FirstOrDefaultAsync(c => c.IdChapter == chapter.IdChapter);
+            if (chapterText == null)
+            {
+                return NotFound();
+            }
+            chapterText.Text = chapterDto.Text;
+            return await GetText(id);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteChapter(int id)
+        {
+            var chapter = await _context.Chapters.FirstOrDefaultAsync(b => b.IdChapter == id);
+            if (chapter == null)
+            {
+                return NotFound();
+            }
+            var chapterText = await _context.TextChapters.FirstOrDefaultAsync(_ => _.IdChapter == id);
+            if (chapterText == null)
+            {
+                return NotFound();
+            }
+            _context.Chapters.Remove(chapter);
+            _context.TextChapters.Remove(chapterText);
+            _context.SaveChanges();
+            return Ok("Chapter deleted");
         }
 
     }

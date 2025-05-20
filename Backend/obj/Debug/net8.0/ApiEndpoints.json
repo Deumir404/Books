@@ -103,6 +103,22 @@
     ]
   },
   {
+    "ContainingType": "Books.Contollers.AuthorsController",
+    "Method": "DeleteAuthor",
+    "RelativePath": "Authors/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Books.Contollers.BooksController",
     "Method": "GetBooks",
     "RelativePath": "Books",
@@ -173,6 +189,53 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Books.Contollers.BooksController",
+    "Method": "ChangeBook",
+    "RelativePath": "Books/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookdto",
+        "Type": "Books.DTO.CreateBookDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.FullBook",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.BooksController",
+    "Method": "DeleteBook",
+    "RelativePath": "Books/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Books.Contollers.CategoriesController",
@@ -252,6 +315,22 @@
     ]
   },
   {
+    "ContainingType": "Books.Contollers.CategoriesController",
+    "Method": "DeleteCategory",
+    "RelativePath": "Categories/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Books.Contollers.ChaptersController",
     "Method": "CreateChapter",
     "RelativePath": "Chapters",
@@ -302,6 +381,53 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Books.Contollers.ChaptersController",
+    "Method": "ChangeChapter",
+    "RelativePath": "Chapters/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chapterDto",
+        "Type": "Books.DTO.CreateChapterDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.ChapterDtoWithText",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.ChaptersController",
+    "Method": "DeleteChapter",
+    "RelativePath": "Chapters/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Books.Contollers.TagsController",
@@ -379,5 +505,21 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Books.Contollers.TagsController",
+    "Method": "DeleteTag",
+    "RelativePath": "Tags/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

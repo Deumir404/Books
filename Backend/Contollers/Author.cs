@@ -83,7 +83,18 @@ namespace Books.Contollers
             await _context.SaveChangesAsync();
             return await GetAuthorWithBooks(id);
         }
-
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAuthor(int id)
+        {
+            var Author = await _context.Authors.FirstOrDefaultAsync(b => b.IdAuthor == id);
+            if (Author == null)
+            {
+                return NotFound();
+            }
+            _context.Authors.Remove(Author);
+            _context.SaveChanges();
+            return Ok("Author deleted");
+        }
     }
 
     
