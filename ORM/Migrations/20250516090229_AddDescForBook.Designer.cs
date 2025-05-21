@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ORM;
 
@@ -11,9 +12,11 @@ using ORM;
 namespace ORM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250516090229_AddDescForBook")]
+    partial class AddDescForBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,6 +167,29 @@ namespace ORM.Migrations
                     b.ToTable("Chapters");
                 });
 
+            modelBuilder.Entity("ORM.MarkBook", b =>
+                {
+                    b.Property<int>("IdMarkbook")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdMarkbook"));
+
+                    b.Property<int>("IdChapter")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUserBook")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdMarkbook");
+
+                    b.HasIndex("IdChapter");
+
+                    b.HasIndex("IdUserBook");
+
+                    b.ToTable("MarkBooks");
+                });
+
             modelBuilder.Entity("ORM.Tag", b =>
                 {
                     b.Property<int>("IdTag")
@@ -180,20 +206,6 @@ namespace ORM.Migrations
                     b.HasKey("IdTag");
 
                     b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("ORM.TextChapter", b =>
-                {
-                    b.Property<int>("IdChapter")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("IdChapter");
-
-                    b.ToTable("TextChapters");
                 });
 
             modelBuilder.Entity("ORM.User", b =>
@@ -234,9 +246,6 @@ namespace ORM.Migrations
                     b.Property<int>("IdBook")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdChapter")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
@@ -246,8 +255,6 @@ namespace ORM.Migrations
                     b.HasKey("IdUserBook");
 
                     b.HasIndex("IdBook");
-
-                    b.HasIndex("IdChapter");
 
                     b.HasIndex("IdUser");
 
@@ -298,7 +305,7 @@ namespace ORM.Migrations
             modelBuilder.Entity("ORM.Chapter", b =>
                 {
                     b.HasOne("ORM.Book", "Book")
-                        .WithMany("Chapters")
+                        .WithMany()
                         .HasForeignKey("IdBook")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -306,15 +313,23 @@ namespace ORM.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("ORM.TextChapter", b =>
+            modelBuilder.Entity("ORM.MarkBook", b =>
                 {
                     b.HasOne("ORM.Chapter", "Chapter")
-                        .WithOne("TextChapter")
-                        .HasForeignKey("ORM.TextChapter", "IdChapter")
+                        .WithMany()
+                        .HasForeignKey("IdChapter")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ORM.UserBook", "UserBook")
+                        .WithMany("MarkBooks")
+                        .HasForeignKey("IdUserBook")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Chapter");
+
+                    b.Navigation("UserBook");
                 });
 
             modelBuilder.Entity("ORM.UserBook", b =>
@@ -322,12 +337,6 @@ namespace ORM.Migrations
                     b.HasOne("ORM.Book", "Book")
                         .WithMany()
                         .HasForeignKey("IdBook")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ORM.Chapter", "Chapter")
-                        .WithMany()
-                        .HasForeignKey("IdChapter")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -339,8 +348,6 @@ namespace ORM.Migrations
 
                     b.Navigation("Book");
 
-                    b.Navigation("Chapter");
-
                     b.Navigation("User");
                 });
 
@@ -349,20 +356,14 @@ namespace ORM.Migrations
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("ORM.Book", b =>
-                {
-                    b.Navigation("Chapters");
-                });
-
-            modelBuilder.Entity("ORM.Chapter", b =>
-                {
-                    b.Navigation("TextChapter")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ORM.User", b =>
                 {
                     b.Navigation("UserBooks");
+                });
+
+            modelBuilder.Entity("ORM.UserBook", b =>
+                {
+                    b.Navigation("MarkBooks");
                 });
 #pragma warning restore 612, 618
         }
