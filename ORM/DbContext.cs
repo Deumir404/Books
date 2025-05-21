@@ -24,7 +24,6 @@ public class ApplicationDbContext: DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<UserBook> UserBooks { get; set; }
-    public DbSet<MarkBook> MarkBooks { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,8 +37,8 @@ public class ApplicationDbContext: DbContext
             .WithMany(c => c.Books)
             .UsingEntity(j => j.ToTable("BookTag"));
         modelBuilder.Entity<Chapter>()
-        .HasOne(c => c.TextChapter)
-        .WithOne(t => t.Chapter)
-        .HasForeignKey<TextChapter>(t => t.IdChapter);
+            .HasOne(c => c.TextChapter)
+            .WithOne(t => t.Chapter)
+            .HasForeignKey<TextChapter>(t => t.IdChapter);
     }
 }

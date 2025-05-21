@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Books.DTO;
 using ORM;
-using System.Reflection;
-using Humanizer;
 
 namespace Books.Contollers
 {
@@ -129,7 +127,7 @@ namespace Books.Contollers
     }
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("Books/[controller]")]
     public class ChaptersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
