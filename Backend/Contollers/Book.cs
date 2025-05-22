@@ -66,6 +66,54 @@ namespace Books.Contollers
             return Ok(bookDto);
         }
 
+        [HttpGet("search")]
+        public async Task<ActionResult<FullBook>> GetBookByFilter(string? title, [FromQuery]List<int> category, [FromQuery] List<int> tags)
+        {
+            var books = _context.Books
+             .Include(c => c.Author)
+             .Include(c => c.Tags)
+             .Include(c => c.Categories)
+             .AsQueryable();
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                books = books.Where(b => b.Title.Contains(title));
+            }
+
+            var bookList = await books.ToListAsync();
+
+            if (category.Any())
+            {
+                bookList = bookList
+                    .Where(book => category.All(cat => book.Categories.Select(c => c.IdCategory).Contains(cat)))
+                    .ToList();
+            }
+
+            if (tags.Any())
+            {
+                bookList = bookList
+                    .Where(book => tags.All(tag => book.Tags.Select(t => t.IdTag).Contains(tag)))
+                    .ToList();
+            }
+
+            var answer = bookList.Select(book => new BookWithAuthorDto
+            {
+                Id = book.IdBook,
+                Title = book.Title,
+                Rating = book.Rating,
+                PublishedDate = book.PublishedDate,
+                Author = new AuthorDto
+                {
+                    Nickname = book.Author.Nickname,
+                    Surname = book.Author.Surname,
+                    Firstname = book.Author.Firstname
+                }
+            }).ToList();
+
+            return Ok(answer);
+
+        }
+
         [HttpPost]
         public async Task<ActionResult<FullBook>> CreateBook(CreateBookDTO bookdto)
         {
