@@ -19,18 +19,28 @@ namespace Books.Contollers
         public async Task<ActionResult<IEnumerable<BookWithAuthorDto>>> GetBooks(){
             var books = await _context.Books.Include(b => b.Author).ToListAsync();
             var answer = new List<BookWithAuthorDto>();
+           
             foreach (var book in books) {
+                var coverPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "cover", $"{book.IdBook}.jpg");
+                bool exists = System.IO.File.Exists(coverPath);
+
+                string coverUrl = exists
+                    ? $"/images/cover/{book.IdBook}.jpg"
+                    : "/images/cover/empty.jpg";
                 var bookDto = new BookWithAuthorDto
-                { 
-                Id = book.IdBook,
-                Title = book.Title,
-                Rating = book.Rating,
-                PublishedDate = book.PublishedDate,
-                Author = new AuthorDto { 
-                    Nickname = book.Author.Nickname,
-                    Surname = book.Author.Surname,
-                    Firstname = book.Author.Firstname
-                }
+                {
+                    Id = book.IdBook,
+                    Title = book.Title,
+                    Rating = book.Rating,
+                    PublishedDate = book.PublishedDate,
+                    CoverURL = coverUrl,
+                    Author = new AuthorDto
+                    {
+                        Nickname = book.Author.Nickname,
+                        Surname = book.Author.Surname,
+                        Firstname = book.Author.Firstname
+                    }
+
                 };
                 answer.Add(bookDto);
             }
@@ -45,6 +55,12 @@ namespace Books.Contollers
             {
                 return NotFound();
             }
+            var coverPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "cover", $"{book.IdBook}.jpg");
+            bool exists = System.IO.File.Exists(coverPath);
+
+            string coverUrl = exists
+                ? $"/images/cover/{book.IdBook}.jpg"
+                : "/images/cover/empty.jpg";
             var bookDto = new FullBook
             {
                 Id = book.IdBook,
@@ -53,6 +69,7 @@ namespace Books.Contollers
                 Categories = book.Categories.Select(c => new CategoryDto { Name = c.Name}).ToList(),
                 Tags = book.Tags.Select(c => new TagDto { Name = c.Name }).ToList(),
                 Rating = book.Rating,
+                CoverURL = coverUrl,
                 PublishedDate = book.PublishedDate,
                 Chapters = book.Chapters.Select(c => new ChapterDto {Id = c.IdChapter, Title = c.Title, PublishedDate = c.PublishedDate }).ToList(),
                 Author = new AuthorDto
@@ -95,20 +112,31 @@ namespace Books.Contollers
                     .Where(book => tags.All(tag => book.Tags.Select(t => t.IdTag).Contains(tag)))
                     .ToList();
             }
-
-            var answer = bookList.Select(book => new BookWithAuthorDto
+            var answer = new List<BookWithAuthorDto>();
+            foreach (var book in books)
             {
-                Id = book.IdBook,
-                Title = book.Title,
-                Rating = book.Rating,
-                PublishedDate = book.PublishedDate,
-                Author = new AuthorDto
+                var coverPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "cover", $"{book.IdBook}.jpg");
+                bool exists = System.IO.File.Exists(coverPath);
+
+                string coverUrl = exists
+                    ? $"/images/cover/{book.IdBook}.jpg"
+                    : "/images/cover/empty.jpg";
+                var bookDto = new BookWithAuthorDto
                 {
-                    Nickname = book.Author.Nickname,
-                    Surname = book.Author.Surname,
-                    Firstname = book.Author.Firstname
-                }
-            }).ToList();
+                    Id = book.IdBook,
+                    Title = book.Title,
+                    Rating = book.Rating,
+                    PublishedDate = book.PublishedDate,
+                    CoverURL = coverUrl,
+                    Author = new AuthorDto
+                    {
+                        Nickname = book.Author.Nickname,
+                        Surname = book.Author.Surname,
+                        Firstname = book.Author.Firstname
+                    }
+                };
+                answer.Add(bookDto);
+            }
 
             return Ok(answer);
 
@@ -133,6 +161,23 @@ namespace Books.Contollers
             var answer = await GetBook(id: book.IdBook);
             return answer;
         }
+        [HttpPost("{id}/cover")]
+        public async Task<IActionResult> UploadCover(int id, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded");
+
+            var filePath = Path.Combine("wwwroot/images/cover", $"{id}.jpg");
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return Ok("Cover uploaded successfully");
+        }
+
+
         [HttpPut("{id}")]
         public async Task<ActionResult<FullBook>> ChangeBook(CreateBookDTO bookdto, int id)
         {

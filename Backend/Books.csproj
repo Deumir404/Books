@@ -27,4 +27,8 @@
     <ProjectReference Include="..\ORM\ORM.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\cover\" />
+  </ItemGroup>
+
 </Project>

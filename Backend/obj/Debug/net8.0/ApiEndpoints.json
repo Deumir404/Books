@@ -238,6 +238,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Books.Contollers.BooksController",
+    "Method": "UploadCover",
+    "RelativePath": "Books/{id}/cover",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Books.Contollers.ChaptersController",
     "Method": "CreateChapter",
     "RelativePath": "Books/Chapters",

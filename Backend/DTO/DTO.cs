@@ -49,6 +49,8 @@ namespace Books.DTO
         public List<CategoryDto> Categories { get; set; } = [];
         public List<TagDto> Tags { get; set; } = [];
 
+        public string CoverURL { get; set; } = string.Empty;
+
     }
     public class BookWithAuthorDto
     {
@@ -59,12 +61,14 @@ namespace Books.DTO
         public DateTime PublishedDate { get; set; }
 
         public AuthorDto Author { get; set; } = new();
+        public string CoverURL { get; set; } = string.Empty;
     }
     public class BookDto
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public DateTime PublishedDate { get; set; }
+        public string CoverURL { get; set; } = string.Empty;
     }
 
     public class CreateAuthorDto

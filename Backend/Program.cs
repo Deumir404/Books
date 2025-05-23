@@ -57,6 +57,7 @@ internal class Program
 
         app.UseRouting();
         app.MapControllers();
+        app.UseStaticFiles();
         app.Run();
     }
 }
