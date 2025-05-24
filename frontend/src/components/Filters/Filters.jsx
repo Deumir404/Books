@@ -2,29 +2,46 @@ import React, { useState } from 'react';
 import styles from './Filters.module.css';
 
 const Filters = ({
-  authors,
-  categories,
-  selectedAuthors,
-  selectedCategories,
+  authors = [],
+  categories = [],
+  selectedAuthors = [],
+  selectedCategories = [],
   onAuthorChange,
   onCategoryChange
 }) => {
   const [showAuthorDropdown, setShowAuthorDropdown] = useState(false);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
+  const handleAuthorClick = (authorId) => {
+    onAuthorChange(authorId);
+    setShowAuthorDropdown(false);
+  };
+
+  const handleCategoryClick = (categoryId) => {
+    onCategoryChange(categoryId);
+    setShowCategoryDropdown(false);
+  };
+
+  const getSelectedNames = (ids, items, idKey = 'id', nameKey = 'name') => {
+    if (!ids.length) return 'Все';
+    return ids
+      .map(id => items.find(item => item[idKey] === id)?.[nameKey])
+      .filter(Boolean)
+      .join(', ');
+  };
+
   return (
     <div className={styles.filtersContainer}>
+      <h2 className={styles.filtersTitle}>Фильтры</h2>
       <div className={styles.filterRow}>
         {/* Фильтр по авторам */}
         <div className={styles.filterDropdown}>
           <button 
             className={styles.dropdownButton}
             onClick={() => setShowAuthorDropdown(!showAuthorDropdown)}
+            onBlur={() => setTimeout(() => setShowAuthorDropdown(false), 200)}
           >
-            Авторы: {selectedAuthors.length > 0 
-              ? selectedAuthors.map(id => 
-                  authors.find(a => a.id === id)?.nickname).join(', ') 
-              : 'Все'}
+            Авторы: {getSelectedNames(selectedAuthors, authors, 'id', 'nickname')}
           </button>
           
           {showAuthorDropdown && (
@@ -35,7 +52,7 @@ const Filters = ({
                   className={`${styles.dropdownItem} ${
                     selectedAuthors.includes(author.id) ? styles.selected : ''
                   }`}
-                  onClick={() => onAuthorChange(author.id)}
+                  onClick={() => handleAuthorClick(author.id)}
                 >
                   {author.nickname}
                 </div>
@@ -49,11 +66,9 @@ const Filters = ({
           <button 
             className={styles.dropdownButton}
             onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
+            onBlur={() => setTimeout(() => setShowCategoryDropdown(false), 200)}
           >
-            Категории: {selectedCategories.length > 0 
-              ? selectedCategories.map(id => 
-                  categories.find(c => c.idCategory === id)?.name).join(', ') 
-              : 'Все'}
+            Категории: {getSelectedNames(selectedCategories, categories, 'idCategory', 'name')}
           </button>
           
           {showCategoryDropdown && (
@@ -64,7 +79,7 @@ const Filters = ({
                   className={`${styles.dropdownItem} ${
                     selectedCategories.includes(category.idCategory) ? styles.selected : ''
                   }`}
-                  onClick={() => onCategoryChange(category.idCategory)}
+                  onClick={() => handleCategoryClick(category.idCategory)}
                 >
                   {category.name}
                 </div>

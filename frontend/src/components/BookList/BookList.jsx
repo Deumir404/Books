@@ -24,8 +24,8 @@ const BookList = ({ books, sortBy, onSortChange }) => {
           <div className={styles.bookCard} key={book.id}>
             <h3 className={styles.bookTitle}>{book.title}</h3>
             <div className={styles.bookMeta}>
+              <span>Автор: {book.author?.nickname || 'Неизвестен'}</span><div/>
               <span>Дата: {new Date(book.publishedDate).toLocaleDateString()}</span>
-              <span>Автор ID: {book.idAuthor}</span>
             </div>
             {book.rating && (
               <div className={styles.bookRating}>

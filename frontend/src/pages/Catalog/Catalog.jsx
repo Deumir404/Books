@@ -7,6 +7,7 @@ import styles from './Catalog.css';
 
 const CatalogPage = () => {
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const CatalogPage = () => {
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [sortBy, setSortBy] = useState('title');
   const [currentPage, setCurrentPage] = useState(1);
-  const booksPerPage = 6;
+  const booksPerPage = 50;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,13 +38,41 @@ const CatalogPage = () => {
     fetchData();
   }, []);
 
-  const filteredBooks = books.filter(book => {
-    const authorMatch = selectedAuthors.length === 0 || 
-      (book.author && selectedAuthors.includes(book.author.id));
-    const categoryMatch = selectedCategories.length === 0 || 
-      (book.category && selectedCategories.includes(book.category.idCategory));
-    return authorMatch && categoryMatch;
-  });
+  useEffect(() => {
+    const filterBooks = async () => {
+      try {
+        let url = '/books';
+        const params = new URLSearchParams();
+        
+        if (selectedAuthors.length > 0) {
+          params.append('authors', selectedAuthors.join(','));
+        }
+        // Add categories filtering when endpoint is ready
+        // if (selectedCategories.length > 0) {
+        //   params.append('categories', selectedCategories.join(','));
+        // }
+        
+        if (params.toString()) {
+          url += `?${params.toString()}`;
+        }
+        
+        const response = await axios.get(url);
+        setFilteredBooks(response.data);
+      } catch (error) {
+        console.error('Error filtering books:', error);
+        // Fallback to client-side filtering if API fails
+        const filtered = books.filter(book => {
+          const authorMatch = selectedAuthors.length === 0 || 
+            (book.author && selectedAuthors.includes(book.author.id));
+          // Add category matching when ready
+          return authorMatch;
+        });
+        setFilteredBooks(filtered);
+      }
+    };
+
+    filterBooks();
+  }, [selectedAuthors, selectedCategories, books]);
 
   const sortedBooks = [...filteredBooks].sort((a, b) => {
     switch (sortBy) {
