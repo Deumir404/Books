@@ -24,6 +24,7 @@ namespace Books.Contollers
             foreach (var author in authors)
             {
                 var authorDto = new AuthorDto { 
+                Id = author.IdAuthor,
                 Firstname = author.Firstname,
                 Surname = author.Surname,
                 Nickname = author.Nickname};
@@ -31,8 +32,9 @@ namespace Books.Contollers
             }
             return Ok(answer);
         }
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<Author>> GetAuthorWithBooks(int id)
+        public async Task<ActionResult<AuthorWithBooksDto>> GetAuthorWithBooks(int id)
         {
             var author = await _context.Authors.Include(a => a.Books).FirstOrDefaultAsync(a => a.IdAuthor == id);
             if (author == null)
@@ -41,14 +43,58 @@ namespace Books.Contollers
             }
             var answer = new AuthorWithBooksDto
             {
+                Id = author.IdAuthor,
                 Firstname = author.Firstname,
                 Surname = author.Surname,
                 Nickname = author.Nickname,
-                Books = author.Books.Select(b => new BookDto { Title = b.Title, PublishedDate = b.PublishedDate }).ToList()
+                Books = author.Books.Select(b => new BookDto {Id = b.IdBook, Title = b.Title, PublishedDate = b.PublishedDate }).ToList()
             };
             return Ok(answer);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<AuthorWithBooksDto>> CreateAuthor(CreateAuthorDto authorDto)
+        {
+            if (authorDto == null)
+            {
+                return BadRequest();
+            }
+            var author = new Author { Surname = authorDto.Surname , Firstname = authorDto.Firstname, Nickname = authorDto.Nickname};
+            _context.Authors.Add(author);
+            await _context.SaveChangesAsync();
+            return await GetAuthorWithBooks(author.IdAuthor);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<AuthorWithBooksDto>> ChangeAuthor(CreateAuthorDto authorDto, int id)
+        {
+            if (authorDto == null)
+            {
+                return BadRequest();
+            }
+            var author = await _context.Authors.FirstOrDefaultAsync(c => c.IdAuthor == id);
+            if (author == null)
+            {
+                return NotFound();
+            }
+            author.Surname = authorDto.Surname;
+            author.Firstname = authorDto.Firstname;
+            author.Nickname = authorDto.Nickname;
+            await _context.SaveChangesAsync();
+            return await GetAuthorWithBooks(id);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAuthor(int id)
+        {
+            var Author = await _context.Authors.FirstOrDefaultAsync(b => b.IdAuthor == id);
+            if (Author == null)
+            {
+                return NotFound();
+            }
+            _context.Authors.Remove(Author);
+            _context.SaveChanges();
+            return Ok("Author deleted");
+        }
     }
 
     

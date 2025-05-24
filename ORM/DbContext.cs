@@ -20,10 +20,10 @@ public class ApplicationDbContext: DbContext
     public DbSet<Tag> Tags { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Chapter> Chapters { get; set; }
+    public DbSet<TextChapter> TextChapters { get; set; }
 
     public DbSet<User> Users { get; set; }
     public DbSet<UserBook> UserBooks { get; set; }
-    public DbSet<MarkBook> MarkBooks { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,5 +36,9 @@ public class ApplicationDbContext: DbContext
             .HasMany(s => s.Tags)
             .WithMany(c => c.Books)
             .UsingEntity(j => j.ToTable("BookTag"));
+        modelBuilder.Entity<Chapter>()
+            .HasOne(c => c.TextChapter)
+            .WithOne(t => t.Chapter)
+            .HasForeignKey<TextChapter>(t => t.IdChapter);
     }
 }

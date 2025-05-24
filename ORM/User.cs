@@ -22,7 +22,7 @@ namespace ORM
         [MaxLength(250)]
         public string Email { get; set; } = string.Empty;
 
-        public ICollection<UserBook> UserBooks { get; set; } = new List<UserBook>();
+        public ICollection<UserBook> UserBooks { get; set; } = [];
 
 
     }
@@ -49,24 +49,10 @@ namespace ORM
 
         [Required]
         public UserBookCategory Status { get; set; }
-        public ICollection<MarkBook> MarkBooks { get; set; } = new List<MarkBook>();
-
-    }
-
-    public class MarkBook
-    {
-        [Key]
-        public int IdMarkbook { get; set; }
 
         public int IdChapter { get; set; }
         [ForeignKey(nameof(IdChapter))]
         public Chapter Chapter { get; set; } = null!;
-
-        public int IdUserBook { get; set; }
-        [ForeignKey(nameof(IdUserBook))]
-        public UserBook UserBook { get; set; } = null!;
-
-
 
     }
 }
