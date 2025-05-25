@@ -63,6 +63,9 @@ internal class Program
         builder.Services.AddScoped<IBookRepository, BookRepository>();
         builder.Services.AddScoped<IBookService, BookService>();
 
+        builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+        builder.Services.AddScoped<IChapterService, ChapterService>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())

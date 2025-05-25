@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Books.DTO;
-using ORM;
 using Books.Services;
 
 namespace Books.Contollers
@@ -98,29 +96,21 @@ namespace Books.Contollers
     [Route("Books/[controller]")]
     public class ChaptersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public ChaptersController(ApplicationDbContext context)
+        private readonly IChapterService _chapterService;
+        public ChaptersController(IChapterService chapterService)
         {
-            _context = context;
+            _chapterService = chapterService;
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ChapterDtoWithText>> GetText(int id)
         {
-            var text = await _context.Chapters.Include(c => c.TextChapter).FirstOrDefaultAsync(c => c.IdChapter == id);
-            if (text == null)
+            var answer = await _chapterService.GetChapterDto(id);
+            if (answer == null)
             {
                 return NotFound();
             }
-            var Chapter = new ChapterDtoWithText { 
-                Id = text.IdChapter,
-                Num = text.Num,
-                Title = text.Title,
-                PublishedDate = text.PublishedDate,
-                Text = text.TextChapter.Text,
-            };
-            
-            return Ok(Chapter);
+            return Ok(answer);
         }
 
         [HttpPost]
@@ -130,14 +120,8 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var chapter = new Chapter { Title = chapterdto.Title, Num = chapterdto.Num, IdBook = chapterdto.Book};
-            _context.Chapters.Add(chapter);
-            await _context.SaveChangesAsync();
-            var textchapter = new TextChapter { IdChapter = chapter.IdChapter, Text = chapterdto.Text };
-            _context.TextChapters.Add(textchapter);
-            await _context.SaveChangesAsync();
-            var answer = await GetText(id: chapter.IdChapter);
-            return answer;
+            var answer = await _chapterService.CreateChapterDto(chapterdto);
+            return Ok(answer);
         }
 
         [HttpPut("{id}")]
@@ -147,41 +131,24 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var chapter = await _context.Chapters.FirstOrDefaultAsync(c => c.IdChapter == id);
+            var chapter  = await _chapterService.ChangeChapterDto(chapterDto, id);
             if (chapter == null)
             {
                 return NotFound();
             }
-            chapter.Title = chapterDto.Title;
-            chapter.Num = chapterDto.Num;
-            chapter.IdBook = chapterDto.Book;
-            await _context.SaveChangesAsync();
-            var chapterText = await _context.TextChapters.FirstOrDefaultAsync(c => c.IdChapter == chapter.IdChapter);
-            if (chapterText == null)
-            {
-                return NotFound();
-            }
-            chapterText.Text = chapterDto.Text;
-            return await GetText(id);
+            return Ok(chapter);
         }
+
+       
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteChapter(int id)
         {
-            var chapter = await _context.Chapters.FirstOrDefaultAsync(b => b.IdChapter == id);
-            if (chapter == null)
-            {
-                return NotFound();
-            }
-            var chapterText = await _context.TextChapters.FirstOrDefaultAsync(_ => _.IdChapter == id);
-            if (chapterText == null)
-            {
-                return NotFound();
-            }
-            _context.Chapters.Remove(chapter);
-            _context.TextChapters.Remove(chapterText);
-            _context.SaveChanges();
+            var chapter = await _chapterService.DeleteChapterDto(id);
             return Ok("Chapter deleted");
         }
+
+        
 
     }
 
