@@ -71,18 +71,17 @@ namespace Books.Contollers
     [Route("[controller]")]
     public class TagsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public TagsController(ApplicationDbContext context)
+        private readonly ITagService _tagService;
+        public TagsController(ITagService tagService)
         {
-            _context = context;
+            _tagService = tagService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TagDto>>> GetTag()
         {
-            var tags = await _context.Tags.ToListAsync();
-            var tagsDto = tags.Select(tag => new TagDto {Id = tag.IdTag, Name = tag.Name });
-            return Ok(tagsDto);
+            var tags = await _tagService.GetTag();
+            return Ok(tags);
         }
 
         [HttpPost]
@@ -92,11 +91,9 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var tag = new Tag { Name = tagDto.Name };
-            _context.Tags.Add(tag);
-            var answer = new TagDto {Id = tag.IdTag, Name = tag.Name };
-            await _context.SaveChangesAsync();
+            var answer = await _tagService.CreateCategoryDTO(tagDto);
             return Ok(answer);
+            
         }
 
         [HttpPut("{id}")]
@@ -106,26 +103,21 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var tag = await _context.Tags.FirstOrDefaultAsync(c => c.IdTag == id);
+            var tag = await _tagService.ChangeCategoryDTO(tagDto, id);
             if (tag == null)
             {
                 return NotFound();
             }
-            tag.Name = tagDto.Name;
-            var answer = new TagDto {Id = tag.IdTag, Name = tag.Name };
-            await _context.SaveChangesAsync();
-            return Ok(answer);
+            return Ok(tag);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTag(int id)
         {
-            var tag = await _context.Tags.FirstOrDefaultAsync(b => b.IdTag == id);
+            var tag = await _tagService.DeleteCategoryDto(id);
             if (tag == null)
             {
                 return NotFound();
             }
-            _context.Tags.Remove(tag);
-            _context.SaveChanges();
             return Ok("Tag deleted");
         }
     }

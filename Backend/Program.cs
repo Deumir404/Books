@@ -54,6 +54,9 @@ internal class Program
         builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
         builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+        builder.Services.AddScoped<ITagRepository, TagRepository>();
+        builder.Services.AddScoped<ITagService, TagService>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())

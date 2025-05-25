@@ -12,7 +12,7 @@ namespace Books.Services
     {
         Task<IEnumerable<CategoryDto>> GetCategory();
         Task<CategoryDto> CreateCategoryDTO(CreateCategoryDto categoryDto);
-        Task<ActionResult<CategoryDto?>> ChangeCategoryDTO(CreateCategoryDto categoryDto, int id);
+        Task<CategoryDto?> ChangeCategoryDTO(CreateCategoryDto categoryDto, int id);
         Task<bool> DeleteCategoryDto(int id);
 
     }
@@ -40,7 +40,7 @@ namespace Books.Services
 
         }
 
-        public async Task<ActionResult<CategoryDto?>> ChangeCategoryDTO(CreateCategoryDto categoryDto, int id)
+        public async Task<CategoryDto?> ChangeCategoryDTO(CreateCategoryDto categoryDto, int id)
         {
             var category = await _categoryRepository.GetCategoryById(id);
             if (category == null)
