@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sa5ZFNPK4wIcEvfFABVxIuH026oO5wyQ9dyNcxbbZaQ=",
+  "Hash": "SFi0RyQ6uz7wyW5EXfqdIZ7CIaWL0KCk/QdhCPAndnM=",
   "Source": "Books",
   "BasePath": "_content/Books",
   "Mode": "Default",
@@ -10,17 +10,59 @@
     {
       "Name": "Books\\wwwroot",
       "Source": "Books",
-      "ContentRoot": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
       "BasePath": "_content/Books",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",
+      "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\1.jpg",
       "SourceId": "Books",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
+      "BasePath": "_content/Books",
+      "RelativePath": "images/cover/1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9h2fq2qpm9",
+      "Integrity": "TTzwlfyryiNuEP+MUBvUKv+h2w9C+V5i66LaWtYfENI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cover\\1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\5.jpg",
+      "SourceId": "Books",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
+      "BasePath": "_content/Books",
+      "RelativePath": "images/cover/5#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vc4bu3xfs4",
+      "Integrity": "MXt0ANZJPG+OlPY2EKejz28xYfCG21785qsZht4mV20=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cover\\5.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",
+      "SourceId": "Books",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
       "BasePath": "_content/Books",
       "RelativePath": "images/cover/7#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -38,10 +80,10 @@
       "OriginalItemSpec": "wwwroot\\images\\cover\\7.jpg"
     },
     {
-      "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\ci8g4cvc.jpg",
+      "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\ci8g4cvc.jpg",
       "SourceId": "Books",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
       "BasePath": "_content/Books",
       "RelativePath": "images/cover/ci8g4cvc#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -59,10 +101,10 @@
       "OriginalItemSpec": "wwwroot\\images\\cover\\ci8g4cvc.jpg"
     },
     {
-      "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\empty.jpg",
+      "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\empty.jpg",
       "SourceId": "Books",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
       "BasePath": "_content/Books",
       "RelativePath": "images/cover/empty#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -82,8 +124,172 @@
   ],
   "Endpoints": [
     {
+      "Route": "images/cover/1.9h2fq2qpm9.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "118238"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TTzwlfyryiNuEP+MUBvUKv+h2w9C+V5i66LaWtYfENI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 24 May 2025 21:18:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9h2fq2qpm9"
+        },
+        {
+          "Name": "label",
+          "Value": "images/cover/1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TTzwlfyryiNuEP+MUBvUKv+h2w9C+V5i66LaWtYfENI="
+        }
+      ]
+    },
+    {
+      "Route": "images/cover/1.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "118238"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TTzwlfyryiNuEP+MUBvUKv+h2w9C+V5i66LaWtYfENI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 24 May 2025 21:18:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TTzwlfyryiNuEP+MUBvUKv+h2w9C+V5i66LaWtYfENI="
+        }
+      ]
+    },
+    {
+      "Route": "images/cover/5.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "286196"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MXt0ANZJPG+OlPY2EKejz28xYfCG21785qsZht4mV20=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 24 May 2025 22:40:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MXt0ANZJPG+OlPY2EKejz28xYfCG21785qsZht4mV20="
+        }
+      ]
+    },
+    {
+      "Route": "images/cover/5.vc4bu3xfs4.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "286196"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MXt0ANZJPG+OlPY2EKejz28xYfCG21785qsZht4mV20=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 24 May 2025 22:40:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vc4bu3xfs4"
+        },
+        {
+          "Name": "label",
+          "Value": "images/cover/5.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MXt0ANZJPG+OlPY2EKejz28xYfCG21785qsZht4mV20="
+        }
+      ]
+    },
+    {
       "Route": "images/cover/7.96a31vh1cx.jpg",
-      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -104,7 +310,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 11:20:11 GMT"
+          "Value": "Sat, 24 May 2025 17:34:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -128,7 +334,7 @@
     },
     {
       "Route": "images/cover/7.jpg",
-      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -149,7 +355,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 11:20:11 GMT"
+          "Value": "Sat, 24 May 2025 17:34:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -165,7 +371,7 @@
     },
     {
       "Route": "images/cover/ci8g4cvc.96a31vh1cx.jpg",
-      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\ci8g4cvc.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\ci8g4cvc.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -186,7 +392,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 11:16:48 GMT"
+          "Value": "Sat, 24 May 2025 17:34:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -210,7 +416,7 @@
     },
     {
       "Route": "images/cover/ci8g4cvc.jpg",
-      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\ci8g4cvc.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\ci8g4cvc.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -231,7 +437,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 11:16:48 GMT"
+          "Value": "Sat, 24 May 2025 17:34:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -247,7 +453,7 @@
     },
     {
       "Route": "images/cover/empty.jpg",
-      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\empty.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\empty.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -268,7 +474,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 11:00:18 GMT"
+          "Value": "Sat, 24 May 2025 17:34:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -284,7 +490,7 @@
     },
     {
       "Route": "images/cover/empty.kra3dryhsz.jpg",
-      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\empty.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\empty.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -305,7 +511,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 11:00:18 GMT"
+          "Value": "Sat, 24 May 2025 17:34:57 GMT"
         },
         {
           "Name": "Cache-Control",

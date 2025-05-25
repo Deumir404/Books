@@ -516,4 +516,16 @@ C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debu
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\Books.pdb
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\Books.genruntimeconfig.cache
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\ref\Books.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.staticwebassets.runtime.json
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Npgsql.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

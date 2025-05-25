@@ -28,6 +28,7 @@ const CatalogPage = () => {
         setBooks(booksRes.data);
         setAuthors(authorsRes.data);
         setCategories(categoriesRes.data);
+        setFilteredBooks(booksRes.data);
       } catch (error) {
         console.error('Error:', error.response?.data || error.message);
       } finally {
@@ -39,35 +40,21 @@ const CatalogPage = () => {
   }, []);
 
   useEffect(() => {
-    const filterBooks = async () => {
+    const filterBooks = () => {
       try {
-        let url = '/books';
-        const params = new URLSearchParams();
+        let result = [...books];
         
+        // Фильтрация по авторам - теперь сравниваем book.author.id
         if (selectedAuthors.length > 0) {
-          params.append('authors', selectedAuthors.join(','));
-        }
-        // Add categories filtering when endpoint is ready
-        // if (selectedCategories.length > 0) {
-        //   params.append('categories', selectedCategories.join(','));
-        // }
-        
-        if (params.toString()) {
-          url += `?${params.toString()}`;
+          result = result.filter(book => 
+            book.author && selectedAuthors.includes(book.author.id)
+          );
         }
         
-        const response = await axios.get(url);
-        setFilteredBooks(response.data);
+        setFilteredBooks(result);
       } catch (error) {
         console.error('Error filtering books:', error);
-        // Fallback to client-side filtering if API fails
-        const filtered = books.filter(book => {
-          const authorMatch = selectedAuthors.length === 0 || 
-            (book.author && selectedAuthors.includes(book.author.id));
-          // Add category matching when ready
-          return authorMatch;
-        });
-        setFilteredBooks(filtered);
+        setFilteredBooks(books);
       }
     };
 
@@ -85,6 +72,7 @@ const CatalogPage = () => {
     }
   });
 
+  // Остальной код остается без изменений
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);

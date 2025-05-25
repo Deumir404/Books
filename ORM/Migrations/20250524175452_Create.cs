@@ -92,6 +92,8 @@ namespace ORM.Migrations
                     Title = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PublishedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Description = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     IdAuthor = table.Column<int>(type: "int", nullable: false),
                     Rating = table.Column<float>(type: "float", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false)
@@ -183,6 +185,26 @@ namespace ORM.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "TextChapters",
+                columns: table => new
+                {
+                    IdChapter = table.Column<int>(type: "int", nullable: false),
+                    Text = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TextChapters", x => x.IdChapter);
+                    table.ForeignKey(
+                        name: "FK_TextChapters_Chapters_IdChapter",
+                        column: x => x.IdChapter,
+                        principalTable: "Chapters",
+                        principalColumn: "IdChapter",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "UserBooks",
                 columns: table => new
                 {
@@ -190,7 +212,8 @@ namespace ORM.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdUser = table.Column<int>(type: "int", nullable: false),
                     IdBook = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    IdChapter = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -202,37 +225,16 @@ namespace ORM.Migrations
                         principalColumn: "IdBook",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserBooks_Users_IdUser",
-                        column: x => x.IdUser,
-                        principalTable: "Users",
-                        principalColumn: "IdUser",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "MarkBooks",
-                columns: table => new
-                {
-                    IdMarkbook = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdChapter = table.Column<int>(type: "int", nullable: false),
-                    IdUserBook = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MarkBooks", x => x.IdMarkbook);
-                    table.ForeignKey(
-                        name: "FK_MarkBooks_Chapters_IdChapter",
+                        name: "FK_UserBooks_Chapters_IdChapter",
                         column: x => x.IdChapter,
                         principalTable: "Chapters",
                         principalColumn: "IdChapter",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MarkBooks_UserBooks_IdUserBook",
-                        column: x => x.IdUserBook,
-                        principalTable: "UserBooks",
-                        principalColumn: "IdUserBook",
+                        name: "FK_UserBooks_Users_IdUser",
+                        column: x => x.IdUser,
+                        principalTable: "Users",
+                        principalColumn: "IdUser",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -258,19 +260,14 @@ namespace ORM.Migrations
                 column: "IdBook");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MarkBooks_IdChapter",
-                table: "MarkBooks",
-                column: "IdChapter");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MarkBooks_IdUserBook",
-                table: "MarkBooks",
-                column: "IdUserBook");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserBooks_IdBook",
                 table: "UserBooks",
                 column: "IdBook");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserBooks_IdChapter",
+                table: "UserBooks",
+                column: "IdChapter");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserBooks_IdUser",
@@ -288,7 +285,10 @@ namespace ORM.Migrations
                 name: "BookTag");
 
             migrationBuilder.DropTable(
-                name: "MarkBooks");
+                name: "TextChapters");
+
+            migrationBuilder.DropTable(
+                name: "UserBooks");
 
             migrationBuilder.DropTable(
                 name: "Categories");
@@ -300,13 +300,10 @@ namespace ORM.Migrations
                 name: "Chapters");
 
             migrationBuilder.DropTable(
-                name: "UserBooks");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Books");
-
-            migrationBuilder.DropTable(
-                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Authors");

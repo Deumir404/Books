@@ -1,197 +1,288 @@
 :root {
-    --navbar-height: 70px;
-    --navbar-padding: 30px;
-    --logo-font-size: 30px;
-    --navlink-font-size: 20px;
-    --search-width: 250px;
-    --icon-size: 30px;
-    --gap-size: 25px;
+  --navbar-height: 70px;
+  --navbar-padding: 30px;
+  --logo-font-size: 30px;
+  --navlink-font-size: 20px;
+  --search-width: 250px;
+  --icon-size: 30px;
+  --gap-size: 25px;
+  --primary-color: rgb(97, 27, 248);
+  --primary-dark: rgb(81, 14, 225);
+  --text-light: rgb(201, 201, 201);
+}
+
+.navbar {
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  width: calc(100% - 0px);
+  max-width: 1200px;
+  height: var(--navbar-height);
+  margin: 20px auto;
+  padding: 0 var(--navbar-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-size);
+  margin-right: auto;
+}
+
+.bookIcon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.logoText {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: var(--logo-font-size);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.searchContainer {
+  position: relative;
+  width: var(--search-width);
+  height: 40px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--primary-dark);
+  padding: 0 20px 0 15px;
+  color: var(--text-light);
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--text-light);
+}
+
+.searchIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(88%) sepia(0%) saturate(0%) hue-rotate(193deg) brightness(85%) contrast(84%);
+  pointer-events: none;
+}
+
+.userSection {
+  position: relative;
+  margin-left: auto;
+}
+
+.userContainer {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-dark);
+  border-radius: 50%;
+  padding: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.userContainer.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.userIcon {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: block;
+  width: 24px; /* или ваш размер */
+  height: 24px; /* или ваш размер */
+  object-fit: contain;
+}
+
+.userMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
+  z-index: 100;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .navbar {
-    background-color: rgb(97, 27, 248);
-    border-radius: 20px;
-    width: calc(100% - 0px);
-    max-width: 1200px;
-    height: var(--navbar-height);
-    margin: 20px auto;
-    padding: 0 var(--navbar-padding);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .logoContainer {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-size);
-    margin-right: auto;
+}
+
+.menuHeader {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.userEmail {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.menuItem {
+  display: block;
+  padding: 12px 16px;
+  color: #333;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background-color: #f8f8f8;
+  color: var(--primary-color);
+}
+
+.menuItem.primary {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.menuDivider {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 8px 0;
+}
+
+.logout {
+  color: #ff4d4f;
+}
+
+.logout:hover {
+  background-color: #fff1f0;
+}
+
+.navLinks {
+  display: flex;
+  gap: var(--gap-size);
+  margin: 0 20px;
+}
+
+.navLink {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: var(--navlink-font-size);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.navLink.active {
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --navbar-height: 60px;
+    --logo-font-size: 24px;
+    --navlink-font-size: 18px;
+    --search-width: 200px;
+    --icon-size: 24px;
+    --gap-size: 15px;
   }
-  
-  .bookIcon {
-    width: var(--icon-size);
-    height: var(--icon-size);
-  }
-  
-  .logoText {
-    color: white;
-    font-family: 'Lato', sans-serif;
-    font-size: var(--logo-font-size);
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
+}
+
+@media (max-width: 950px) {
+  :root {
+    --navbar-padding: 20px;
   }
   
   .searchContainer {
-    position: relative;
-    width: var(--search-width);
-    height: 40px;
-    margin: 0 auto;
-    flex-shrink: 0;
-  }
-  
-  .userContainer {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #510EE1;
-    border-radius: 50%;
-    padding: 3px;
-    margin-left: auto;
-  }
-  
-  .searchInput {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 20px;
-    background-color: rgb(81, 14, 225);
-    padding: 0 20px 0 15px;
-    color: rgb(201, 201, 201);
-    font-family: 'Lato', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    outline: none;
-  }
-  
-  .searchInput::placeholder {
-    color: rgb(201, 201, 201);
-  }
-  
-  .searchIcon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) saturate(100%) invert(88%) sepia(0%) saturate(0%) hue-rotate(193deg) brightness(85%) contrast(84%);
-    pointer-events: none;
-  }
-  
-  .userIcon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
+    display: none;
   }
   
   .navLinks {
-    display: flex;
-    gap: var(--gap-size);
-    margin: 0 20px;
+    margin-left: auto;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --navbar-height: 50px;
+    --logo-font-size: 20px;
+    --navlink-font-size: 16px;
+    --icon-size: 20px;
   }
   
-  .navLink {
-    color: white;
-    font-family: 'Lato', sans-serif;
-    font-size: var(--navlink-font-size);
-    font-weight: 500;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+  .navbar {
+    width: calc(100% - 40px);
   }
   
-  .navLink:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+  .userContainer {
+    width: 32px;
+    height: 32px;
   }
   
-  .navLink.active {
-    font-weight: 700;
-    background-color: rgba(255, 255, 255, 0.1);
+  .userIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .userMenu {
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 550px) {
+  .logoText {
+    display: none;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --navbar-height: 90px;
+    --logo-font-size: 36px;
+    --navlink-font-size: 24px;
+    --search-width: 300px;
+    --icon-size: 36px;
+    --gap-size: 30px;
   }
   
-  @media (max-width: 1100px) {
-    :root {
-      --navbar-height: 60px;
-      --logo-font-size: 24px;
-      --navlink-font-size: 18px;
-      --search-width: 200px;
-      --icon-size: 24px;
-      --gap-size: 15px;
-    }
+  .searchInput {
+    font-size: 18px;
   }
-  
-  @media (max-width: 950px) {
-    :root {
-      --navbar-padding: 20px;
-    }
-    
-    .searchContainer {
-      display: none;
-    }
-    
-    .navLinks {
-      margin-left: auto;
-      margin-right: 20px;
-    }
-  }
-  
-  @media (max-width: 700px) {
-    :root {
-      --navbar-height: 50px;
-      --logo-font-size: 20px;
-      --navlink-font-size: 16px;
-      --icon-size: 20px;
-    }
-    
-    .navbar {
-      width: calc(100% - 40px);
-    }
-    
-    .userContainer {
-      width: 32px;
-      height: 32px;
-    }
-    
-    .userIcon {
-      width: 20px;
-      height: 20px;
-    }
-  }
-  
-  @media (max-width: 550px) {
-    .logoText {
-      display: none;
-    }
-  }
-  
-  @media (min-width: 1600px) {
-    :root {
-      --navbar-height: 90px;
-      --logo-font-size: 36px;
-      --navlink-font-size: 24px;
-      --search-width: 300px;
-      --icon-size: 36px;
-      --gap-size: 30px;
-    }
-    
-    .searchInput {
-      font-size: 18px;
-    }
-  }
+}

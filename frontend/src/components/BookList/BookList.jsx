@@ -1,7 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './BookList.module.css';
 
 const BookList = ({ books, sortBy, onSortChange }) => {
+  const getStarColor = (rating) => {
+    if (!rating) return '#cccccc';
+    if (rating < 2.5) return '#ff4444';
+    if (rating < 4) return '#ffbb33';
+    return '#00c851';
+  };
+
   return (
     <div className={styles.bookListContainer}>
       <div className={styles.sortOptions}>
@@ -20,20 +28,38 @@ const BookList = ({ books, sortBy, onSortChange }) => {
       </div>
       
       <div className={styles.booksGrid}>
-        {books.map(book => (
-          <div className={styles.bookCard} key={book.id}>
-            <h3 className={styles.bookTitle}>{book.title}</h3>
-            <div className={styles.bookMeta}>
-              <span>Автор: {book.author?.nickname || 'Неизвестен'}</span><div/>
-              <span>Дата: {new Date(book.publishedDate).toLocaleDateString()}</span>
-            </div>
-            {book.rating && (
-              <div className={styles.bookRating}>
-                Рейтинг: {book.rating.toFixed(1)}
+        {books.map(book => {
+          const starColor = getStarColor(book.rating);
+          
+          return (
+            <Link 
+              to={`/book/${book.id}`} 
+              className={styles.bookCard} 
+              key={book.id}
+            >
+              <img 
+                src={book.coverURL || '/images/cover/empty.jpg'} 
+                alt={book.title} 
+                className={styles.bookCover}
+              />
+              <div className={styles.titleWithRating}>
+                <h3 className={styles.bookTitle}>{book.title}</h3>
+                {book.rating && (
+                  <div className={styles.ratingContainer}>
+                    <span className={styles.starIcon} style={{ color: starColor }}>★</span>
+                    <span className={styles.ratingValue} style={{ color: starColor }}>
+                      {book.rating.toFixed(1)}
+                    </span>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        ))}
+              <div className={styles.bookMeta}>
+                <span>Автор: {book.author?.nickname || 'Неизвестен'}</span><div/>
+                <span>Дата: {new Date(book.publishedDate).toLocaleDateString()}</span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

@@ -4,6 +4,9 @@ import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog';
 import Bookmarks from './pages/Bookmarks/Bookmarks';
 import Rules from './pages/Rules/Rules';
+import BookPage from './pages/Book/BookPage';
+import LoginPage from './pages/Login/LoginPage';
+import RegisterPage from './pages/Register/RegisterPage';
 import './App.css';
 
 function App() {
@@ -15,7 +18,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/book/:id" element={<BookPage />} />
             <Route path="/rules" element={<Rules />} />
             {/* Страница 404 для несуществующих маршрутов */}
             <Route path="*" element={<div>Страница не найдена</div>} />
