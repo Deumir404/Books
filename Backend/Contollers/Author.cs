@@ -1,4 +1,5 @@
 ﻿using Books.DTO;
+using Books.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,47 +11,35 @@ namespace Books.Contollers
     [ApiController]
     public class AuthorsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public AuthorsController(ApplicationDbContext context)
+        private readonly IAuthorService _authorService;
+        public AuthorsController(IAuthorService authorService)
         {
-            _context = context;
+            _authorService = authorService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AuthorDto>>> GetAuthors()
         {
-            var authors =  await _context.Authors.ToListAsync();
-            var answer = new List<AuthorDto>();
-            foreach (var author in authors)
-            {
-                var authorDto = new AuthorDto { 
-                Id = author.IdAuthor,
-                Firstname = author.Firstname,
-                Surname = author.Surname,
-                Nickname = author.Nickname};
-                answer.Add(authorDto);
-            }
+            List<AuthorDto> answer = await _authorService.GetAuthorsDto();
             return Ok(answer);
         }
+
+        
+       
 
         [HttpGet("{id}")]
         public async Task<ActionResult<AuthorWithBooksDto>> GetAuthorWithBooks(int id)
         {
-            var author = await _context.Authors.Include(a => a.Books).FirstOrDefaultAsync(a => a.IdAuthor == id);
-            if (author == null)
+            var answer = await _authorService.GetAuthorDto(id);
+            if (answer == null)
             {
                 return NotFound();
             }
-            var answer = new AuthorWithBooksDto
-            {
-                Id = author.IdAuthor,
-                Firstname = author.Firstname,
-                Surname = author.Surname,
-                Nickname = author.Nickname,
-                Books = author.Books.Select(b => new BookDto {Id = b.IdBook, Title = b.Title, PublishedDate = b.PublishedDate }).ToList()
-            };
             return Ok(answer);
         }
+
+
+
 
         [HttpPost]
         public async Task<ActionResult<AuthorWithBooksDto>> CreateAuthor(CreateAuthorDto authorDto)
@@ -59,11 +48,12 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var author = new Author { Surname = authorDto.Surname , Firstname = authorDto.Firstname, Nickname = authorDto.Nickname};
-            _context.Authors.Add(author);
-            await _context.SaveChangesAsync();
-            return await GetAuthorWithBooks(author.IdAuthor);
+            var author = await _authorService.CreateAuthorDto(authorDto);
+            return Ok(author);
         }
+
+        
+
 
         [HttpPut("{id}")]
         public async Task<ActionResult<AuthorWithBooksDto>> ChangeAuthor(CreateAuthorDto authorDto, int id)
@@ -72,29 +62,29 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var author = await _context.Authors.FirstOrDefaultAsync(c => c.IdAuthor == id);
+            var author = await _authorService.ChangeAuthorDto(authorDto, id);
             if (author == null)
             {
                 return NotFound();
             }
-            author.Surname = authorDto.Surname;
-            author.Firstname = authorDto.Firstname;
-            author.Nickname = authorDto.Nickname;
-            await _context.SaveChangesAsync();
-            return await GetAuthorWithBooks(id);
+            return Ok(author);
         }
+
+       
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAuthor(int id)
         {
-            var Author = await _context.Authors.FirstOrDefaultAsync(b => b.IdAuthor == id);
-            if (Author == null)
+            var answer = await _authorService.DeleteAuthorDto(id);
+            if (!answer)
             {
                 return NotFound();
             }
-            _context.Authors.Remove(Author);
-            _context.SaveChanges();
             return Ok("Author deleted");
         }
+
+        
+
     }
 
     
