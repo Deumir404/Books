@@ -116,7 +116,7 @@ namespace Books.Contollers
                     .ToList();
             }
             var answer = new List<BookWithAuthorDto>();
-            foreach (var book in books)
+            foreach (var book in bookList)
             {
                 var coverPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "cover", $"{book.IdBook}.jpg");
                 bool exists = System.IO.File.Exists(coverPath);
