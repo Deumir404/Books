@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using ORM;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Books.Services;
+using Books.Repository;
 
 internal class Program
 {
@@ -43,6 +44,21 @@ internal class Program
         });
 
         builder.Services.AddAuthorization();
+
+        builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+        builder.Services.AddScoped<IUserBookRepository, UserBookRepository>();
+        builder.Services.AddScoped<IUserBookService, UserBookService>();
+
+        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+        builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+        builder.Services.AddScoped<ITagRepository, TagRepository>();
+        builder.Services.AddScoped<ITagService, TagService>();
+
+        builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+        builder.Services.AddScoped<IAuthorService, AuthorService>();
 
         var app = builder.Build();
 

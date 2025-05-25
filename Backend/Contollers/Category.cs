@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Books.DTO;
 using ORM;
+using Books.Services;
 
 namespace Books.Contollers
 {
@@ -9,18 +10,18 @@ namespace Books.Contollers
     [Route("[controller]")]
     public class CategoriesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public CategoriesController(ApplicationDbContext context)
+        private readonly ICategoryService _categoryService;
+
+        public CategoriesController(ICategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategory()
         {
-            var category = await _context.Categories.ToListAsync();
-            var categoryDto = category.Select(c => new TagDto {Id = c.IdCategory, Name = c.Name });
-            return Ok(categoryDto);
+            var category = await _categoryService.GetCategory();
+            return Ok(category);
         }
 
         [HttpPost]
@@ -30,11 +31,11 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var category = new Category { Name = categoryDto.Name};
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
-            return Ok(category);
+            var answer = await _categoryService.CreateCategoryDTO(categoryDto);
+            
+            return Ok(answer);
         }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<CategoryDto>> ChangeCategory(CreateCategoryDto categoryDto, int id)
         {
@@ -42,46 +43,45 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var category = await _context.Categories.FirstOrDefaultAsync(c => c.IdCategory == id);
-            if (category == null) {
+            var answer = await _categoryService.ChangeCategoryDTO(categoryDto, id);
+            if (answer == null) { 
                 return NotFound();
             }
-            category.Name = categoryDto.Name;
-            await _context.SaveChangesAsync();
-            var answer = new CategoryDto {Id = category.IdCategory, Name = category.Name };
             return Ok(answer);
         }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCategory(int id)
         {
-            var category = await _context.Categories.FirstOrDefaultAsync(b => b.IdCategory == id);
-            if (category == null)
+            var answer = await _categoryService.DeleteCategoryDto(id);
+            if (answer)
+            {
+                return Ok(answer);
+            }
+            else
             {
                 return NotFound();
             }
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
-            return Ok("Category deleted");
         }
 
+       
     }
 
     [ApiController]
     [Route("[controller]")]
     public class TagsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public TagsController(ApplicationDbContext context)
+        private readonly ITagService _tagService;
+        public TagsController(ITagService tagService)
         {
-            _context = context;
+            _tagService = tagService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TagDto>>> GetTag()
         {
-            var tags = await _context.Tags.ToListAsync();
-            var tagsDto = tags.Select(tag => new TagDto {Id = tag.IdTag, Name = tag.Name });
-            return Ok(tagsDto);
+            var tags = await _tagService.GetTag();
+            return Ok(tags);
         }
 
         [HttpPost]
@@ -91,11 +91,9 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var tag = new Tag { Name = tagDto.Name };
-            _context.Tags.Add(tag);
-            var answer = new TagDto {Id = tag.IdTag, Name = tag.Name };
-            await _context.SaveChangesAsync();
+            var answer = await _tagService.CreateCategoryDTO(tagDto);
             return Ok(answer);
+            
         }
 
         [HttpPut("{id}")]
@@ -105,26 +103,21 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var tag = await _context.Tags.FirstOrDefaultAsync(c => c.IdTag == id);
+            var tag = await _tagService.ChangeCategoryDTO(tagDto, id);
             if (tag == null)
             {
                 return NotFound();
             }
-            tag.Name = tagDto.Name;
-            var answer = new TagDto {Id = tag.IdTag, Name = tag.Name };
-            await _context.SaveChangesAsync();
-            return Ok(answer);
+            return Ok(tag);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTag(int id)
         {
-            var tag = await _context.Tags.FirstOrDefaultAsync(b => b.IdTag == id);
+            var tag = await _tagService.DeleteCategoryDto(id);
             if (tag == null)
             {
                 return NotFound();
             }
-            _context.Tags.Remove(tag);
-            _context.SaveChanges();
             return Ok("Tag deleted");
         }
     }
