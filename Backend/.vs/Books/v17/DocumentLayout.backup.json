@@ -38,8 +38,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAgwDsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T10:56:15.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T10:56:15.104Z"
             },
             {
               "$type": "Document",
@@ -47,9 +46,9 @@
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
               "RelativeDocumentMoniker": "Contollers\\Book.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
-              "RelativeToolTip": "Contollers\\Book.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBkAAAAcAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs*",
+              "RelativeToolTip": "Contollers\\Book.cs*",
+              "ViewState": "AgIAADQAAAAAAAAAAAAMwEsAAACDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-22T11:24:39.496Z",
               "EditorCaption": ""

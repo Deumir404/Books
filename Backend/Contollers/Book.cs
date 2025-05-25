@@ -36,6 +36,7 @@ namespace Books.Contollers
                     CoverURL = coverUrl,
                     Author = new AuthorDto
                     {
+                        Id = book.Author.IdAuthor,
                         Nickname = book.Author.Nickname,
                         Surname = book.Author.Surname,
                         Firstname = book.Author.Firstname
@@ -61,19 +62,21 @@ namespace Books.Contollers
             string coverUrl = exists
                 ? $"/images/cover/{book.IdBook}.jpg"
                 : "/images/cover/empty.jpg";
+            var chapters = await _context.Chapters.Where(c => c.IdBook == id).ToListAsync();
             var bookDto = new FullBook
             {
                 Id = book.IdBook,
                 Title = book.Title,
                 Description = book.Description,
-                Categories = book.Categories.Select(c => new CategoryDto { Name = c.Name}).ToList(),
-                Tags = book.Tags.Select(c => new TagDto { Name = c.Name }).ToList(),
+                Categories = book.Categories.Select(c => new CategoryDto {Id = c.IdCategory, Name = c.Name}).ToList(),
+                Tags = book.Tags.Select(c => new TagDto {Id = c.IdTag, Name = c.Name }).ToList(),
                 Rating = book.Rating,
                 CoverURL = coverUrl,
                 PublishedDate = book.PublishedDate,
-                Chapters = book.Chapters.Select(c => new ChapterDto {Id = c.IdChapter, Title = c.Title, PublishedDate = c.PublishedDate }).ToList(),
+                Chapters = chapters.Select(c=>new ChapterDto {Id = c.IdChapter, Num = c.Num, Title = c.Title, PublishedDate = c.PublishedDate }).ToList(),
                 Author = new AuthorDto
                 {
+                    Id = book.Author.IdAuthor,
                     Nickname = book.Author.Nickname,
                     Surname = book.Author.Surname,
                     Firstname = book.Author.Firstname,
@@ -130,6 +133,7 @@ namespace Books.Contollers
                     CoverURL = coverUrl,
                     Author = new AuthorDto
                     {
+                        Id = book.Author.IdAuthor,
                         Nickname = book.Author.Nickname,
                         Surname = book.Author.Surname,
                         Firstname = book.Author.Firstname
