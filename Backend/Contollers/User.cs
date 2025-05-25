@@ -3,58 +3,45 @@ using Microsoft.EntityFrameworkCore;
 using Books.DTO;
 using ORM;
 using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.BearerToken;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+using Books.Services;
+using Books.Repository;
 
 namespace Books.Contollers
 {
+    public static class ClaimsPrincipalExtensions
+    {
+        public static int? GetUserId(this ClaimsPrincipal user)
+        {
+            var claim = user.FindFirst(ClaimTypes.NameIdentifier) ??  user.FindFirst("id");
+            return claim != null ? int.Parse(claim.Value) : null;
+        }
+    }
+
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IConfiguration _conf;
-        public UsersController(ApplicationDbContext context, IConfiguration configuration)
-        {
-            _context = context;
-            _conf = configuration;
+        private readonly IUserService _userService;
+        public UsersController( IUserService userService)
+        {           
+            _userService = userService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
-            var answer = new List<UserDto>();
-            foreach (var user in users)
-            {
-                var UserDto = new UserDto
-                {
-                    Id = user.IdUser,
-                    Username = user.Username,
-                    Email = user.Email,
-
-                };
-                answer.Add(UserDto);
-            }
+            List<UserDto> answer = await _userService.GetUserService();
             return Ok(answer);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(b => b.IdUser == id);
-            if (user == null)
+            UserDto? userDto = await _userService.GetUserByIdDTO(id);
+            if (userDto == null)
             {
                 return NotFound();
             }
-            var userDto = new UserDto
-            {
-                Id = user.IdUser,
-                Username = user.Username,
-                Email = user.Email
-            };
             return Ok(userDto);
         }
 
@@ -65,43 +52,39 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var passwordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
-            var user = new User { Username = userDto.Username, Email = userDto.Email, PasswordHash = passwordHash };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            var answer = await GetUser(id: user.IdUser);
-            return answer;
+            var answer = await _userService.AddUserDTO(userDto);
+            return Ok(answer);
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(LoginUserDto userDto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userDto.Email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(userDto.Password, user.PasswordHash))
+            var token = await _userService.Autorization(userDto);
+            if (token == null)
+            {
                 return Unauthorized("Invalid credentials");
-
-            var token = CreateToken(user);
+            }
             return Ok(token);
         }
 
-        private string CreateToken(User user)
-        {
-            var claims = new[]
-            {
-            new Claim(ClaimTypes.NameIdentifier, user.IdUser.ToString()),
-            new Claim(ClaimTypes.Name, user.Username)
-            };
+        
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(s: _conf["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        
 
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddHours(24),
-                signingCredentials: creds);
+        //[Authorize]
+        //[HttpGet("MyBookmark")]
+        //public async Task<ActionResult<IEnumerable<BookMarkDto>>> GetMyBookmarks()
+        //{
+        //    var idUser = User.GetUserId();
+        //    if (idUser == null)
+        //    {
+        //        return Unauthorized();
+        //    }
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+
+        //}
+
+        
 
         [HttpPut("{id}")]
         public async Task<ActionResult<UserDto>> ChangeUser(CreateUserDto userDto, int id)
@@ -110,28 +93,25 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var user = await _context.Users.FirstOrDefaultAsync(c => c.IdUser == id);
-            if (user == null)
+            var answer = await _userService.ChangeUserDto(userDto, id);
+            if (answer == null)
             {
                 return NotFound();
             }
-            user.Username = userDto.Username;
-            user.Email = userDto.Email;
-            var passwordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
-            user.PasswordHash = passwordHash;
-            await _context.SaveChangesAsync();
-            return await GetUser(id);
+            return Ok(answer);
+
         }
+
+       
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(b => b.IdUser == id);
-            if (user == null)
+            var user = await _userService.DeleteUserById(id);
+            if (user == false)
             {
                 return NotFound();
             }
-            _context.Users.Remove(user);
-            _context.SaveChanges();
             return Ok("User deleted");
         }
 
@@ -142,29 +122,20 @@ namespace Books.Contollers
     public class UserBookController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public UserBookController(ApplicationDbContext context)
+        private readonly IUserBookService _userBookService;
+        public UserBookController(ApplicationDbContext context, IUserBookService userBookService)
         {
             _context = context;
+            _userBookService = userBookService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BookMarkDto>>> GetBookmarks(int userId)
         {
-            var bookmarks = await _context.UserBooks.Include(b => b.Book).Include(b => b.Chapter).Where(b => b.IdUser == userId).ToListAsync();
-            var answer = new List<BookMarkDto>();
-            foreach (var bookmark in bookmarks)
-            {
-                var bookmarkDto = new BookMarkDto
-                {
-                    IdUserBook = bookmark.IdUserBook,
-                    Book = new BookDto { Id = bookmark.Book.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
-                    Chapter = new ChapterDto { Id = bookmark.Chapter.IdChapter, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate },
-                    Category = bookmark.Status,
-                };
-                answer.Add(bookmarkDto);
-            }
+            List<BookMarkDto> answer = await _userBookService.GetBookMarkById(userId);
             return Ok(answer);
         }
+
         [HttpPost]
         public async Task<ActionResult<BookMarkDto>> CreateBookmark(CreateBookMarkDto bookMarkDto, int userId)
         {
@@ -172,57 +143,40 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var bookmark = new UserBook { IdBook = bookMarkDto.IdBook, IdChapter = bookMarkDto.IdChapter, IdUser = userId, Status = bookMarkDto.Category};
-            _context.UserBooks.Add(bookmark);
-            await _context.SaveChangesAsync();
-            return await GetBookMark(id: bookmark.IdUserBook); ;
-        }
+            var bookmark = await _userBookService.AddBookMark(bookMarkDto, userId);
 
-        private async Task<ActionResult<BookMarkDto>> GetBookMark(int id)
-        {
-            var bookmark = await _context.UserBooks.Include(b=> b.Book).Include(b=>b.Chapter).FirstOrDefaultAsync(bookmark => bookmark.IdUserBook == id);
-            if (bookmark == null)
-            {
-                return NotFound();
-            }
-            var bookmarkDto = new BookMarkDto { IdUserBook = bookmark.IdUserBook, 
-                Book = new BookDto { Id = bookmark.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate}, 
-                Chapter = new ChapterDto { Id = bookmark.IdChapter, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate}, 
-                Category = bookmark.Status };
-            return Ok(bookmarkDto);
-
+            return Ok(bookmark);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<BookMarkDto>> ChangeBook(CreateBookMarkDto bookMarkDto, int id)
         {
+            
             if (bookMarkDto == null)
             {
                 return BadRequest();
             }
-            var bookmark = await _context.UserBooks.Include(b => b.Book).Include(b => b.Chapter).FirstOrDefaultAsync(bookmark => bookmark.IdBook == id);
-            if (bookmark == null)
+            var answer = await _userBookService.ChangeBookById(bookMarkDto,id);
+            if (answer == null)
             {
                 return NotFound();
             }
-            bookmark.IdUser = bookMarkDto.IdBook;
-            bookmark.IdChapter = bookMarkDto.IdChapter;
-            bookmark.Status = bookMarkDto.Category;
-            await _context.SaveChangesAsync();
-            return await GetBookMark(id);
+            return Ok(answer);
         }
+
+        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteBook(int id)
         {
-            var bookMark = await _context.UserBooks.FirstOrDefaultAsync(b => b.IdUserBook == id);
-            if (bookMark == null)
+            var answer = await _userBookService.RemoveBookMarkById(id);
+            if (!answer)
             {
                 return NotFound();
             }
-            _context.UserBooks.Remove(bookMark);
-            _context.SaveChanges();
             return Ok("Bookmark deleted");
         }
 
+       
     }
 }
