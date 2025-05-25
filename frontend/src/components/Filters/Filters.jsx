@@ -7,7 +7,7 @@ const Filters = ({
   selectedAuthors = [],
   selectedCategories = [],
   onAuthorChange,
-  onCategoryChange
+  onCategoryChange,
 }) => {
   const [showAuthorDropdown, setShowAuthorDropdown] = useState(false);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
@@ -68,18 +68,18 @@ const Filters = ({
             onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
             onBlur={() => setTimeout(() => setShowCategoryDropdown(false), 200)}
           >
-            Категории: {getSelectedNames(selectedCategories, categories, 'idCategory', 'name')}
+            Категории: {getSelectedNames(selectedCategories, categories, 'id', 'name')}
           </button>
           
           {showCategoryDropdown && (
             <div className={styles.dropdownContent}>
               {categories.map(category => (
                 <div 
-                  key={category.idCategory}
+                  key={category.id}
                   className={`${styles.dropdownItem} ${
-                    selectedCategories.includes(category.idCategory) ? styles.selected : ''
+                    selectedCategories.includes(category.id) ? styles.selected : ''
                   }`}
-                  onClick={() => handleCategoryClick(category.idCategory)}
+                  onClick={() => handleCategoryClick(category.id)}
                 >
                   {category.name}
                 </div>

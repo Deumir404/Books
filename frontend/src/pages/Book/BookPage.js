@@ -9,6 +9,7 @@ const BookPage = () => {
   const [chapters, setChapters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [chaptersLoading, setChaptersLoading] = useState(false);
 
   const getStarColor = (rating) => {
     if (!rating) return '#cccccc';
@@ -18,35 +19,51 @@ const BookPage = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchBookData = async () => {
       try {
         setLoading(true);
         setError(null);
-        const bookResponse = await axios.get(`/books/${id}`);
-        setBook(bookResponse.data);
-        
-        try {
-          const chaptersResponse = await axios.get(`/books/chapters/${id}`);
-          const chaptersData = Array.isArray(chaptersResponse.data) 
-            ? chaptersResponse.data 
-            : chaptersResponse.data ? [chaptersResponse.data] : [];
-          setChapters(chaptersData);
-        } catch (chaptersError) {
-          console.warn('Не удалось загрузить главы:', chaptersError);
-          setChapters([]);
-        }
+        const response = await axios.get(`/books/${id}`);
+        setBook(response.data);
       } catch (err) {
         setError(err.response?.data?.message || err.message || 'Произошла ошибка');
       } finally {
         setLoading(false);
       }
     };
-    fetchData();
+    fetchBookData();
   }, [id]);
 
+  useEffect(() => {
+    const fetchChapters = async () => {
+      if (!book || !book.chapters || book.chapters.length === 0) return;
+
+      try {
+        setChaptersLoading(true);
+        const chaptersPromises = book.chapters.map(chapter => 
+          axios.get(`/books/chapters/${chapter.id}`)
+        );
+        
+        const chaptersResponses = await Promise.all(chaptersPromises);
+        const chaptersData = chaptersResponses.map(response => response.data);
+        
+        setChapters(chaptersData);
+      } catch (err) {
+        console.error('Ошибка при загрузке глав:', err);
+        setError(prev => prev || 'Не удалось загрузить некоторые главы');
+      } finally {
+        setChaptersLoading(false);
+      }
+    };
+
+    fetchChapters();
+  }, [book]);
+
   const renderChapters = () => {
-    if (!Array.isArray(chapters)) return <p>Информация о главах недоступна</p>;
-    if (chapters.length === 0) return <p>Главы не найдены</p>;
+    if (chaptersLoading) return <div className={styles.loading}>Загрузка глав...</div>;
+    if (!book?.chapters || book.chapters.length === 0) return <p>Главы не найдены</p>;
+    if (chapters.length === 0) return <p>Не удалось загрузить содержимое глав</p>;
+
     return (
       <div className={styles.chaptersList}>
         {chapters.map(chapter => (
@@ -62,7 +79,7 @@ const BookPage = () => {
     );
   };
 
-  if (loading) return <div className={styles.loading}>Загрузка...</div>;
+  if (loading) return <div className={styles.loading}>Загрузка книги...</div>;
   if (error) return <div className={styles.error}>Ошибка: {error}</div>;
   if (!book) return <div className={styles.error}>Книга не найдена</div>;
 

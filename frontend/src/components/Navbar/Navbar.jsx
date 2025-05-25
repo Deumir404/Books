@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
-import { clearAuthData, getAuthToken, isAuthenticated, getUsername } from '../../utils/auth';
+import { clearAuthData, getAuthToken, getUsername } from '../../utils/auth';
 import styles from './Navbar.module.css';
 import bookIcon from '../../assets/book-icon.svg';
 import searchIcon from '../../assets/search-icon.svg';

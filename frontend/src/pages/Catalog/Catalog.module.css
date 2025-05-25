@@ -1,0 +1,16 @@
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .catalogContainer {
+        width: calc(100% - 40px);
+        padding: 20px;
+    }
+
+    .catalogContent {
+        grid-template-columns: 1fr;
+    }
+}
