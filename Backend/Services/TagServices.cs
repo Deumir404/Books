@@ -1,9 +1,6 @@
 ﻿using Books.DTO;
 using ORM;
 using Books.Repository;
-using System.Collections;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Books.Services
 {

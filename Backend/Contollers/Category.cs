@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Books.DTO;
-using ORM;
 using Books.Services;
 
 namespace Books.Contollers

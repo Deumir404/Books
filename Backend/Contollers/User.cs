@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Books.DTO;
-using ORM;
 using System.Security.Claims;
 using Books.Services;
-using Books.Repository;
 
 namespace Books.Contollers
 {
@@ -121,11 +118,9 @@ namespace Books.Contollers
     [Route("Users/{userId}/[controller]")]
     public class UserBookController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IUserBookService _userBookService;
-        public UserBookController(ApplicationDbContext context, IUserBookService userBookService)
+        public UserBookController(IUserBookService userBookService)
         {
-            _context = context;
             _userBookService = userBookService;
         }
 
