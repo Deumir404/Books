@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Books.DTO;
-using ORM;
 using System.Security.Claims;
 using Books.Services;
-using Books.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Books.Contollers
 {
@@ -22,9 +20,11 @@ namespace Books.Contollers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UsersController( IUserService userService)
+        private readonly IUserBookService _userBookService;
+        public UsersController( IUserService userService, IUserBookService userBookService)
         {           
             _userService = userService;
+            _userBookService = userBookService;
         }
 
         [HttpGet]
@@ -67,24 +67,43 @@ namespace Books.Contollers
             return Ok(token);
         }
 
-        
-
-        
-
-        //[Authorize]
-        //[HttpGet("MyBookmark")]
-        //public async Task<ActionResult<IEnumerable<BookMarkDto>>> GetMyBookmarks()
-        //{
-        //    var idUser = User.GetUserId();
-        //    if (idUser == null)
-        //    {
-        //        return Unauthorized();
-        //    }
 
 
-        //}
 
-        
+
+        [Authorize]
+        [HttpGet("MyBookmark")]
+        public async Task<ActionResult<IEnumerable<BookMarkDto>>> GetMyBookmarks()
+        {
+            var idUser = User.GetUserId();
+            if (idUser == null)
+            {
+                return Unauthorized();
+            }
+            var idUserInt = idUser.Value;
+            var bookmark = await _userBookService.GetBookMark(idUserInt);
+            if (bookmark == null)
+            {
+                return NotFound();
+            }
+            return Ok(bookmark);
+        }
+
+        [Authorize]
+        [HttpGet("MyProfile")]
+        public async Task<ActionResult<UserDto>> GetMyProfile()
+        {
+            var idUser = User.GetUserId();
+            if (idUser == null)
+            {
+                return Unauthorized();
+            }
+            var idUserInt = idUser.Value;
+            var profile = await _userService.GetUserByIdDTO(idUserInt);
+            return Ok(profile);
+        }
+
+
 
         [HttpPut("{id}")]
         public async Task<ActionResult<UserDto>> ChangeUser(CreateUserDto userDto, int id)
@@ -121,11 +140,9 @@ namespace Books.Contollers
     [Route("Users/{userId}/[controller]")]
     public class UserBookController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IUserBookService _userBookService;
-        public UserBookController(ApplicationDbContext context, IUserBookService userBookService)
+        public UserBookController(IUserBookService userBookService)
         {
-            _context = context;
             _userBookService = userBookService;
         }
 

@@ -1,5 +1,4 @@
-﻿using Books.DTO;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ORM;
 
 namespace Books.Repository

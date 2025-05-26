@@ -25,6 +25,30 @@ internal class Program
         builder.Services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Book API", Version = "v1" });
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Please enter token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT"
+            });
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
         });
 
         builder.Services.AddAuthentication("Bearer")
@@ -60,6 +84,12 @@ internal class Program
         builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
         builder.Services.AddScoped<IAuthorService, AuthorService>();
 
+        builder.Services.AddScoped<IBookRepository, BookRepository>();
+        builder.Services.AddScoped<IBookService, BookService>();
+
+        builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+        builder.Services.AddScoped<IChapterService, ChapterService>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
@@ -68,10 +98,13 @@ internal class Program
             app.UseSwaggerUI(c => 
             { 
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Book API V1"); 
+                c.RoutePrefix = string.Empty;
             });
         }
-
+       
         app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.MapControllers();
         app.UseStaticFiles();
         app.Run();
