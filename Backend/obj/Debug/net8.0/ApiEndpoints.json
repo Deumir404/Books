@@ -814,6 +814,46 @@
   },
   {
     "ContainingType": "Books.Contollers.UsersController",
+    "Method": "GetMyBookmarks",
+    "RelativePath": "Users/MyBookmark",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Books.DTO.BookMarkDto, Books, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.UsersController",
+    "Method": "GetMyProfile",
+    "RelativePath": "Users/MyProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.UsersController",
     "Method": "RegisterUser",
     "RelativePath": "Users/register",
     "HttpMethod": "POST",

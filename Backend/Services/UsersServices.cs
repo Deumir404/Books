@@ -27,6 +27,8 @@ namespace Books.Services
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
+                issuer: _conf["Jwt:Issuer"],            
+                audience: _conf["Jwt:Audience"],        
                 claims: claims,
                 expires: DateTime.Now.AddHours(24),
                 signingCredentials: creds);
