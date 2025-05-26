@@ -76,6 +76,30 @@
     color: white;
 }
 
+.filtersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.resetButton {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 20px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.resetButton:hover {
+  color: #333;
+  background-color: #f0f0f0;
+}
+
 @media (max-width: 768px) {
     .filterRow {
         flex-direction: column;

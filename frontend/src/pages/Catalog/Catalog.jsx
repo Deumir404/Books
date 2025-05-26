@@ -6,98 +6,108 @@ import Pagination from '../../components/Pagination/Pagination';
 import styles from './Catalog.module.css';
 
 const CatalogPage = () => {
-  const [books, setBooks] = useState([]);
   const [allBooks, setAllBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedAuthors, setSelectedAuthors] = useState([]);
-  const [titleQuery, setTitleQuery] = useState('');
   const [sortBy, setSortBy] = useState('title');
   const [currentPage, setCurrentPage] = useState(1);
   const booksPerPage = 50;
 
-  // Загрузка всех данных
-  const fetchData = useCallback(async () => {
+  const fetchBooks = useCallback(async () => {
     try {
-      setLoading(true);
-      
-      // Загружаем основные данные
-      const [booksRes, authorsRes, categoriesRes] = await Promise.all([
-        axios.get('/books'),
-        axios.get('/authors'),
-        axios.get('/categories')
-      ]);
-
-      // Для каждой книги получаем категории через отдельный запрос
-      const booksWithCategories = await Promise.all(
-        booksRes.data.map(async book => {
-          try {
-            const categoryRes = await axios.get(`/Books/search?category=${book.id}`);
-            return {
-              ...book,
-              categories: categoryRes.data // Добавляем категории к данным книги
-            };
-          } catch (error) {
-            console.error(`Error loading categories for book ${book.id}:`, error);
-            return {
-              ...book,
-              categories: []
-            };
-          }
-        })
-      );
-
-      setAllBooks(booksWithCategories);
-      setBooks(booksWithCategories);
-      setAuthors(authorsRes.data);
-      setCategories(categoriesRes.data);
+      const response = await axios.get('/Books/search');
+      setAllBooks(response.data);
+      return response.data;
     } catch (error) {
-      console.error('Error loading initial data:', error);
-    } finally {
-      setLoading(false);
+      console.error('Error fetching books:', error);
+      setAllBooks([]);
+      return [];
     }
   }, []);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const fetchBookIdsByCategory = useCallback(async (categoryId) => {
+    try {
+      const response = await axios.get(`/Books/search?category=${categoryId}`);
+      return response.data.map(book => book.id);
+    } catch (error) {
+      console.error('Error fetching book IDs by category:', error);
+      return [];
+    }
+  }, []);
 
-  // Фильтрация книг
-  useEffect(() => {
-    let filteredBooks = [...allBooks];
-
-    // Фильтрация по авторам
+  const applyFilters = useCallback(async (booksToFilter) => {
+    let result = [...booksToFilter];
+    
+    if (selectedCategories.length > 0) {
+      setLoading(true);
+      try {
+        const bookIdsPromises = selectedCategories.map(categoryId => 
+          fetchBookIdsByCategory(categoryId)
+        );
+        const bookIdsArrays = await Promise.all(bookIdsPromises);
+        const categoryBookIds = [...new Set(bookIdsArrays.flat())];
+        
+        result = result.filter(book => categoryBookIds.includes(book.id));
+      } catch (error) {
+        console.error('Error filtering books by categories:', error);
+        result = [];
+      } finally {
+        setLoading(false);
+      }
+    }
+    
     if (selectedAuthors.length > 0) {
-      filteredBooks = filteredBooks.filter(book => 
+      result = result.filter(book => 
         book.author && selectedAuthors.includes(book.author.id)
       );
     }
+    
+    return result;
+  }, [selectedCategories, selectedAuthors, fetchBookIdsByCategory]);
 
-    // Фильтрация по категориям
-    if (selectedCategories.length > 0) {
-      filteredBooks = filteredBooks.filter(book => {
-        // Проверяем, есть ли у книги категории из выбранных
-        return book.categories && book.categories.some(category => 
-          selectedCategories.includes(category.id)
-        );
-      });
-    }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [authorsRes, categoriesRes] = await Promise.all([
+          axios.get('/authors'),
+          axios.get('/categories')
+        ]);
+        setAuthors(authorsRes.data);
+        setCategories(categoriesRes.data);
+        const booksData = await fetchBooks();
+        const filtered = await applyFilters(booksData);
+        setFilteredBooks(filtered);
+      } catch (error) {
+        console.error('Error:', error.response?.data || error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    // Фильтрация по названию
-    if (titleQuery) {
-      filteredBooks = filteredBooks.filter(book => 
-        book.title.toLowerCase().includes(titleQuery.toLowerCase())
-      );
-    }
-    console.log('Filtered books:', filteredBooks);
-    setBooks(filteredBooks);
+    fetchData();
+  }, [fetchBooks, applyFilters]);
+
+  useEffect(() => {
+    const updateFilteredBooks = async () => {
+      const filtered = await applyFilters(allBooks);
+      setFilteredBooks(filtered);
+      setCurrentPage(1);
+    };
+    
+    updateFilteredBooks();
+  }, [selectedCategories, selectedAuthors, allBooks, applyFilters]);
+
+  const handleResetFilters = () => {
+    setSelectedAuthors([]);
+    setSelectedCategories([]);
     setCurrentPage(1);
-  }, [selectedAuthors, selectedCategories, titleQuery, allBooks]);
+  };
 
-  // Сортировка книг
-  const sortedBooks = [...books].sort((a, b) => {
+  const sortedBooks = [...filteredBooks].sort((a, b) => {
     switch (sortBy) {
       case 'title': return a.title.localeCompare(b.title);
       case 'publishedDate': return new Date(b.publishedDate) - new Date(a.publishedDate);
@@ -108,13 +118,11 @@ const CatalogPage = () => {
     }
   });
 
-  // Пагинация
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);
   const totalPages = Math.ceil(sortedBooks.length / booksPerPage);
 
-  // Обработчики изменений
   const handleCategoryChange = (categoryId) => {
     setSelectedCategories(prev => 
       prev.includes(categoryId) ? prev.filter(id => id !== categoryId) : [...prev, categoryId]
@@ -125,10 +133,6 @@ const CatalogPage = () => {
     setSelectedAuthors(prev => 
       prev.includes(authorId) ? prev.filter(id => id !== authorId) : [...prev, authorId]
     );
-  };
-
-  const handleTitleChange = (title) => {
-    setTitleQuery(title);
   };
 
   const handleSortChange = (e) => {
@@ -149,8 +153,7 @@ const CatalogPage = () => {
             selectedAuthors={selectedAuthors}
             onCategoryChange={handleCategoryChange}
             onAuthorChange={handleAuthorChange}
-            onTitleChange={handleTitleChange}
-            titleQuery={titleQuery}
+            onResetFilters={handleResetFilters}
           />
           <div className={styles.booksSection}>
             <BookList 

@@ -8,6 +8,7 @@ const Filters = ({
   selectedCategories = [],
   onAuthorChange,
   onCategoryChange,
+  onResetFilters,
 }) => {
   const [showAuthorDropdown, setShowAuthorDropdown] = useState(false);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
@@ -22,6 +23,10 @@ const Filters = ({
     setShowCategoryDropdown(false);
   };
 
+  const handleResetClick = () => {
+    onResetFilters();
+  };
+
   const getSelectedNames = (ids, items, idKey = 'id', nameKey = 'name') => {
     if (!ids.length) return 'Все';
     return ids
@@ -30,9 +35,22 @@ const Filters = ({
       .join(', ');
   };
 
+  const hasActiveFilters = selectedAuthors.length > 0 || 
+                         selectedCategories.length > 0;
+
   return (
     <div className={styles.filtersContainer}>
-      <h2 className={styles.filtersTitle}>Фильтры</h2>
+      <div className={styles.filtersHeader}>
+        <h2 className={styles.filtersTitle}>Фильтры</h2>
+        {hasActiveFilters && (
+          <button 
+            className={styles.resetButton}
+            onClick={handleResetClick}
+          >
+            Сбросить всё
+          </button>
+        )}
+      </div>
       <div className={styles.filterRow}>
         {/* Фильтр по авторам */}
         <div className={styles.filterDropdown}>
@@ -87,6 +105,16 @@ const Filters = ({
             </div>
           )}
         </div>
+
+        {/* Кнопка сброса */}
+        {hasActiveFilters && (
+          <button 
+            className={styles.resetButton}
+            onClick={handleResetClick}
+          >
+            Сбросить фильтры
+          </button>
+        )}
       </div>
     </div>
   );
