@@ -30,13 +30,27 @@ namespace Books.Services
             var answer = new List<BookMarkDto>();
             foreach (var bookmark in bookmarks)
             {
-                var bookmarkDto = new BookMarkDto
+                BookMarkDto bookmarkDto;
+                if (bookmark.IdChapter.HasValue)
                 {
-                    IdUserBook = bookmark.IdUserBook,
-                    Book = new BookDto { Id = bookmark.Book.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
-                    Chapter = new ChapterDto { Id = bookmark.Chapter.IdChapter, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate },
-                    Category = bookmark.Status,
-                };
+                    bookmarkDto = new BookMarkDto
+                    {
+                        IdUserBook = bookmark.IdUserBook,
+                        Book = new BookDto { Id = bookmark.Book.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
+                        Chapter = new ChapterDto { Id = bookmark.Chapter.IdChapter, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate },
+                        Category = bookmark.Status,
+                    };
+                }
+                else
+                {
+                    bookmarkDto = new BookMarkDto
+                    {
+                        IdUserBook = bookmark.IdUserBook,
+                        Book = new BookDto { Id = bookmark.Book.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
+                        Category = bookmark.Status,
+                    };
+                }
+
                 answer.Add(bookmarkDto);
             }
             return answer;
@@ -57,13 +71,26 @@ namespace Books.Services
             {
                 return null;
             }
-            var bookmarkDto = new BookMarkDto
+            BookMarkDto bookmarkDto;
+            if (bookmark.IdChapter.HasValue)
             {
-                IdUserBook = bookmark.IdUserBook,
-                Book = new BookDto { Id = bookmark.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
-                Chapter = new ChapterDto { Id = bookmark.IdChapter, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate },
-                Category = bookmark.Status
-            };
+                bookmarkDto = new BookMarkDto
+                {
+                    IdUserBook = bookmark.IdUserBook,
+                    Book = new BookDto { Id = bookmark.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
+                    Chapter = new ChapterDto { Id = bookmark.IdChapter.Value, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate },
+                    Category = bookmark.Status
+                };
+            }
+            else
+            {
+                bookmarkDto = new BookMarkDto
+                {
+                    IdUserBook = bookmark.IdUserBook,
+                    Book = new BookDto { Id = bookmark.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
+                    Category = bookmark.Status
+                };
+            }
             return bookmarkDto;
 
         }
@@ -79,7 +106,7 @@ namespace Books.Services
             bookmark.IdChapter = bookMarkDto.IdChapter;
             bookmark.Status = bookMarkDto.Category;
             await _userBookRepository.SaveChanges();
-            return await GetBookMark(bookmark.IdBook);
+            return await GetBookMark(bookmark.IdUserBook);
         }
 
         public async Task<bool> RemoveBookMarkById(int id)

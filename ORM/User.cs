@@ -50,9 +50,9 @@ namespace ORM
         [Required]
         public UserBookCategory Status { get; set; }
 
-        public int IdChapter { get; set; }
+        public int? IdChapter { get; set; }
         [ForeignKey(nameof(IdChapter))]
-        public Chapter Chapter { get; set; } = null!;
+        public Chapter? Chapter { get; set; }
 
     }
 }
