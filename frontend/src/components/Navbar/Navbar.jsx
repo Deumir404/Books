@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import axios from 'axios';
-import { clearAuthData, getAuthToken, getUsername } from '../../utils/auth';
+import { clearAuthData, getAuthToken, getUsername, fetchUserProfile } from '../../utils/auth';
 import styles from './Navbar.module.css';
 import bookIcon from '../../assets/book-icon.svg';
 import searchIcon from '../../assets/search-icon.svg';
@@ -24,6 +23,27 @@ const Navbar = () => {
     window.location.reload();
   }, [navigate]);
 
+  const fetchAndUpdateUserData = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const token = getAuthToken();
+      if (!token) return;
+
+      // Получаем актуальные данные пользователя
+      const userData = await fetchUserProfile();
+      const newUsername = userData?.username || userData?.email || getUsername();
+      
+      if (newUsername) {
+        setUsername(newUsername);
+      }
+    } catch (error) {
+      console.error('Ошибка при обновлении данных пользователя:', error);
+      handleLogout();
+    } finally {
+      setIsLoading(false);
+    }
+  }, [handleLogout]);
+
   useEffect(() => {
     const checkAuth = () => {
       const tokenExists = !!getAuthToken();
@@ -34,33 +54,10 @@ const Navbar = () => {
         if (storedUsername) {
           setUsername(storedUsername);
         } else {
-          // If username isn't in localStorage, fetch it from the server
-          fetchUserData();
+          fetchAndUpdateUserData();
         }
       } else {
         setUsername('');
-      }
-    };
-
-    const fetchUserData = async () => {
-      setIsLoading(true);
-      try {
-        const token = getAuthToken();
-        if (!token) return;
-
-        const response = await axios.get('/users/me', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        
-        const newUsername = response.data.username || response.data.email;
-        setUsername(newUsername);
-      } catch (error) {
-        console.error('Ошибка при получении данных пользователя:', error);
-        handleLogout();
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -76,7 +73,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
-  }, [handleLogout]);
+  }, [fetchAndUpdateUserData]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { saveAuthData, parseJwtPayload } from '../../utils/auth';
+import { saveAuthData, fetchUserProfile, parseJwtPayload } from '../../utils/auth';
 import styles from './AuthPages.module.css';
 
 const LoginPage = () => {
@@ -23,6 +23,7 @@ const LoginPage = () => {
     setError('');
 
     try {
+      // 1. Отправка данных для авторизации
       const response = await fetch('/users/login', {
         method: 'POST',
         headers: {
@@ -34,7 +35,7 @@ const LoginPage = () => {
       let responseData;
       const contentType = response.headers.get('content-type');
       
-      if (contentType && contentType.includes('application/json')) {
+      if (contentType?.includes('application/json')) {
         responseData = await response.json();
       } else {
         const text = await response.text();
@@ -58,12 +59,21 @@ const LoginPage = () => {
         throw new Error('Сервер не вернул токен авторизации');
       }
 
-      const userData = responseData.user || {
-        email: formData.email,
-        ...(responseData.id && { id: responseData.id }),
-        ...parseJwtPayload(token)
-      };
+      // 2. Получение данных пользователя
+      let userData = responseData.user || parseJwtPayload(token) || {};
+      
+      // 3. Запрос к защищенному эндпоинту для получения полных данных
+      try {
+        const profileData = await fetchUserProfile();
+        if (profileData) {
+          userData = { ...userData, ...profileData };
+        }
+      } catch (profileError) {
+        console.error('Ошибка получения профиля:', profileError);
+        // Продолжаем без данных профиля, если запрос не удался
+      }
 
+      // 4. Сохранение данных
       saveAuthData(token, userData);
       navigate('/', { replace: true });
     } catch (error) {

@@ -67,3 +67,47 @@ export const parseJwtPayload = (token) => {
     return null;
   }
 };
+
+// Обновление данных пользователя с сервера
+export const fetchUserProfile = async () => {
+  try {
+    const token = getAuthToken();
+    if (!token) return null;
+
+    const response = await fetch('/Users/MyProfile', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'text/plain, application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ошибка ${response.status}`);
+    }
+
+    let userData;
+    const contentType = response.headers.get('content-type');
+    
+    if (contentType?.includes('application/json')) {
+      userData = await response.json();
+    } else {
+      const text = await response.text();
+      try {
+        userData = text ? JSON.parse(text) : {};
+      } catch {
+        userData = { username: text };
+      }
+    }
+
+    console.log('Данные пользователя с сервера:', userData);
+    
+    // Обновляем данные в localStorage
+    const currentUser = getUserData() || {};
+    saveAuthData(token, { ...currentUser, ...userData });
+    
+    return userData;
+  } catch (error) {
+    console.error('Ошибка получения профиля:', error);
+    return null;
+  }
+};
