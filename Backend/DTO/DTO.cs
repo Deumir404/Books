@@ -144,7 +144,7 @@ namespace Books.DTO
     public class CreateBookMarkDto
     {
         public int IdBook { get; set; }
-        public int IdChapter { get; set; }
+        public int? IdChapter { get; set; }
         public UserBookCategory Category { get; set; }
 
     }

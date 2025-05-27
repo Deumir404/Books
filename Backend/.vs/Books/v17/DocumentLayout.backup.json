@@ -3,16 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\usersservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\usersservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\dto\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:dto\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\userbookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\userbookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,40 +41,79 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersServices.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\UsersServices.cs",
-              "RelativeDocumentMoniker": "Services\\UsersServices.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\UsersServices.cs",
-              "RelativeToolTip": "Services\\UsersServices.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAA4AAAAAAAAAA==",
+              "Title": "DTO.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
+              "RelativeDocumentMoniker": "DTO\\DTO.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
+              "RelativeToolTip": "DTO\\DTO.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAQwJIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T10:20:05.593Z",
+              "WhenOpened": "2025-05-27T14:07:52.555Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\User.cs",
-              "RelativeDocumentMoniker": "Contollers\\User.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\User.cs",
-              "RelativeToolTip": "Contollers\\User.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAFUAAAAJAAAAAAAAAA==",
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
+              "RelativeDocumentMoniker": "Contollers\\Book.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
+              "RelativeToolTip": "Contollers\\Book.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T09:44:34.621Z",
+              "WhenOpened": "2025-05-27T14:07:10.711Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwC8AAAAWAAAAAAAAAA==",
+              "Title": "UserBookServices.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\UserBookServices.cs",
+              "RelativeDocumentMoniker": "Services\\UserBookServices.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\UserBookServices.cs",
+              "RelativeToolTip": "Services\\UserBookServices.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAADwv0EAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T21:37:54.513Z",
+              "WhenOpened": "2025-05-27T14:01:34.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\User.cs",
+              "RelativeDocumentMoniker": "..\\ORM\\User.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\User.cs",
+              "RelativeToolTip": "..\\ORM\\User.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAwwDYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:58:37.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\Book.cs",
+              "RelativeDocumentMoniker": "..\\ORM\\Book.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\Book.cs",
+              "RelativeToolTip": "..\\ORM\\Book.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T13:58:19.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeDocumentMoniker": "Contollers\\User.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeToolTip": "Contollers\\User.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAuwE8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T09:44:34.621Z",
               "EditorCaption": ""
             }
           ]

@@ -57,13 +57,26 @@ namespace Books.Services
             {
                 return null;
             }
-            var bookmarkDto = new BookMarkDto
+            BookMarkDto bookmarkDto;
+            if (bookmark.IdChapter.HasValue)
             {
-                IdUserBook = bookmark.IdUserBook,
-                Book = new BookDto { Id = bookmark.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
-                Chapter = new ChapterDto { Id = bookmark.IdChapter, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate },
-                Category = bookmark.Status
-            };
+                bookmarkDto = new BookMarkDto
+                {
+                    IdUserBook = bookmark.IdUserBook,
+                    Book = new BookDto { Id = bookmark.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
+                    Chapter = new ChapterDto { Id = bookmark.IdChapter.Value, Num = bookmark.Chapter.Num, Title = bookmark.Chapter.Title, PublishedDate = bookmark.Chapter.PublishedDate },
+                    Category = bookmark.Status
+                };
+            }
+            else
+            {
+                bookmarkDto = new BookMarkDto
+                {
+                    IdUserBook = bookmark.IdUserBook,
+                    Book = new BookDto { Id = bookmark.IdBook, Title = bookmark.Book.Title, PublishedDate = bookmark.Book.PublishedDate },
+                    Category = bookmark.Status
+                };
+            }
             return bookmarkDto;
 
         }
