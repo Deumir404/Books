@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 import { getAuthToken, getUserData } from '../../utils/auth';
 import styles from './BookPage.module.css';
 
 const BookPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [book, setBook] = useState(null);
   const [chapters, setChapters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [chaptersLoading, setChaptersLoading] = useState(false);
-  const [userBookStatuses, setUserBookStatuses] = useState([]);
+  const [userBookStatus, setUserBookStatus] = useState(null);
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
   const [chapterStatuses, setChapterStatuses] = useState({});
   const [userBookEntries, setUserBookEntries] = useState([]);
@@ -35,25 +34,24 @@ const BookPage = () => {
       });
       setUserBookEntries(response.data);
 
-      // Обрабатываем все записи
-      const bookStatuses = [];
-      const chapterStatusMap = {};
+      // Находим запись для книги (где chapter === null)
+      const bookStatusEntry = response.data.find(entry => 
+        entry.book?.id === parseInt(id) && !entry.chapter
+      );
+      if (bookStatusEntry) {
+        setUserBookStatus(bookStatusEntry.category);
+      } else {
+        setUserBookStatus(null);
+      }
 
+      // Собираем статусы для глав
+      const statuses = {};
       response.data.forEach(entry => {
-        if (entry.book?.id === parseInt(id)) {
-          // Для статусов книги (idChapter = 1 или отсутствует)
-          if (!entry.chapter || entry.chapter.id === 1) {
-            bookStatuses.push(entry.category);
-          }
-          // Для статусов глав
-          else if (entry.chapter) {
-            chapterStatusMap[entry.chapter.id] = entry.category;
-          }
+        if (entry.chapter) {
+          statuses[entry.chapter.id] = entry.category;
         }
       });
-
-      setUserBookStatuses(bookStatuses);
-      setChapterStatuses(chapterStatusMap);
+      setChapterStatuses(statuses);
     } catch (err) {
       console.error('Ошибка при получении статуса книги:', err);
     }
@@ -70,7 +68,7 @@ const BookPage = () => {
       }
 
       if (chapterId) {
-        // Механика для глав (из второго кода) - обновление существующей записи
+        // Логика для глав
         const existingEntry = userBookEntries.find(entry => 
           entry.chapter?.id === chapterId && entry.book?.id === parseInt(id)
         );
@@ -79,40 +77,48 @@ const BookPage = () => {
           await axios.put(
             `/Users/${user.id}/UserBook/${existingEntry.idUserBook}`,
             { idBook: parseInt(id), idChapter: chapterId, category },
-            { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }}
+            { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } }
           );
-
         } else {
           await axios.post(
             `/Users/${user.id}/UserBook`,
             { idBook: parseInt(id), idChapter: chapterId, category },
-            { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }}
+            { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } }
           );
         }
       } else {
-        // Механика для книги (из первого кода) - удаление всех записей и создание новой
-        const entriesToDelete = userBookEntries.filter(entry => 
-          entry.book?.id === parseInt(id) && (!entry.chapter || entry.chapter.id === 1)
+        // Логика для книги (idChapter = null)
+        const existingEntry = userBookEntries.find(entry => 
+          entry.book?.id === parseInt(id) && !entry.chapter
         );
 
-        await Promise.all(entriesToDelete.map(entry => 
-          axios.delete(
-            `/Users/${user.id}/UserBook/${entry.idUserBook}`,
-            { headers: { 'Authorization': `Bearer ${token}` } }
-          )
-        ));
-
-        if (category !== 0) {
+        if (existingEntry) {
+          if (category === 0) {
+            // Удаляем запись, если статус сбрасывается
+            await axios.delete(
+              `/Users/${user.id}/UserBook/${existingEntry.idUserBook}`,
+              { headers: { 'Authorization': `Bearer ${token}` } }
+            );
+          } else {
+            // Обновляем существующую запись
+            await axios.put(
+              `/Users/${user.id}/UserBook/${existingEntry.idUserBook}`,
+              { idBook: parseInt(id), idChapter: null, category },
+              { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } }
+            );
+          }
+        } else if (category !== 0) {
+          // Создаем новую запись только если статус не "0"
           await axios.post(
             `/Users/${user.id}/UserBook`,
-            { idBook: parseInt(id), idChapter: 1, category },
-            { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }}
+            { idBook: parseInt(id), idChapter: null, category },
+            { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } }
           );
         }
       }
 
       // Обновляем данные
-      navigate(0);
+      await fetchUserBookEntries();
     } catch (err) {
       console.error('Ошибка при обновлении статуса книги:', err);
     } finally {
@@ -183,10 +189,10 @@ const BookPage = () => {
                   className={`${styles.markChapterButton} ${
                     isChapterReading ? styles.readingChapter : ''
                   } ${isChapterRead ? styles.readChapter : ''}`}
-                  onClick={() => {
-                    const newStatus = isChapterRead ? 0 : isChapterReading ? 2 : 1;
-                    updateBookStatus(newStatus, chapter.id);
-                  }}
+                  onClick={() => updateBookStatus(
+                    isChapterRead ? 0 : isChapterReading ? 2 : 1, 
+                    chapter.id
+                  )}
                   disabled={isUpdatingStatus}
                 >
                   {isUpdatingStatus ? 'Сохранение...' : 
@@ -204,13 +210,13 @@ const BookPage = () => {
   const renderBookActions = () => {
     if (!getAuthToken()) return null;
 
-    const isBookRead = userBookStatuses.includes(4);
-    const isInPlans = userBookStatuses.includes(3);
+    const isBookRead = userBookStatus === 4;
+    const isInPlans = userBookStatus === 3;
 
     return (
       <div className={styles.bookActions}>
         <button 
-          className={`${styles.statusButton} ${isBookRead ? styles.statusButtonActive : ''}`}
+          className={`${styles.statusButton} ${isBookRead ? styles.readChapter : ''}`}
           onClick={() => updateBookStatus(isBookRead ? 0 : 4)}
           disabled={isUpdatingStatus}
         >

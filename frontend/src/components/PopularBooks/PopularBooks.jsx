@@ -1,42 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PopularBooks.module.css';
 
-// Импортируем обложки книг
-import MasterAndMargarita from '../../assets/master-and-margarita.png';
-import CrimeAndPunishment from '../../assets/crime-and-punishment.png';
-import WarAndPeace from '../../assets/war-and-peace.png';
-import EugeneOnegin from '../../assets/eugene-onegin.png';
-import DoctorZhivago from '../../assets/doctor-zhivago.png';
-
 const PopularBooks = () => {
-  const books = [
-    { 
-      title: 'Мастер и Маргарита', 
-      author: 'Михаил Булгаков',
-      cover: MasterAndMargarita
-    },
-    { 
-      title: 'Преступление и наказание', 
-      author: 'Фёдор Достоевский',
-      cover: CrimeAndPunishment
-    },
-    { 
-      title: 'Война и мир', 
-      author: 'Лев Толстой',
-      cover: WarAndPeace
-    },
-    { 
-      title: 'Евгений Онегин', 
-      author: 'Александр Пушкин',
-      cover: EugeneOnegin
-    },
-    { 
-      title: 'Доктор Живаго', 
-      author: 'Борис Пастернак',
-      cover: DoctorZhivago
-    }
-  ];
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTopRatedBooks = async () => {
+      try {
+        const response = await fetch('/books');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        
+        // Сортируем книги по рейтингу (по убыванию) и берем топ-5
+        const topRatedBooks = data
+          .sort((a, b) => b.rating - a.rating)
+          .slice(0, 5);
+        
+        setBooks(topRatedBooks);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopRatedBooks();
+  }, []);
+
+  if (loading) {
+    return <div className={styles.booksContainer}>Загрузка...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.booksContainer}>Ошибка: {error}</div>;
+  }
 
   return (
     <div className={styles.booksContainer}>
@@ -48,15 +50,18 @@ const PopularBooks = () => {
       </div>
       
       <div className={styles.booksGrid}>
-        {books.map((book, index) => (
-          <Link to={`/book/${index}`} className={styles.bookCard} key={index}>
+        {books.map((book) => (
+          <Link to={`/book/${book.id}`} className={styles.bookCard} key={book.id}>
             <img 
-              src={book.cover} 
+              src={book.coverURL} 
               alt={book.title} 
               className={styles.bookCover} 
+              onError={(e) => {
+                e.target.src = '/images/cover/empty.jpg'; // fallback изображение
+              }}
             />
             <h3 className={styles.bookTitle}>{book.title}</h3>
-            <p className={styles.bookAuthor}>{book.author}</p>
+            <p className={styles.bookAuthor}>{book.author.nickname}</p>
           </Link>
         ))}
       </div>
