@@ -5,6 +5,7 @@ import styles from './Navbar.module.css';
 import bookIcon from '../../assets/book-icon.svg';
 import searchIcon from '../../assets/search-icon.svg';
 import userIcon from '../../assets/user-icon.svg';
+import axios from 'axios';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -12,7 +13,31 @@ const Navbar = () => {
   const [isAuthenticatedState, setIsAuthenticatedState] = useState(false);
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const userMenuRef = useRef(null);
+
+  const handleSearch = async (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      try {
+        const response = await axios.get('/Books/search', {
+          params: {
+            title: searchQuery.trim(),
+            // Можно добавить другие параметры поиска при необходимости
+          }
+        });
+        
+        navigate('/catalog', { 
+          state: { 
+            searchResults: response.data,
+            searchQuery: searchQuery,
+            isSearch: true 
+          } 
+        });
+      } catch (error) {
+        console.error('Ошибка поиска:', error);
+      }
+    }
+  };
 
   const handleLogout = useCallback(() => {
     clearAuthData();
@@ -29,7 +54,6 @@ const Navbar = () => {
       const token = getAuthToken();
       if (!token) return;
 
-      // Получаем актуальные данные пользователя
       const userData = await fetchUserProfile();
       const newUsername = userData?.username || userData?.email || getUsername();
       
@@ -61,10 +85,8 @@ const Navbar = () => {
       }
     };
 
-    // Initial check
     checkAuth();
 
-    // Listen for auth changes in other tabs
     const handleStorageChange = () => {
       checkAuth();
     };
@@ -119,8 +141,16 @@ const Navbar = () => {
           type="text" 
           placeholder="Поиск книг..." 
           className={styles.searchInput}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={handleSearch}
         />
-        <img src={searchIcon} alt="Search" className={styles.searchIcon} />
+        <img 
+          src={searchIcon} 
+          alt="Search" 
+          className={styles.searchIcon} 
+          onClick={() => searchQuery.trim() && handleSearch({key: 'Enter'})}
+        />
       </div>
 
       <div className={styles.userSection} ref={userMenuRef}>
@@ -129,9 +159,6 @@ const Navbar = () => {
           onClick={toggleUserMenu}
         >
           <img src={userIcon} alt="User" className={styles.userIcon} />
-          {isAuthenticatedState && !isLoading && username && (
-            <span className={styles.usernameBadge}>{username.charAt(0).toUpperCase()}</span>
-          )}
         </div>
 
         {isUserMenuOpen && (
@@ -145,9 +172,6 @@ const Navbar = () => {
                 </div>
                 <Link to="/profile" className={styles.menuItem} onClick={() => setIsUserMenuOpen(false)}>
                   Профиль
-                </Link>
-                <Link to="/change-password" className={styles.menuItem} onClick={() => setIsUserMenuOpen(false)}>
-                  Сменить пароль
                 </Link>
                 <Link to="/become-author" className={styles.menuItem} onClick={() => setIsUserMenuOpen(false)}>
                   Стать автором

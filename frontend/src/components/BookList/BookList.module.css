@@ -83,6 +83,30 @@
     margin: 0;
 }
 
+.searchInfo {
+  margin-right: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+.clearSearch {
+  margin-left: 10px;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.clearSearch:hover {
+  text-decoration: underline;
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
 .bookCategory {
     color: #666;
     font-size: 13px;

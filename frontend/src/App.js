@@ -7,6 +7,7 @@ import Rules from './pages/Rules/Rules';
 import BookPage from './pages/Book/BookPage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
+import Profile from './pages/Profile/Profile';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/bookmarks" element={<Bookmarks />} />
             <Route path="/book/:id" element={<BookPage />} />
             <Route path="/rules" element={<Rules />} />
+            <Route path="/profile" element={<Profile />} />
             {/* Страница 404 для несуществующих маршрутов */}
             <Route path="*" element={<div>Страница не найдена</div>} />
           </Routes>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Filters from '../../components/Filters/Filters';
 import BookList from '../../components/BookList/BookList';
@@ -6,6 +7,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import styles from './Catalog.module.css';
 
 const CatalogPage = () => {
+  const location = useLocation();
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [authors, setAuthors] = useState([]);
@@ -15,23 +17,33 @@ const CatalogPage = () => {
   const [selectedAuthors, setSelectedAuthors] = useState([]);
   const [sortBy, setSortBy] = useState('title');
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const booksPerPage = 50;
 
   const fetchBooks = useCallback(async () => {
     try {
+      // Если есть результаты поиска, используем их
+      if (location.state?.searchResults) {
+        setSearchQuery(location.state.searchQuery || '');
+        return location.state.searchResults;
+      }
+      
+      // Иначе загружаем все книги
       const response = await axios.get('/Books/search');
-      setAllBooks(response.data);
       return response.data;
     } catch (error) {
       console.error('Error fetching books:', error);
-      setAllBooks([]);
       return [];
     }
-  }, []);
+  }, [location.state]);
 
   const fetchBookIdsByCategory = useCallback(async (categoryId) => {
     try {
-      const response = await axios.get(`/Books/search?category=${categoryId}`);
+      const response = await axios.get('/Books/search', {
+        params: {
+          category: [categoryId]
+        }
+      });
       return response.data.map(book => book.id);
     } catch (error) {
       console.error('Error fetching book IDs by category:', error);
@@ -39,11 +51,23 @@ const CatalogPage = () => {
     }
   }, []);
 
+  const fetchInitialData = useCallback(async () => {
+    try {
+      const [authorsRes, categoriesRes] = await Promise.all([
+        axios.get('/authors'),
+        axios.get('/categories')
+      ]);
+      setAuthors(authorsRes.data);
+      setCategories(categoriesRes.data);
+    } catch (error) {
+      console.error('Error fetching initial data:', error);
+    }
+  }, []);
+
   const applyFilters = useCallback(async (booksToFilter) => {
     let result = [...booksToFilter];
     
     if (selectedCategories.length > 0) {
-      setLoading(true);
       try {
         const bookIdsPromises = selectedCategories.map(categoryId => 
           fetchBookIdsByCategory(categoryId)
@@ -54,9 +78,6 @@ const CatalogPage = () => {
         result = result.filter(book => categoryBookIds.includes(book.id));
       } catch (error) {
         console.error('Error filtering books by categories:', error);
-        result = [];
-      } finally {
-        setLoading(false);
       }
     }
     
@@ -70,26 +91,23 @@ const CatalogPage = () => {
   }, [selectedCategories, selectedAuthors, fetchBookIdsByCategory]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const loadData = async () => {
+      setLoading(true);
       try {
-        const [authorsRes, categoriesRes] = await Promise.all([
-          axios.get('/authors'),
-          axios.get('/categories')
-        ]);
-        setAuthors(authorsRes.data);
-        setCategories(categoriesRes.data);
+        await fetchInitialData();
         const booksData = await fetchBooks();
+        setAllBooks(booksData);
         const filtered = await applyFilters(booksData);
         setFilteredBooks(filtered);
       } catch (error) {
-        console.error('Error:', error.response?.data || error.message);
+        console.error('Error:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, [fetchBooks, applyFilters]);
+    loadData();
+  }, [fetchBooks, fetchInitialData, applyFilters]);
 
   useEffect(() => {
     const updateFilteredBooks = async () => {
@@ -156,6 +174,10 @@ const CatalogPage = () => {
             onResetFilters={handleResetFilters}
           />
           <div className={styles.booksSection}>
+            {searchQuery && (
+              <div className={styles.searchResultsInfo}>
+              </div>
+            )}
             <BookList 
               books={currentBooks} 
               sortBy={sortBy}
