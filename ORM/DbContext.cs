@@ -21,9 +21,13 @@ public class ApplicationDbContext: DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Chapter> Chapters { get; set; }
     public DbSet<TextChapter> TextChapters { get; set; }
+    public DbSet<CommentBook> CommentBooks { get; set; }
+    public DbSet<ReviewBook> Reviews { get; set; }
+    public DbSet<CommentComplaint> Complaint { get; set; }
 
     public DbSet<User> Users { get; set; }
     public DbSet<UserBook> UserBooks { get; set; }
+    public DbSet<RoleApplication> RoleApplications { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
