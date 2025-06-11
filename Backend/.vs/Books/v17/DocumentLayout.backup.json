@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\repository\\commentbookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:repository\\commentbookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\commentbookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\commentbookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,28 +30,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 317,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CommentBookRepository.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Repository\\CommentBookRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\CommentBookRepository.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Repository\\CommentBookRepository.cs",
-              "RelativeToolTip": "Repository\\CommentBookRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAA5wCoAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T20:24:46.762Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -68,7 +51,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
               "RelativeDocumentMoniker": "Contollers\\Book.cs",
@@ -81,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Comment.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Comment.cs",
               "RelativeDocumentMoniker": "Contollers\\Comment.cs",
@@ -94,13 +77,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "CommentBookServices.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\CommentBookServices.cs",
               "RelativeDocumentMoniker": "Services\\CommentBookServices.cs",
               "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\CommentBookServices.cs",
               "RelativeToolTip": "Services\\CommentBookServices.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAA6wC4AAABHAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAD4v0MAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T15:53:50.89Z",
               "EditorCaption": ""
@@ -113,7 +96,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "CommentDto.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\CommentDto.cs",
               "RelativeDocumentMoniker": "DTO\\CommentDto.cs",

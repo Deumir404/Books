@@ -94,6 +94,10 @@ internal class Program
         builder.Services.AddScoped<ICommentRepository, CommentRepository>();
         builder.Services.AddScoped<ICommentBookService, CommentBookService>();
 
+
+        builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+        builder.Services.AddScoped<IReviewService, ReviewService>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
