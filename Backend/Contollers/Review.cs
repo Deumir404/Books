@@ -28,11 +28,16 @@ namespace Books.Contollers
         [HttpPost("/book/{idBook}")]
         public async Task<ActionResult<ReviewDto>> CreateReview(ReviewDto reviewDto, int idBook)
         {
+            var idUser = User.GetUserId();
+            if (idUser == null)
+            {
+                return Unauthorized();
+            }
             if (reviewDto == null)
             {
                 return BadRequest();
             }
-            var review = await _reviewService.CreateReviewDto(reviewDto, 1, idBook);
+            var review = await _reviewService.CreateReviewDto(reviewDto, idUser.Value, idBook);
             return Ok(review);
         }
         [HttpPut("{id}")]
