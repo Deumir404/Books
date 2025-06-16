@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ORM;
 
@@ -11,9 +12,11 @@ using ORM;
 namespace ORM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250616225300_Check_test2")]
+    partial class Check_test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,9 +242,6 @@ namespace ORM.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Review")
                         .HasColumnType("int");
 
                     b.HasKey("IdReview");

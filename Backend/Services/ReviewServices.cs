@@ -32,6 +32,7 @@ namespace Books.Services
             var reviewDto = new ReviewDto { Id = review.IdReview, Review = review.Review };
             return reviewDto;
         }
+        
         public async Task<ReviewDto?> CreateReviewDto(CreateReviewDto reviewDto, int idUser, int idBook)
         {
             var review = new ReviewBook { Review = reviewDto.Review, IdUser = idUser, IdBook = idBook };

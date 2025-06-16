@@ -16,10 +16,14 @@ namespace Books.Services
         Task<FullBook?> ChangeBookDto(CreateBookDTO bookdto, int id);
         Task<bool> DeleteBookDto(int id);
         Task UploadCoverById(int id, IFormFile file);
+
+        Task RecalculateRating();
     }
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IReviewRepository _reviewRepository;
+
 
         private static string GetCoverUrl(Book book)
         {
@@ -32,9 +36,10 @@ namespace Books.Services
             return coverUrl;
         }
 
-        public BookService(IBookRepository bookRepository)
+        public BookService(IBookRepository bookRepository, IReviewRepository reviewRepository)
         {
             _bookRepository = bookRepository;
+            _reviewRepository = reviewRepository;
         }
 
         public async Task<List<BookWithAuthorDto>> GetBooksDto()
@@ -65,6 +70,17 @@ namespace Books.Services
             }
 
             return answer;
+        }
+
+        public async Task RecalculateRating()
+        {
+            var books = await _bookRepository.GetAllBook();
+            foreach (var book in books)
+            {
+                var newRating = await _reviewRepository.CalculateRatingByIdBook(book.IdBook);
+                book.Rating = newRating;
+            }
+            await _bookRepository.SaveChanges();
         }
 
         public async Task<FullBook?> GetBookDto(int id)
@@ -188,4 +204,29 @@ namespace Books.Services
             }
         }
     }
+
+    public class RatingRecalculationService : BackgroundService
+    {
+        private readonly IServiceProvider _serviceProvider;
+
+        public RatingRecalculationService(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var bookService = scope.ServiceProvider.GetRequiredService<IBookService>();
+                    await bookService.RecalculateRating();
+                }
+
+                await Task.Delay(TimeSpan.FromHours(1), stoppingToken); // каждый час
+            }
+        }
+    }
+
 }
