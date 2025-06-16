@@ -15,13 +15,13 @@ namespace Books.Contollers
 
         
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CommentDto>>> GetComplaints()
+        public async Task<ActionResult<IEnumerable<ComplaintDto>>> GetComplaints()
         {
             var answer = await _complaintService.GetComplaintDto();
             return Ok(answer);
         }
         [HttpGet("user/{id}")]
-        public async Task<ActionResult<IEnumerable<CommentDto>>> GetComplaintsByUser(int id)
+        public async Task<ActionResult<IEnumerable<ComplaintDto>>> GetComplaintsByUser(int id)
         {
             var answer = await _complaintService.GetComplaintDtoByUser(id);
             return Ok(answer);

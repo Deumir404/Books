@@ -86,8 +86,6 @@ namespace Books.Services
             {
                 return null;
             }
-            Console.WriteLine($"Current Status: {complaint.ComplaintStatus}");
-            Console.WriteLine($"New Status: {commentDto.Status}");
             complaint.Text = commentDto.Text;
             complaint.Idcomment = commentDto.IdComment;
             complaint.IdUser = commentDto.IdUser;

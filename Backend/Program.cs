@@ -101,6 +101,9 @@ internal class Program
         builder.Services.AddScoped<IComplaintRepository, ComplaintRepository>();
         builder.Services.AddScoped<IComplaintService, ComplaintService>();
 
+        builder.Services.AddScoped<IRoleAppRepository, RoleAppRepository>();
+        builder.Services.AddScoped<IRoleAppService, RoleAppService>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
