@@ -25,7 +25,7 @@ namespace Books.Contollers
             return Ok(answer);
         }
         [Authorize]
-        [HttpPost("/book/{idBook}")]
+        [HttpPost("book/{idBook}")]
         public async Task<ActionResult<ReviewDto>> CreateReview(ReviewDto reviewDto, int idBook)
         {
             var idUser = User.GetUserId();

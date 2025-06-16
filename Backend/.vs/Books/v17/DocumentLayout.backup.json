@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\complaintservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\complaintservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\commentbookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\commentbookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\complaint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\complaint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\dto\\commentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:dto\\commentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,12 +21,38 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 317,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 393,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ComplaintServices.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\ComplaintServices.cs",
+              "RelativeDocumentMoniker": "Services\\ComplaintServices.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\ComplaintServices.cs",
+              "RelativeToolTip": "Services\\ComplaintServices.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAcwDkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T00:51:10.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Complaint.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Complaint.cs",
+              "RelativeDocumentMoniker": "Contollers\\Complaint.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Complaint.cs",
+              "RelativeToolTip": "Contollers\\Complaint.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAA9wC0AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T00:29:16.686Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -40,54 +62,9 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAgwFkAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAcwGYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T20:20:36.774Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Comment.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Comment.cs",
-              "RelativeDocumentMoniker": "Contollers\\Comment.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Comment.cs",
-              "RelativeToolTip": "Contollers\\Comment.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAIwDsAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T20:10:16.695Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CommentBookServices.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\CommentBookServices.cs",
-              "RelativeDocumentMoniker": "Services\\CommentBookServices.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\CommentBookServices.cs",
-              "RelativeToolTip": "Services\\CommentBookServices.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAIAywG0AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T15:53:50.89Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 83,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CommentDto.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\CommentDto.cs",
-              "RelativeDocumentMoniker": "DTO\\CommentDto.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\CommentDto.cs",
-              "RelativeToolTip": "DTO\\CommentDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T16:03:46.854Z",
+              "WhenOpened": "2025-06-11T10:30:50.539Z",
               "EditorCaption": ""
             }
           ]

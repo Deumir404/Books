@@ -98,6 +98,9 @@ internal class Program
         builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
         builder.Services.AddScoped<IReviewService, ReviewService>();
 
+        builder.Services.AddScoped<IComplaintRepository, ComplaintRepository>();
+        builder.Services.AddScoped<IComplaintService, ComplaintService>();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())

@@ -13,13 +13,13 @@ namespace Books.Contollers
             _commentService = commentService;
         }
 
-        [HttpGet("/book/{id}")]
+        [HttpGet("book/{id}")]
         public async Task<ActionResult<IEnumerable<CommentDto>>> GetCommentByBook(int id)
         {
             var answer = await _commentService.GetCommentDtoByBook(id);
             return Ok(answer);
         }
-        [HttpGet("/user/{id}")]
+        [HttpGet("user/{id}")]
         public async Task<ActionResult<IEnumerable<CommentDto>>> GetAuthorWithBooks(int id)
         {
             var answer = await _commentService.GetCommentDtoByUser(id);
