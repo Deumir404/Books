@@ -16,7 +16,7 @@ const WelcomeFrame = () => {
         
         <div className={styles.buttonsRow}>
           <Link to="/catalog" className={styles.startReadingBtn}>Начать чтение</Link>
-          <Link to="/catalog" className={styles.becomeAuthorBtn}>Стать автором</Link>
+          <Link to="/authors" className={styles.becomeAuthorBtn}>Стать автором</Link>
         </div>
       </div>
       

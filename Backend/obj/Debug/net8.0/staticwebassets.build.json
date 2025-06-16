@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+drtgezGuTwM8twSFgSyMa/UFBf3cE8ruKUxZIikn8U=",
+  "Hash": "DBDstDqh00qA4QhnQCSVUdOVCmDQbSxlZJ19LZqMK7c=",
   "Source": "Books",
   "BasePath": "_content/Books",
   "Mode": "Default",
@@ -36,6 +36,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\cover\\1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\2.jpg",
+      "SourceId": "Books",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
+      "BasePath": "_content/Books",
+      "RelativePath": "images/cover/2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kzelb7sjub",
+      "Integrity": "ICbSVpFhktI0gP2jBikD59VROfktDlLVVIPlN7CwzfA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cover\\2.jpg"
     },
     {
       "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\3.jpg",
@@ -244,6 +265,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-TTzwlfyryiNuEP+MUBvUKv+h2w9C+V5i66LaWtYfENI="
+        }
+      ]
+    },
+    {
+      "Route": "images/cover/2.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "312796"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ICbSVpFhktI0gP2jBikD59VROfktDlLVVIPlN7CwzfA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 27 May 2025 17:12:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ICbSVpFhktI0gP2jBikD59VROfktDlLVVIPlN7CwzfA="
+        }
+      ]
+    },
+    {
+      "Route": "images/cover/2.kzelb7sjub.jpg",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\images\\cover\\2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "312796"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ICbSVpFhktI0gP2jBikD59VROfktDlLVVIPlN7CwzfA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 27 May 2025 17:12:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kzelb7sjub"
+        },
+        {
+          "Name": "label",
+          "Value": "images/cover/2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ICbSVpFhktI0gP2jBikD59VROfktDlLVVIPlN7CwzfA="
         }
       ]
     },
