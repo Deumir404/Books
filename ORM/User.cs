@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace ORM
 {
-   
+    public enum RoleUser
+    {
+        Reader,            // Читатель
+        Author,            // Автор 
+        Admin              // Админ
+    }
     public class User
     {
         [Key]
@@ -24,7 +28,7 @@ namespace ORM
 
         public ICollection<UserBook> UserBooks { get; set; } = [];
 
-
+        public RoleUser Role { get; set; }
     }
 
     public enum UserBookCategory
@@ -54,5 +58,22 @@ namespace ORM
         [ForeignKey(nameof(IdChapter))]
         public Chapter? Chapter { get; set; }
 
+    }
+
+    public class RoleApplication
+    {
+        [Key]
+        public int IdRoleApplication { get; set; }
+        [Required]
+        public string Text { get; set; } = string.Empty;
+        [Required]
+        public RoleUser Role { get; set; }
+       
+        public int IdUser { get; set; }
+        [ForeignKey(nameof(IdUser))]
+        public User User { get; set; } = null!;
+
+        [Required]
+        public DateTime PublishedDate { get; set; } = DateTime.Now;
     }
 }

@@ -118,4 +118,64 @@ namespace ORM
         [ForeignKey(nameof(IdChapter))]
         public Chapter Chapter { get; set; } = null!;
     }
+
+    public class CommentBook
+    {
+        [Key]
+        public int IdComment { get; set; }
+        [Required]
+        public string Text { get; set; } = string.Empty;
+        [Required]
+        public DateTime PublishedDate { get; set; } = DateTime.Now;
+        public int IdBook { get; set; }
+        [ForeignKey(nameof(IdBook))]
+        public Book Book { get; set; } = null!;
+
+        public int Iduser { get; set; }
+        [ForeignKey(nameof(Iduser))]
+        public User User { get; set; } = null!;
+    }
+
+    public enum ComplaintStatus
+    {
+        New,            // Новая жалоба
+        InProgress,     // В процессе рассмотрения
+        Resolved,       // Решена
+        Rejected        // Отклонена
+    }
+
+    public class CommentComplaint
+    {
+        [Key]
+        public int IdComplaint { get; set; }
+        [Required]
+        public string Text { get; set; } = string.Empty;
+        public int Idcomment { get; set; }
+        [ForeignKey(nameof(Idcomment))]
+        public CommentBook comment { get; set; } = null!;
+        public int IdUser { get; set; }
+        [ForeignKey(nameof(IdUser))]
+        public User User { get; set; } = null!;
+        public ComplaintStatus ComplaintStatus { get; set; }
+
+        [Required]
+        public DateTime PublishedDate { get; set; } = DateTime.Now;
+    }
+
+    public class ReviewBook
+    {
+        [Key]
+        public int IdReview { get; set; }
+
+        [Required]
+        public int Review;
+        public int IdBook { get; set; }
+        [ForeignKey(nameof(IdBook))]
+        public Book Book { get; set; } = null!;
+
+        public int IdUser { get; set; }
+        [ForeignKey(nameof(IdUser))]
+        public User User { get; set; } = null!;
+    }
+
 }
