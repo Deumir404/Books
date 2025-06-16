@@ -26,7 +26,7 @@ namespace Books.Contollers
         }
         [Authorize]
         [HttpPost("book/{idBook}")]
-        public async Task<ActionResult<ReviewDto>> CreateReview(ReviewDto reviewDto, int idBook)
+        public async Task<ActionResult<ReviewDto>> CreateReview(CreateReviewDto reviewDto, int idBook)
         {
             var idUser = User.GetUserId();
             if (idUser == null)
@@ -41,7 +41,7 @@ namespace Books.Contollers
             return Ok(review);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<ReviewDto>> ChangeReview(ReviewDto reviewDto, int id)
+        public async Task<ActionResult<ReviewDto>> ChangeReview(CreateReviewDto reviewDto, int id)
         {
             if (reviewDto == null)
             {

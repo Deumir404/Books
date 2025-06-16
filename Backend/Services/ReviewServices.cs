@@ -8,8 +8,8 @@ namespace Books.Services
     public interface IReviewService
     {
         Task<ReviewDto?> GetReviewDtoByUser(int idUser, int idBook);
-        Task<ReviewDto?> CreateReviewDto(ReviewDto reviewDto, int idUser, int idBook);
-        Task<ReviewDto?> ChangeReviewDto(ReviewDto commentDto, int id);
+        Task<ReviewDto?> CreateReviewDto(CreateReviewDto reviewDto, int idUser, int idBook);
+        Task<ReviewDto?> ChangeReviewDto(CreateReviewDto commentDto, int id);
         Task<bool> DeleteReviewDto(int id);
 
     }
@@ -32,7 +32,7 @@ namespace Books.Services
             var reviewDto = new ReviewDto { Id = review.IdReview, Review = review.Review };
             return reviewDto;
         }
-        public async Task<ReviewDto?> CreateReviewDto(ReviewDto reviewDto, int idUser, int idBook)
+        public async Task<ReviewDto?> CreateReviewDto(CreateReviewDto reviewDto, int idUser, int idBook)
         {
             var review = new ReviewBook { Review = reviewDto.Review, IdUser = idUser, IdBook = idBook };
             await _reviewRepository.CreateReview(review);
@@ -48,7 +48,7 @@ namespace Books.Services
             };
             return answer;
         }
-        public async Task<ReviewDto?> ChangeReviewDto(ReviewDto commentDto, int id)
+        public async Task<ReviewDto?> ChangeReviewDto(CreateReviewDto commentDto, int id)
         {
             var review = await _reviewRepository.GetReviewById(id);
             if (review == null)

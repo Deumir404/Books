@@ -740,7 +740,7 @@
     "Parameters": [
       {
         "Name": "reviewDto",
-        "Type": "Books.DTO.ReviewDto",
+        "Type": "Books.DTO.CreateReviewDto",
         "IsRequired": true
       },
       {
@@ -787,7 +787,7 @@
     "Parameters": [
       {
         "Name": "reviewDto",
-        "Type": "Books.DTO.ReviewDto",
+        "Type": "Books.DTO.CreateReviewDto",
         "IsRequired": true
       },
       {

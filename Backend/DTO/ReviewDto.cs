@@ -5,5 +5,9 @@
         public int Id { get; set; }
         public int Review {  get; set; }
     }
-   
+    public class CreateReviewDto
+    {
+        public int Review { get; set; }
+    }
+
 }
