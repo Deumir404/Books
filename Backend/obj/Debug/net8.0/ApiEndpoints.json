@@ -732,37 +732,6 @@
   },
   {
     "ContainingType": "Books.Contollers.ReviewController",
-    "Method": "ChangeReview",
-    "RelativePath": "Review/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "reviewDto",
-        "Type": "Books.DTO.CreateReviewDto",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Books.DTO.ReviewDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Books.Contollers.ReviewController",
     "Method": "DeleteReview",
     "RelativePath": "Review/{id}",
     "HttpMethod": "DELETE",

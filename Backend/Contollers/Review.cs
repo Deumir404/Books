@@ -40,20 +40,7 @@ namespace Books.Contollers
             var review = await _reviewService.CreateReviewDto(reviewDto, idUser.Value, idBook);
             return Ok(review);
         }
-        [HttpPut("{id}")]
-        public async Task<ActionResult<ReviewDto>> ChangeReview(CreateReviewDto reviewDto, int id)
-        {
-            if (reviewDto == null)
-            {
-                return BadRequest();
-            }
-            var review = await _reviewService.ChangeReviewDto(reviewDto, id);
-            if (review == null)
-            {
-                return NotFound();
-            }
-            return Ok(review);
-        }
+       
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteReview(int id)
         {
