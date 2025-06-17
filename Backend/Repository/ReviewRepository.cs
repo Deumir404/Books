@@ -6,6 +6,7 @@ namespace Books.Repository
     public interface IReviewRepository
     {
         Task<IEnumerable<ReviewBook>> GetAllReview();
+        Task<float> CalculateRatingByIdBook(int idBook);
         Task<ReviewBook?> GetReview(int idUser, int idBook);
         Task<ReviewBook?> GetReviewById(int idReview);
         Task CreateReview(ReviewBook review);
@@ -33,6 +34,17 @@ namespace Books.Repository
                 return null;
             }
             return commentBook;
+        }
+        public async Task<float> CalculateRatingByIdBook(int idBook)
+        {
+            var reviewBook = _context.Reviews.Where(c=> c.IdBook == idBook);
+            var count = await reviewBook.CountAsync();
+            if (count == 0)
+                return 0;
+            var reviewList = await reviewBook.ToListAsync();
+            var sum = reviewList.Sum(r => r.Review);
+            
+            return (float)sum / count;
         }
         public async Task<ReviewBook?> GetReviewById(int idReview)
         {

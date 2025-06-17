@@ -168,7 +168,7 @@ namespace ORM
         public int IdReview { get; set; }
 
         [Required]
-        public int Review;
+        public int Review { get; set; }
         public int IdBook { get; set; }
         [ForeignKey(nameof(IdBook))]
         public Book Book { get; set; } = null!;
