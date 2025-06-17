@@ -29,6 +29,7 @@ const BookPage = () => {
   const [complaintReason, setComplaintReason] = useState('');
   const [isSubmittingComplaint, setIsSubmittingComplaint] = useState(false);
   const [complaintError, setComplaintError] = useState(null);
+  const [hasUserReviewed, setHasUserReviewed] = useState(false);
   const MAX_REVIEW_LENGTH = 200;
 
   const getStarColor = (rating) => {
@@ -44,6 +45,25 @@ const BookPage = () => {
       reviewsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const fetchUserRating = useCallback(async () => {
+    try {
+      const token = getAuthToken();
+      const user = getUserData();
+      
+      if (!token || !user?.id) return;
+
+      const response = await axios.get(`/Review/user/${user.id}/book/${id}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (response.data) {
+        setRating(response.data.review || 0);
+      }
+    } catch (err) {
+      console.error('Ошибка при получении оценки пользователя:', err);
+    }
+  }, [id]);
 
   const fetchUserBookEntries = useCallback(async () => {
     try {
@@ -80,13 +100,29 @@ const BookPage = () => {
   const fetchReviews = useCallback(async () => {
     try {
       const response = await axios.get(`/Comment/book/${id}`);
-      setReviews(response.data);
+      const user = getUserData();
+      
+      const reviewsWithRatings = response.data.map(review => {
+        const rating = review.review || 0;
+        
+        if (user?.id && review.user?.id === user.id) {
+          setHasUserReviewed(true);
+          setRating(rating);
+        }
+        
+        return {
+          ...review,
+          review: rating
+        };
+      });
+      
+      setReviews(reviewsWithRatings);
     } catch (err) {
       console.error('Ошибка при загрузке отзывов:', err);
     }
   }, [id]);
 
-  const submitRating = async () => {
+  const submitRating = async (selectedRating) => {
     try {
       const token = getAuthToken();
       const user = getUserData();
@@ -95,16 +131,17 @@ const BookPage = () => {
         throw new Error('Необходимо авторизоваться');
       }
 
-      await axios.post(`/Review/book/${id}`, {
-        def: rating,
-        render: 0
-      }, {
-        headers: { 
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+      await axios.post(`/Review/book/${id}`, 
+        { review: selectedRating },
+        {
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         }
-      });
+      );
 
+      setRating(selectedRating);
       return true;
     } catch (err) {
       console.error('Ошибка при отправке оценки:', err);
@@ -178,7 +215,7 @@ const BookPage = () => {
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
-    if (!newReview.trim() || newReview.length > MAX_REVIEW_LENGTH || rating === 0) return;
+    if (!newReview.trim() || newReview.length > MAX_REVIEW_LENGTH || rating === 0 || hasUserReviewed) return;
     
     try {
       setIsReviewing(true);
@@ -190,13 +227,12 @@ const BookPage = () => {
         throw new Error('Необходимо авторизоваться для оставления отзыва');
       }
 
-      const ratingSuccess = await submitRating();
-      if (!ratingSuccess) return;
-
       await axios.post('/Comment', {
         text: newReview,
         bookId: parseInt(id),
-        userId: user.id
+        userId: user.id,
+        review: rating,
+        ratingData: `*str: ${rating}`
       }, {
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -205,8 +241,8 @@ const BookPage = () => {
       });
 
       setNewReview('');
-      setRating(0);
       setCharCount(0);
+      setHasUserReviewed(true);
       await fetchReviews();
     } catch (err) {
       console.error('Ошибка при отправке отзыва:', err);
@@ -293,6 +329,7 @@ const BookPage = () => {
     if (book) {
       fetchUserBookEntries();
       fetchReviews();
+      fetchUserRating();
       
       const fetchChapters = async () => {
         if (!book.chapters?.length) return;
@@ -313,7 +350,7 @@ const BookPage = () => {
       };
       fetchChapters();
     }
-  }, [book, fetchUserBookEntries, fetchReviews]);
+  }, [book, fetchUserBookEntries, fetchReviews, fetchUserRating]);
 
   const renderChapters = () => {
     if (chaptersLoading) return <div className={styles.loading}>Загрузка глав...</div>;
@@ -411,7 +448,12 @@ const BookPage = () => {
             className={`${styles.star} ${(hoverRating || rating) >= star ? styles.filled : ''}`}
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
-            onClick={() => setRating(star)}
+            onClick={async () => {
+              const success = await submitRating(star);
+              if (success) {
+                setRating(star);
+              }
+            }}
           >
             ★
           </span>
@@ -428,7 +470,7 @@ const BookPage = () => {
       <div id="reviews-section" className={styles.reviewsSection}>
         <h2>Отзывы ({reviews.length})</h2>
         
-        {getAuthToken() && (
+        {getAuthToken() && !hasUserReviewed && (
           <form onSubmit={handleReviewSubmit} className={styles.reviewForm}>
             {renderRatingStars()}
             <textarea
@@ -437,7 +479,7 @@ const BookPage = () => {
               placeholder="Напишите ваш отзыв (макс. 200 символов)..."
               className={styles.reviewInput}
               rows={3}
-              disabled={isReviewing}
+              disabled={isReviewing || hasUserReviewed}
             />
             <div className={styles.charCounter}>
               {charCount}/{MAX_REVIEW_LENGTH}
@@ -445,12 +487,18 @@ const BookPage = () => {
             <button 
               type="submit" 
               className={styles.reviewSubmitButton}
-              disabled={isReviewing || !newReview.trim() || newReview.length > MAX_REVIEW_LENGTH || rating === 0}
+              disabled={isReviewing || !newReview.trim() || newReview.length > MAX_REVIEW_LENGTH || rating === 0 || hasUserReviewed}
             >
               {isReviewing ? 'Отправка...' : 'Отправить отзыв'}
             </button>
             {reviewError && <div className={styles.reviewError}>{reviewError}</div>}
           </form>
+        )}
+
+        {getAuthToken() && hasUserReviewed && (
+          <div className={styles.reviewNotice}>
+            Вы уже оставили отзыв на эту книгу
+          </div>
         )}
 
         <div className={styles.reviewsList}>
@@ -460,11 +508,19 @@ const BookPage = () => {
             reviews.map(review => (
               <div key={review.id} className={styles.reviewItem}>
                 <div className={styles.reviewHeader}>
-                  <span className={styles.reviewAuthor}>{review.user?.username || 'Аноним'}</span>
-                  <span className={styles.reviewRating}>
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span key={i} className={i < (review.rating || 0) ? styles.filled : ''}>★</span>
-                    ))}
+                  <span className={styles.reviewAuthor}>
+                    {review.user?.username || 'Аноним'}
+                    <span className={styles.userRatingStars}>
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span 
+                          key={star}
+                          className={`${styles.star} ${star <= (review.review || 0) ? styles.filled : ''}`}
+                          style={{color: star <= (review.review || 0) ? getStarColor(review.review) : '#cccccc'}}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </span>
                   </span>
                   <span className={styles.reviewDate}>
                     {new Date(review.createdDate).toLocaleDateString('ru-RU', {
@@ -477,7 +533,7 @@ const BookPage = () => {
                   </span>
                 </div>
                 <div className={styles.reviewText}>{review.text}</div>
-                {getAuthToken() && (
+                {getAuthToken() && review.user?.id !== getUserData()?.id && (
                   <button 
                     className={styles.complaintButton}
                     onClick={() => openComplaintModal(review.id)}
