@@ -67,6 +67,7 @@ namespace Books.Services
                     Id = user.IdUser,
                     Username = user.Username,
                     Email = user.Email,
+                    Role = user.Role,
 
                 };
                 answer.Add(UserDto);
@@ -84,14 +85,15 @@ namespace Books.Services
             {
                 Id = user.IdUser,
                 Username = user.Username,
-                Email = user.Email
+                Email = user.Email,
+                Role = user.Role,
             };
             return userDto;
         }
         public async Task<UserDto> AddUserDTO(CreateUserDto userDto)
         {
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
-            var user = new User { Username = userDto.Username, Email = userDto.Email, PasswordHash = passwordHash };
+            var user = new User { Username = userDto.Username, Email = userDto.Email, PasswordHash = passwordHash, Role = RoleUser.Reader };
             user = await _userRepository.AddUser(user);
             return await GetUserByIdDTO(user.IdUser);
         }
@@ -114,6 +116,7 @@ namespace Books.Services
             }
             user.Username = userDto.Username;
             user.Email = userDto.Email;
+            user.Role = userDto.Role;
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
             user.PasswordHash = passwordHash;
             await _userRepository.SaveChanges();

@@ -119,18 +119,21 @@ namespace Books.DTO
         public int Id { get; set; }
         public string Username { get; set; } = string.Empty!;
         public string Email { get; set; } = string.Empty!;
+        public RoleUser Role { get; set; }
 
     }
     public class SimpleUserDto
     {
         public int Id { get; set; }
         public string Username { get; set; } = string.Empty!;
+        
     }
 
     public class CreateUserDto { 
         public string Username { get; set; } = string.Empty!;
         public string Email { get; set; } = string.Empty!;
         public string Password { get; set; } = string.Empty!;
+        public RoleUser Role { get; set; } = RoleUser.Reader;
     }
     public class LoginUserDto
     {
