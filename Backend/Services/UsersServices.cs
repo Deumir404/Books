@@ -43,6 +43,8 @@ namespace Books.Services
         Task<UserDto> AddUserDTO(CreateUserDto userDto);
         Task<string?> Autorization(LoginUserDto userDto);
         Task<UserDto?> ChangeUserDto(ChangeUserDto userDto, int id);
+
+        Task<UserDto?> ChangePasswordUserDto(ChangePasswordDto userDto, int id);
         Task<bool> DeleteUserById(int id);
     }
     public class UserService: IUserService
@@ -125,6 +127,17 @@ namespace Books.Services
 
                 var Author = new CreateAuthorDto { Nickname = userDto.Username , IdUser = user.IdUser};
                 await _authorService.CreateAuthorDto(Author);
+            }
+            await _userRepository.SaveChanges();
+            return await GetUserByIdDTO(user.IdUser);
+        }
+
+        public async Task<UserDto?> ChangePasswordUserDto(ChangePasswordDto userDto, int id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            if (user == null)
+            {
+                return null;
             }
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
             user.PasswordHash = passwordHash;

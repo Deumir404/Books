@@ -103,6 +103,20 @@ namespace Books.Contollers
             return Ok(profile);
         }
 
+        [Authorize]
+        [HttpPut("ChangePassword")]
+        public async Task<ActionResult<UserDto>> ChangePassword(ChangePasswordDto passwordDto )
+        {
+            var idUser = User.GetUserId();
+            if (idUser == null)
+            {
+                return Unauthorized();
+            }
+            var idUserInt = idUser.Value;
+            var profile = await _userService.ChangePasswordUserDto(passwordDto, idUserInt);
+            return Ok(profile);
+        }
+
 
 
         [HttpPut("{id}")]

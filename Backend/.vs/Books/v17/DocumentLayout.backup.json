@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\bookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\bookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\usersservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\usersservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\dto\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:dto\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -29,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 673,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,40 +37,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DTO.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
-              "RelativeDocumentMoniker": "DTO\\DTO.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
-              "RelativeToolTip": "DTO\\DTO.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAmwDUAAAA7AAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UsersServices.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\UsersServices.cs",
+              "RelativeDocumentMoniker": "Services\\UsersServices.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\UsersServices.cs",
+              "RelativeToolTip": "Services\\UsersServices.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAAAIQAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T15:38:31.689Z"
+              "WhenOpened": "2025-06-18T21:53:45.891Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
-              "RelativeDocumentMoniker": "Contollers\\Book.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
-              "RelativeToolTip": "Contollers\\Book.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHQAAABPAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeDocumentMoniker": "Contollers\\User.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeToolTip": "Contollers\\User.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwDYAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T14:49:59.074Z",
+              "WhenOpened": "2025-06-18T21:43:45.953Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BookServices.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\BookServices.cs",
-              "RelativeDocumentMoniker": "Services\\BookServices.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\BookServices.cs",
-              "RelativeToolTip": "Services\\BookServices.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAiwG0AAAAMAAAAAAAAAA==",
+              "Title": "DTO.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
+              "RelativeDocumentMoniker": "DTO\\DTO.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
+              "RelativeToolTip": "DTO\\DTO.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAIwJIAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T14:49:26.652Z"
+              "WhenOpened": "2025-06-18T15:38:31.689Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -98,7 +100,7 @@
               "RelativeDocumentMoniker": "..\\ORM\\DbContext.cs",
               "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\DbContext.cs",
               "RelativeToolTip": "..\\ORM\\DbContext.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAywBEAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAswBEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T19:23:49.59Z",
               "EditorCaption": ""

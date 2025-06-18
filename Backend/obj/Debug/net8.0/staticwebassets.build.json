@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cWHROvnR7GoUqyOI8uPE+/5e7iSz0Q9HjX3Hdmue5U0=",
+  "Hash": "gLgzFnLCd/TWQbTdapB9m6oNt3mI4KpHF4c6wj3temI=",
   "Source": "Books",
   "BasePath": "_content/Books",
   "Mode": "Default",
@@ -36,6 +36,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\books\\1\\1.fb2"
+    },
+    {
+      "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\books\\1\\1.pdf",
+      "SourceId": "Books",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\",
+      "BasePath": "_content/Books",
+      "RelativePath": "books/1/1#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9ht4uiisnu",
+      "Integrity": "wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\books\\1\\1.pdf"
     },
     {
       "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\1.jpg",
@@ -124,6 +145,51 @@
   ],
   "Endpoints": [
     {
+      "Route": "books/1/1.9ht4uiisnu.pdf",
+      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\books\\1\\1.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1224685"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 16:26:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9ht4uiisnu"
+        },
+        {
+          "Name": "label",
+          "Value": "books/1/1.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4="
+        }
+      ]
+    },
+    {
       "Route": "books/1/1.fb2",
       "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\books\\1\\1.fb2",
       "Selectors": [],
@@ -202,6 +268,43 @@
         {
           "Name": "integrity",
           "Value": "sha256-5cHbXBErbiynojhuGxxCC3h9DlUcXo12UT2HBS3Woko="
+        }
+      ]
+    },
+    {
+      "Route": "books/1/1.pdf",
+      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\books\\1\\1.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1224685"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 16:26:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4="
         }
       ]
     },
