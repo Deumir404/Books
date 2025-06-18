@@ -84,7 +84,7 @@ namespace Books.Services
 
         public async Task<AuthorWithBooksDto> CreateAuthorDto(CreateAuthorDto authorDto)
         {
-            var author = new Author { Surname = authorDto.Surname, Firstname = authorDto.Firstname, Nickname = authorDto.Nickname };
+            var author = new Author { Surname = authorDto.Surname, Firstname = authorDto.Firstname, Nickname = authorDto.Nickname, IdUser = authorDto.IdUser };
             await _authorRepository.CreateAuthor(author);
             return await GetAuthorDto(author.IdAuthor);
         }

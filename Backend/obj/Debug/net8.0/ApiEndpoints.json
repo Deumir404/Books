@@ -1266,6 +1266,32 @@
   },
   {
     "ContainingType": "Books.Contollers.UsersController",
+    "Method": "ChangePassword",
+    "RelativePath": "Users/ChangePassword",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "passwordDto",
+        "Type": "Books.DTO.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Books.DTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Books.Contollers.UsersController",
     "Method": "Login",
     "RelativePath": "Users/login",
     "HttpMethod": "POST",
