@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sa5ZFNPK4wIcEvfFABVxIuH026oO5wyQ9dyNcxbbZaQ=",
+  "Hash": "cWHROvnR7GoUqyOI8uPE+/5e7iSz0Q9HjX3Hdmue5U0=",
   "Source": "Books",
   "BasePath": "_content/Books",
   "Mode": "Default",
@@ -16,6 +16,48 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\books\\1\\1.fb2",
+      "SourceId": "Books",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\",
+      "BasePath": "_content/Books",
+      "RelativePath": "books/1/1#[.{fingerprint}]?.fb2",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fjqf6tz2v0",
+      "Integrity": "5cHbXBErbiynojhuGxxCC3h9DlUcXo12UT2HBS3Woko=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\books\\1\\1.fb2"
+    },
+    {
+      "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\1.jpg",
+      "SourceId": "Books",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\",
+      "BasePath": "_content/Books",
+      "RelativePath": "images/cover/1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kra3dryhsz",
+      "Integrity": "wM3mgwFfvcug6QBaLoi6fPvG2miOKUHBe64Wxetna18=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cover\\1.jpg"
+    },
     {
       "Identity": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",
       "SourceId": "Books",
@@ -81,6 +123,170 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "books/1/1.fb2",
+      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\books\\1\\1.fb2",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1607636"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5cHbXBErbiynojhuGxxCC3h9DlUcXo12UT2HBS3Woko=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 15:18:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5cHbXBErbiynojhuGxxCC3h9DlUcXo12UT2HBS3Woko="
+        }
+      ]
+    },
+    {
+      "Route": "books/1/1.fjqf6tz2v0.fb2",
+      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\books\\1\\1.fb2",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1607636"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5cHbXBErbiynojhuGxxCC3h9DlUcXo12UT2HBS3Woko=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 15:18:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fjqf6tz2v0"
+        },
+        {
+          "Name": "label",
+          "Value": "books/1/1.fb2"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5cHbXBErbiynojhuGxxCC3h9DlUcXo12UT2HBS3Woko="
+        }
+      ]
+    },
+    {
+      "Route": "images/cover/1.jpg",
+      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "446728"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wM3mgwFfvcug6QBaLoi6fPvG2miOKUHBe64Wxetna18=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 15:14:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wM3mgwFfvcug6QBaLoi6fPvG2miOKUHBe64Wxetna18="
+        }
+      ]
+    },
+    {
+      "Route": "images/cover/1.kra3dryhsz.jpg",
+      "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "446728"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wM3mgwFfvcug6QBaLoi6fPvG2miOKUHBe64Wxetna18=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 15:14:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kra3dryhsz"
+        },
+        {
+          "Name": "label",
+          "Value": "images/cover/1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wM3mgwFfvcug6QBaLoi6fPvG2miOKUHBe64Wxetna18="
+        }
+      ]
+    },
     {
       "Route": "images/cover/7.96a31vh1cx.jpg",
       "AssetFile": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\wwwroot\\images\\cover\\7.jpg",

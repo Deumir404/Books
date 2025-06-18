@@ -51,7 +51,8 @@ namespace Books.DTO
 
         public string CoverURL { get; set; } = string.Empty;
 
-    }
+        public Dictionary<string, string> Links { get; set; } = [];
+}
     public class BookWithAuthorDto
     {
         public int Id { get; set; }

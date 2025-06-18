@@ -85,8 +85,22 @@ namespace Books.Contollers
             await _bookService.UploadCoverById(id, file);
             return Ok("Cover uploaded successfully");
         }
+        [HttpPost("{id}/file")]
+        public async Task<IActionResult> UploadFile(int id, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded");
+            try
+            {
+                await _bookService.UploadFileById(id, file);
+                return Ok("File uploaded successfully");
+            }
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+           
+        }
 
-       
 
 
 
