@@ -17,13 +17,15 @@ namespace Books.Services
         Task<bool> DeleteBookDto(int id);
         Task UploadCoverById(int id, IFormFile file);
 
+        Task UploadFileById(int id, IFormFile file);
+
         Task RecalculateRating();
     }
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
         private readonly IReviewRepository _reviewRepository;
-
+        private readonly static string[] FileFormats = [".fb2", ".epub", ".mobi", ".pdf"];
 
         private static string GetCoverUrl(Book book)
         {
@@ -34,6 +36,20 @@ namespace Books.Services
                 ? $"/images/cover/{book.IdBook}.jpg"
                 : "/images/cover/empty.jpg";
             return coverUrl;
+        }
+
+        private static Dictionary<string, string> GetLinksUrl(Book book)
+        {
+            var links = new Dictionary<string, string>();
+            foreach (var format in FileFormats)
+            {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "books", $"{book.IdBook}", $"{book.IdBook}{format}");
+                if (System.IO.File.Exists(filePath))
+                {
+                    links[format] = $"/books/{book.IdBook}/{book.IdBook}{format}"; // Ссылка на файл
+                }
+            }
+            return links;
         }
 
         public BookService(IBookRepository bookRepository, IReviewRepository reviewRepository)
@@ -62,7 +78,8 @@ namespace Books.Services
                         Id = book.Author.IdAuthor,
                         Nickname = book.Author.Nickname,
                         Surname = book.Author.Surname,
-                        Firstname = book.Author.Firstname
+                        Firstname = book.Author.Firstname,
+                        IdUser = book.Author.IdUser,
                     }
 
                 };
@@ -91,6 +108,7 @@ namespace Books.Services
                 return null;
             }
             string coverUrl = GetCoverUrl(book);
+            Dictionary<string,string> dict = GetLinksUrl(book);
             var chapters = await _bookRepository.GetChaptersByBookId(id);
             var bookDto = new FullBook
             {
@@ -109,7 +127,9 @@ namespace Books.Services
                     Nickname = book.Author.Nickname,
                     Surname = book.Author.Surname,
                     Firstname = book.Author.Firstname,
-                }
+                    IdUser = book.Author.IdUser,
+                },
+                Links = dict
 
             };
             return bookDto;
@@ -148,7 +168,8 @@ namespace Books.Services
                         Id = book.Author.IdAuthor,
                         Nickname = book.Author.Nickname,
                         Surname = book.Author.Surname,
-                        Firstname = book.Author.Firstname
+                        Firstname = book.Author.Firstname,
+                        IdUser = book.Author.IdUser,
                     }
                 };
                 answer.Add(bookDto);
@@ -196,7 +217,35 @@ namespace Books.Services
 
         public async Task UploadCoverById(int id, IFormFile file)
         {
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+            var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                throw new InvalidOperationException("Недопустимый формат файла. Допустимые форматы: .jpg, .jpeg, .png");
+            }
+
             var filePath = Path.Combine("wwwroot/images/cover", $"{id}.jpg");
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+        }
+
+        public async Task UploadFileById(int id, IFormFile file)
+        {
+           
+            var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!FileFormats.Contains(fileExtension))
+            {
+                throw new InvalidOperationException("Недопустимый формат файла. Допустимые форматы: .fb2, .epub, .mobi");
+            }
+            var directoryPath = Path.Combine("wwwroot/books", id.ToString());
+            var filePath = Path.Combine(directoryPath, $"{id}{fileExtension}");
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {

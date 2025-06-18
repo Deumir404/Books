@@ -106,7 +106,7 @@ namespace Books.Contollers
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UserDto>> ChangeUser(CreateUserDto userDto, int id)
+        public async Task<ActionResult<UserDto>> ChangeUser(ChangeUserDto userDto, int id)
         {
             if (userDto == null)
             {

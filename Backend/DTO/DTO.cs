@@ -51,7 +51,8 @@ namespace Books.DTO
 
         public string CoverURL { get; set; } = string.Empty;
 
-    }
+        public Dictionary<string, string> Links { get; set; } = [];
+}
     public class BookWithAuthorDto
     {
         public int Id { get; set; }
@@ -76,13 +77,17 @@ namespace Books.DTO
         public string Firstname { get; set; } = string.Empty;
         public string Surname { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;
+        public int? IdUser { get; set; }
     }
+
     public class AuthorDto
     {
         public int Id { get; set; }
         public string Firstname { get; set; } = string.Empty;
         public string Surname { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;
+
+        public int? IdUser { get; set; }
     }
     public class AuthorWithBooksDto
     {
@@ -91,6 +96,7 @@ namespace Books.DTO
         public string Surname { get; set; } = string.Empty;
         public string Nickname { get; set; } = string.Empty;
 
+        public int? IdUser { get; set; }
         public List<BookDto> Books { get; set; } = [];
     }
 
@@ -130,6 +136,13 @@ namespace Books.DTO
     }
 
     public class CreateUserDto { 
+        public string Username { get; set; } = string.Empty!;
+        public string Email { get; set; } = string.Empty!;
+        public string Password { get; set; } = string.Empty!;
+    }
+
+    public class ChangeUserDto
+    {
         public string Username { get; set; } = string.Empty!;
         public string Email { get; set; } = string.Empty!;
         public string Password { get; set; } = string.Empty!;

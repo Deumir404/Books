@@ -36,8 +36,6 @@ namespace Books.Contollers
         }
 
 
-
-
         [HttpPost]
         public async Task<ActionResult<AuthorWithBooksDto>> CreateAuthor(CreateAuthorDto authorDto)
         {

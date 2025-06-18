@@ -85,10 +85,44 @@ namespace Books.Contollers
             await _bookService.UploadCoverById(id, file);
             return Ok("Cover uploaded successfully");
         }
+        [HttpPost("{id}/file")]
+        public async Task<IActionResult> UploadFile(int id, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded");
+            try
+            {
+                await _bookService.UploadFileById(id, file);
+                return Ok("File uploaded successfully");
+            }
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+           
+        }
 
-       
 
+        [HttpGet("download")]
+        public async Task<IActionResult> DownloadFile([FromQuery] string path )
+        {
+            try
+            {
+                var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", path.TrimStart('/'));
+                if (string.IsNullOrEmpty(fullPath) || !System.IO.File.Exists(fullPath))
+                {
+                    return NotFound("File not found");
+                }
 
+                var fileName = Path.GetFileName(fullPath);
+                var fileBytes = await System.IO.File.ReadAllBytesAsync(fullPath);
+
+                return File(fileBytes, "application/octet-stream", fileName);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 
