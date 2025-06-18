@@ -1,5 +1,7 @@
+/* AdminAuthors.module.css */
+
 /* Основные стили */
-.adminBooksContainer {
+.adminAuthorsContainer {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -7,14 +9,14 @@
   color: #333;
 }
 
-.adminBooksTitle {
+.adminAuthorsTitle {
   color: #6D2CF7;
   margin-bottom: 30px;
   font-size: 28px;
   text-align: center;
 }
 
-.adminBooksError {
+.adminAuthorsError {
   color: #d32f2f;
   padding: 15px;
   background-color: #ffebee;
@@ -23,7 +25,7 @@
   text-align: center;
 }
 
-.adminBooksLoading {
+.adminAuthorsLoading {
   text-align: center;
   padding: 40px;
   font-size: 18px;
@@ -31,19 +33,19 @@
 }
 
 /* Сетка и панели */
-.adminBooksGrid {
+.adminAuthorsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
 }
 
 @media (max-width: 992px) {
-  .adminBooksGrid {
+  .adminAuthorsGrid {
     grid-template-columns: 1fr;
   }
 }
 
-.adminBooksPanel {
+.adminAuthorsPanel {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
@@ -51,7 +53,7 @@
   margin-bottom: 20px;
 }
 
-.adminBooksPanelHeader {
+.adminAuthorsPanelHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,14 +62,14 @@
   border-bottom: 1px solid #eee;
 }
 
-.adminBooksPanelTitle {
+.adminAuthorsPanelTitle {
   margin: 0;
   color: #6D2CF7;
   font-size: 22px;
 }
 
 /* Списки */
-.adminBooksList {
+.adminAuthorsList {
   list-style: none;
   padding: 0;
   margin: 0 0 20px 0;
@@ -75,7 +77,7 @@
   overflow-y: auto;
 }
 
-.adminBooksListItem {
+.adminAuthorsListItem {
   padding: 12px 15px;
   margin-bottom: 8px;
   background-color: #f9f9f9;
@@ -87,61 +89,101 @@
   align-items: center;
 }
 
-.adminBooksListItem:hover {
+.adminAuthorsListItem:hover {
   background-color: #f0f0f0;
 }
 
-.adminBooksSelectedItem {
+.adminAuthorsSelectedItem {
   background-color: #e6f7ff;
   border-left: 3px solid #6D2CF7;
 }
 
-/* Элементы */
-.adminBooksAuthor,
-.adminBooksDate {
-  font-size: 14px;
-  color: #666;
-  margin-top: 5px;
+/* Детали автора */
+.adminAuthorDetails {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
 }
 
-.adminBooksTag,
-.adminBooksCategory {
-  display: inline-block;
-  background-color: #f0f0f0;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 14px;
+.adminAuthorDetailRow {
+  display: flex;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.adminAuthorDetailLabel {
+  font-weight: 500;
   color: #555;
+  width: 150px;
+}
+
+.adminAuthorBooksTitle {
+  margin: 20px 0 10px 0;
+  color: #6D2CF7;
+  font-size: 18px;
+}
+
+.adminAuthorBooksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.adminAuthorBookItem {
+  padding: 12px;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.adminAuthorBookTitle {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.adminAuthorBookDate {
+  font-size: 14px;
+  color: #666;
+}
+
+.adminAuthorBookCover {
+  margin-top: 10px;
+}
+
+.adminAuthorBookCoverImage {
+  max-width: 100px;
+  border-radius: 4px;
 }
 
 /* Формы */
-.adminBooksForm {
+.adminAuthorsForm {
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
 }
 
-.adminBooksFormTitle {
+.adminAuthorsFormTitle {
   font-size: 18px;
   color: #555;
   margin-bottom: 15px;
 }
 
-.adminBooksFormGroup {
+.adminAuthorsFormGroup {
   margin-bottom: 15px;
 }
 
-.adminBooksLabel {
+.adminAuthorsLabel {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
   color: #555;
 }
 
-.adminBooksInput,
-.adminBooksTextarea,
-.adminBooksSelect {
+.adminAuthorsInput,
+.adminAuthorsTextarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -150,26 +192,21 @@
   font-size: 14px;
 }
 
-.adminBooksTextarea {
+.adminAuthorsTextarea {
   min-height: 100px;
   resize: vertical;
 }
 
-.adminBooksMultiSelect {
-  height: auto;
-  min-height: 100px;
-}
-
-.adminBooksFormActions {
+.adminAuthorsFormActions {
   display: flex;
   gap: 10px;
   margin-top: 15px;
 }
 
 /* Кнопки */
-.adminBooksPrimaryBtn,
-.adminBooksSecondaryBtn,
-.adminBooksDeleteBtn {
+.adminAuthorsPrimaryBtn,
+.adminAuthorsSecondaryBtn,
+.adminAuthorsDeleteBtn {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -179,41 +216,41 @@
   transition: all 0.2s ease;
 }
 
-.adminBooksPrimaryBtn {
+.adminAuthorsPrimaryBtn {
   background-color: #6D2CF7;
   color: white;
 }
 
-.adminBooksPrimaryBtn:hover {
+.adminAuthorsPrimaryBtn:hover {
   background-color: #5a23d6;
 }
 
-.adminBooksSecondaryBtn {
+.adminAuthorsSecondaryBtn {
   background-color: white;
   color: #6D2CF7;
   border: 1px solid #6D2CF7;
 }
 
-.adminBooksSecondaryBtn:hover {
+.adminAuthorsSecondaryBtn:hover {
   background-color: #f0f0f0;
 }
 
-.adminBooksDeleteBtn {
+.adminAuthorsDeleteBtn {
   background-color: #d32f2f;
   color: white;
 }
 
-.adminBooksDeleteBtn:hover {
+.adminAuthorsDeleteBtn:hover {
   background-color: #b71c1c;
 }
 
-.adminBooksActionButtons {
+.adminAuthorsActionButtons {
   display: flex;
   gap: 10px;
 }
 
 /* Пустые состояния */
-.adminBooksEmptyState {
+.adminAuthorsEmptyState {
   text-align: center;
   padding: 30px;
   color: #666;
@@ -222,44 +259,14 @@
   margin: 20px 0;
 }
 
-.adminBooksEmptyIcon {
+.adminAuthorsEmptyIcon {
   font-size: 40px;
   margin-bottom: 15px;
   color: #ccc;
 }
 
-
-.adminBooksSelectedCheckbox {
-  background-color: #e6f7ff;
-  border-color: #1890ff;
-}
-
-.adminBooksCheckboxInput {
-  margin-right: 8px;
-}
-
-.adminBooksLoadingText {
-  padding: 16px;
-  text-align: center;
-  color: #666;
-}
-
-.adminBooksLoadingText {
-  padding: 16px;
-  text-align: center;
-  color: #666;
-  border: 1px dashed #ddd;
-  background-color: #f9f9f9;
-  margin: 8px 0;
-}
-
-.adminBooksTextarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
 /* Модальное окно */
-.adminBooksModalOverlay {
+.adminAuthorsModalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -272,7 +279,7 @@
   z-index: 1000;
 }
 
-.adminBooksModalContent {
+.adminAuthorsModalContent {
   background-color: white;
   padding: 25px;
   border-radius: 10px;
@@ -281,37 +288,50 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.adminBooksModalTitle {
+.adminAuthorsModalTitle {
   margin-top: 0;
   color: #6D2CF7;
   font-size: 20px;
 }
 
-.adminBooksModalText {
+.adminAuthorsModalText {
   margin-bottom: 20px;
 }
 
-.adminBooksModalActions {
+.adminAuthorsModalActions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
 
 /* Скроллбар */
-.adminBooksList::-webkit-scrollbar {
+.adminAuthorsList::-webkit-scrollbar {
   width: 8px;
 }
 
-.adminBooksList::-webkit-scrollbar-track {
+.adminAuthorsList::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
 
-.adminBooksList::-webkit-scrollbar-thumb {
+.adminAuthorsList::-webkit-scrollbar-thumb {
   background: #c1c1c1;
   border-radius: 4px;
 }
 
-.adminBooksList::-webkit-scrollbar-thumb:hover {
+.adminAuthorsList::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
+}
+
+/* Дополнительные элементы */
+.adminAuthorsDetails {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.adminAuthorsUserId {
+  font-size: 13px;
+  color: #888;
+  margin-top: 5px;
 }

@@ -3,6 +3,88 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
+      "Route": "books/1/1.9ht4uiisnu.pdf",
+      "AssetFile": "books/1/1.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1224685"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 16:43:31 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9ht4uiisnu"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4="
+        },
+        {
+          "Name": "label",
+          "Value": "books/1/1.pdf"
+        }
+      ]
+    },
+    {
+      "Route": "books/1/1.pdf",
+      "AssetFile": "books/1/1.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1224685"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 16:43:31 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4="
+        }
+      ]
+    },
+    {
       "Route": "images/cover/1.9h2fq2qpm9.jpg",
       "AssetFile": "images/cover/1.jpg",
       "Selectors": [],

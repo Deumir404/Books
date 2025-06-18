@@ -6,6 +6,9 @@ import Bookmarks from './pages/Bookmarks/Bookmarks';
 import Rules from './pages/Rules/Rules';
 import BookPage from './pages/Book/BookPage';
 import AdminBooksPage from './pages/Admin/AdminBooksPage';
+import AdminAuthorsPage from './pages/Admin/AdminAuthorsPage';
+import AdminUsersPage from './pages/Admin/AdminUsersPage';
+import AdminAppPage from './pages/Admin/AdminAppPage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
 import Profile from './pages/Profile/Profile';
@@ -48,6 +51,30 @@ function App() {
               element={
                 <RequireAuth role={2}>
                   <AdminBooksPage />
+                </RequireAuth>
+              } 
+            />
+            <Route 
+              path="/admin/authors" 
+              element={
+                <RequireAuth role={2}>
+                  <AdminAuthorsPage />
+                </RequireAuth>
+              } 
+            />
+            <Route 
+              path="/admin/requests" 
+              element={
+                <RequireAuth role={2}>
+                  <AdminAppPage />
+                </RequireAuth>
+              } 
+            />
+            <Route 
+              path="/admin/user" 
+              element={
+                <RequireAuth role={2}>
+                  <AdminUsersPage />
                 </RequireAuth>
               } 
             />

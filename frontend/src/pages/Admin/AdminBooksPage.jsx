@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { getAuthToken } from '../../utils/auth';
 import styles from './AdminBooks.module.css';
 
-const AdminBooksPage = () => {
-  // Состояния
-  const [books, setBooks] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
-  const [chapters, setChapters] = useState([]);
-  const [selectedChapter, setSelectedChapter] = useState(null);
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [authors, setAuthors] = useState([]);
+// Компонент формы для работы с книгами
+const BookForm = ({ 
+  book = null, 
+  authors = [], 
+  categories = [], 
+  tags = [], 
+  onSubmit, 
+  onCancel 
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -18,18 +18,385 @@ const AdminBooksPage = () => {
     categories: [],
     tags: []
   });
-  const [chapterForm, setChapterForm] = useState({
+  const [isLoadingDescription, setIsLoadingDescription] = useState(false);
+
+  useEffect(() => {
+    if (book) {
+      const initialData = {
+        title: book.title || '',
+        author: book.author?.id || '',
+        categories: book.categories?.map(c => c.id) || [],
+        tags: book.tags?.map(t => t.id) || [],
+        description: book.description?.length > 1000 ? '' : book.description || ''
+      };
+
+      setFormData(initialData);
+
+      // Если описание большое - загружаем полный текст
+      if (book.description && book.description.length > 1000) {
+        loadFullDescription(book.id);
+      }
+    }
+  }, [book]);
+
+  const loadFullDescription = async (bookId) => {
+    try {
+      setIsLoadingDescription(true);
+      const response = await fetch(`/api/Books/${bookId}/fulldescription`, {
+        headers: { 'Authorization': `Bearer ${getAuthToken()}` }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setFormData(prev => ({ ...prev, description: data.description }));
+      }
+    } catch (err) {
+      console.error('Ошибка загрузки полного описания:', err);
+    } finally {
+      setIsLoadingDescription(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (type, id) => {
+    setFormData(prev => {
+      const currentValues = prev[type];
+      const newValues = currentValues.includes(id)
+        ? currentValues.filter(v => v !== id)
+        : [...currentValues, id];
+      return { ...prev, [type]: newValues };
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
+
+  const isSelected = (type, id) => formData[type].includes(id);
+
+  return (
+    <form onSubmit={handleSubmit} className={styles.adminBooksForm}>
+      <h3 className={styles.adminBooksFormTitle}>
+        {book ? 'Редактировать книгу' : 'Добавить новую книгу'}
+      </h3>
+      
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Название</label>
+        <input
+          type="text"
+          name="title"
+          className={styles.adminBooksInput}
+          value={formData.title}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Описание</label>
+        {isLoadingDescription ? (
+          <div className={styles.adminBooksLoadingText}>Загрузка полного описания...</div>
+        ) : (
+          <textarea
+            name="description"
+            className={styles.adminBooksTextarea}
+            value={formData.description}
+            onChange={handleInputChange}
+            rows={8}
+          />
+        )}
+      </div>
+
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Автор</label>
+        <select
+          name="author"
+          className={styles.adminBooksSelect}
+          value={formData.author}
+          onChange={handleInputChange}
+          required
+        >
+          <option value="">Выберите автора</option>
+          {authors.map(author => (
+            <option key={author.id} value={author.id}>
+              {author.nickname || `${author.firstname} ${author.surname}`}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Категории</label>
+        <div className={styles.adminBooksCheckboxGroup}>
+          {categories.map(category => (
+            <label 
+              key={category.id} 
+              className={`${styles.adminBooksCheckboxLabel} ${
+                isSelected('categories', category.id) ? styles.adminBooksSelectedCheckbox : ''
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isSelected('categories', category.id)}
+                onChange={() => handleCheckboxChange('categories', category.id)}
+                className={styles.adminBooksCheckboxInput}
+              />
+              {category.name}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Теги</label>
+        <div className={styles.adminBooksCheckboxGroup}>
+          {tags.map(tag => (
+            <label 
+              key={tag.id} 
+              className={`${styles.adminBooksCheckboxLabel} ${
+                isSelected('tags', tag.id) ? styles.adminBooksSelectedCheckbox : ''
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={isSelected('tags', tag.id)}
+                onChange={() => handleCheckboxChange('tags', tag.id)}
+                className={styles.adminBooksCheckboxInput}
+              />
+              {tag.name}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.adminBooksFormActions}>
+        {onCancel && (
+          <button 
+            type="button"
+            className={styles.adminBooksSecondaryBtn}
+            onClick={onCancel}
+          >
+            Отмена
+          </button>
+        )}
+        <button 
+          type="submit"
+          className={styles.adminBooksPrimaryBtn}
+        >
+          {book ? 'Сохранить' : 'Добавить книгу'}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+// Компонент формы для работы с главами
+const ChapterForm = ({ 
+  chapter = null, 
+  onSubmit, 
+  onCancel 
+}) => {
+  const [formData, setFormData] = useState({
     num: 0,
     title: '',
-    text: '',
-    book: null
+    text: ''
   });
-  const [tagForm, setTagForm] = useState({ name: '' });
-  const [categoryForm, setCategoryForm] = useState({ name: '' });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isLoadingFullText, setIsLoadingFullText] = useState(false);
+
+  useEffect(() => {
+    if (chapter) {
+      const initialData = {
+        num: chapter.num || 0,
+        title: chapter.title || '',
+        text: chapter.text?.length > 1000 ? '' : chapter.text || ''
+      };
+
+      setFormData(initialData);
+
+      // Если текст большой - загружаем полный текст
+      if (chapter.text && chapter.text.length > 1000) {
+        loadFullText(chapter.id);
+      }
+    }
+  }, [chapter]);
+
+  const loadFullText = async (chapterId) => {
+    try {
+      setIsLoadingFullText(true);
+      const response = await fetch(`/api/Books/Chapters/${chapterId}/fulltext`, {
+        headers: { 'Authorization': `Bearer ${getAuthToken()}` }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setFormData(prev => ({ ...prev, text: data.text }));
+      }
+    } catch (err) {
+      console.error('Ошибка загрузки полного текста главы:', err);
+    } finally {
+      setIsLoadingFullText(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className={styles.adminBooksForm}>
+      <h3 className={styles.adminBooksFormTitle}>
+        {chapter ? 'Редактировать главу' : 'Добавить новую главу'}
+      </h3>
+      
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Номер главы</label>
+        <input
+          type="number"
+          name="num"
+          className={styles.adminBooksInput}
+          value={formData.num}
+          onChange={handleInputChange}
+          required
+          min="0"
+        />
+      </div>
+
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Название</label>
+        <input
+          type="text"
+          name="title"
+          className={styles.adminBooksInput}
+          value={formData.title}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+
+      <div className={styles.adminBooksFormGroup}>
+        <label className={styles.adminBooksLabel}>Текст</label>
+        {isLoadingFullText ? (
+          <div className={styles.adminBooksLoadingText}>Загрузка полного текста...</div>
+        ) : (
+          <textarea
+            name="text"
+            className={styles.adminBooksTextarea}
+            value={formData.text}
+            onChange={handleInputChange}
+            rows={12}
+            required
+          />
+        )}
+      </div>
+
+      <div className={styles.adminBooksFormActions}>
+        {onCancel && (
+          <button 
+            type="button"
+            className={styles.adminBooksSecondaryBtn}
+            onClick={onCancel}
+          >
+            Отмена
+          </button>
+        )}
+        <button 
+          type="submit"
+          className={styles.adminBooksPrimaryBtn}
+        >
+          {chapter ? 'Сохранить' : 'Добавить главу'}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+// Компонент формы для работы с тегами и категориями
+const SimpleForm = ({ 
+  item = null, 
+  onSubmit, 
+  onCancel,
+  placeholder = '',
+  title = ''
+}) => {
+  const [name, setName] = useState(item?.name || '');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ name });
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className={styles.adminBooksForm}>
+      <h3 className={styles.adminBooksFormTitle}>
+        {item ? `Редактировать ${title}` : `Добавить новый ${title}`}
+      </h3>
+      
+      <div className={styles.adminBooksFormGroup}>
+        <input
+          type="text"
+          className={styles.adminBooksInput}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder={placeholder}
+          required
+        />
+      </div>
+
+      <div className={styles.adminBooksFormActions}>
+        {onCancel && (
+          <button 
+            type="button"
+            className={styles.adminBooksSecondaryBtn}
+            onClick={onCancel}
+          >
+            Отмена
+          </button>
+        )}
+        <button 
+          type="submit"
+          className={styles.adminBooksPrimaryBtn}
+        >
+          {item ? 'Сохранить' : `Добавить ${title}`}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+// Основной компонент страницы администрирования книг
+const AdminBooksPage = () => {
+  const [books, setBooks] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [chapters, setChapters] = useState([]);
+  const [selectedChapter, setSelectedChapter] = useState(null);
+  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [authors, setAuthors] = useState([]);
+  
+  // Состояния для отображения форм
+  const [showBookForm, setShowBookForm] = useState(false);
+  const [showChapterForm, setShowChapterForm] = useState(false);
+  const [showTagForm, setShowTagForm] = useState(false);
+  const [showCategoryForm, setShowCategoryForm] = useState(false);
+  
+  // Состояния для модальных окон
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [itemToDelete, setItemToDelete] = useState({ type: '', id: null });
+  
+  // Общие состояния
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Загрузка данных при монтировании
   useEffect(() => {
@@ -75,13 +442,6 @@ const AdminBooksPage = () => {
       const data = await response.json();
       setSelectedBook(data);
       setChapters(data.chapters || []);
-      setFormData({
-        title: data.title,
-        description: data.description,
-        author: data.author?.id || '',
-        categories: data.categories?.map(c => c.id) || [],
-        tags: data.tags?.map(t => t.id) || []
-      });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -89,7 +449,6 @@ const AdminBooksPage = () => {
     }
   };
 
-  // Аналогичные функции для tags, categories, authors, chapters...
   const fetchTags = async () => {
     try {
       const response = await fetch('/api/Tags', {
@@ -135,12 +494,6 @@ const AdminBooksPage = () => {
       if (!response.ok) throw new Error('Ошибка загрузки главы');
       const data = await response.json();
       setSelectedChapter(data);
-      setChapterForm({
-        num: data.num,
-        title: data.title,
-        text: data.text,
-        book: data.book
-      });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -148,37 +501,8 @@ const AdminBooksPage = () => {
     }
   };
 
-  // Обработчики
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleMultiSelectChange = (e) => {
-    const { name, options } = e.target;
-    const selectedValues = Array.from(options)
-      .filter(option => option.selected)
-      .map(option => option.value);
-    setFormData(prev => ({ ...prev, [name]: selectedValues }));
-  };
-
-  const handleChapterInputChange = (e) => {
-    const { name, value } = e.target;
-    setChapterForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleTagInputChange = (e) => {
-    const { name, value } = e.target;
-    setTagForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleCategoryInputChange = (e) => {
-    const { name, value } = e.target;
-    setCategoryForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  // CRUD операции
-  const createBook = async () => {
+  // CRUD операции для книг
+  const handleCreateBook = async (formData) => {
     try {
       setIsLoading(true);
       const response = await fetch('/api/Books', {
@@ -189,15 +513,14 @@ const AdminBooksPage = () => {
         },
         body: JSON.stringify(formData)
       });
-      if (!response.ok) throw new Error('Ошибка создания книги');
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка создания книги');
+      }
+      
       await fetchBooks();
-      setFormData({
-        title: '',
-        description: '',
-        author: '',
-        categories: [],
-        tags: []
-      });
+      setShowBookForm(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -205,10 +528,11 @@ const AdminBooksPage = () => {
     }
   };
 
-  const updateBook = async () => {
+  const handleUpdateBook = async (formData) => {
     try {
       if (!selectedBook) return;
       setIsLoading(true);
+      
       const response = await fetch(`/api/Books/${selectedBook.id}`, {
         method: 'PUT',
         headers: {
@@ -217,9 +541,15 @@ const AdminBooksPage = () => {
         },
         body: JSON.stringify(formData)
       });
-      if (!response.ok) throw new Error('Ошибка обновления книги');
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка обновления книги');
+      }
+      
       await fetchBooks();
-      await fetchBookDetails(selectedBook.id);
+      setSelectedBook(null);
+      setShowBookForm(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -227,12 +557,13 @@ const AdminBooksPage = () => {
     }
   };
 
-  const createChapter = async () => {
+  // CRUD операции для глав
+  const handleCreateChapter = async (formData) => {
     try {
       if (!selectedBook) return;
       setIsLoading(true);
       const chapterData = {
-        ...chapterForm,
+        ...formData,
         book: selectedBook.id
       };
       const response = await fetch('/api/Books/Chapters', {
@@ -243,14 +574,14 @@ const AdminBooksPage = () => {
         },
         body: JSON.stringify(chapterData)
       });
-      if (!response.ok) throw new Error('Ошибка создания главы');
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка создания главы');
+      }
+      
       await fetchBookDetails(selectedBook.id);
-      setChapterForm({
-        num: 0,
-        title: '',
-        text: '',
-        book: null
-      });
+      setShowChapterForm(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -258,7 +589,7 @@ const AdminBooksPage = () => {
     }
   };
 
-  const updateChapter = async () => {
+  const handleUpdateChapter = async (formData) => {
     try {
       if (!selectedChapter) return;
       setIsLoading(true);
@@ -268,10 +599,17 @@ const AdminBooksPage = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAuthToken()}`
         },
-        body: JSON.stringify(chapterForm)
+        body: JSON.stringify(formData)
       });
-      if (!response.ok) throw new Error('Ошибка обновления главы');
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка обновления главы');
+      }
+      
       await fetchBookDetails(selectedBook.id);
+      setSelectedChapter(null);
+      setShowChapterForm(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -279,7 +617,8 @@ const AdminBooksPage = () => {
     }
   };
 
-  const createTag = async () => {
+  // CRUD операции для тегов
+  const handleCreateTag = async (formData) => {
     try {
       setIsLoading(true);
       const response = await fetch('/api/Tags', {
@@ -288,11 +627,16 @@ const AdminBooksPage = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAuthToken()}`
         },
-        body: JSON.stringify(tagForm)
+        body: JSON.stringify(formData)
       });
-      if (!response.ok) throw new Error('Ошибка создания тега');
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка создания тега');
+      }
+      
       await fetchTags();
-      setTagForm({ name: '' });
+      setShowTagForm(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -300,28 +644,8 @@ const AdminBooksPage = () => {
     }
   };
 
-  const updateTag = async (id) => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`/api/Tags/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getAuthToken()}`
-        },
-        body: JSON.stringify(tagForm)
-      });
-      if (!response.ok) throw new Error('Ошибка обновления тега');
-      await fetchTags();
-      setTagForm({ name: '' });
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const createCategory = async () => {
+  // CRUD операции для категорий
+  const handleCreateCategory = async (formData) => {
     try {
       setIsLoading(true);
       const response = await fetch('/api/Categories', {
@@ -330,11 +654,16 @@ const AdminBooksPage = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAuthToken()}`
         },
-        body: JSON.stringify(categoryForm)
+        body: JSON.stringify(formData)
       });
-      if (!response.ok) throw new Error('Ошибка создания категории');
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка создания категории');
+      }
+      
       await fetchCategories();
-      setCategoryForm({ name: '' });
+      setShowCategoryForm(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -342,28 +671,7 @@ const AdminBooksPage = () => {
     }
   };
 
-  const updateCategory = async (id) => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`/api/Categories/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getAuthToken()}`
-        },
-        body: JSON.stringify(categoryForm)
-      });
-      if (!response.ok) throw new Error('Ошибка обновления категории');
-      await fetchCategories();
-      setCategoryForm({ name: '' });
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Удаление
+  // Удаление элементов
   const confirmDelete = (type, id) => {
     setItemToDelete({ type, id });
     setShowDeleteModal(true);
@@ -373,16 +681,21 @@ const AdminBooksPage = () => {
     try {
       setIsLoading(true);
       const { type, id } = itemToDelete;
-      const endpoint = `/api/${type === 'chapter' ? 'Books/Chapters' : type}s/${id}`;
+      
+      const endpoint = type === 'category' 
+        ? `/api/Categories/${id}`
+        : `/api/${type === 'chapter' ? 'Books/Chapters' : type}s/${id}`;
       
       const response = await fetch(endpoint, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${getAuthToken()}` }
       });
 
-      if (!response.ok) throw new Error(`Ошибка удаления ${type}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Ошибка удаления ${type}`);
+      }
 
-      // Обновление данных
       switch (type) {
         case 'book':
           await fetchBooks();
@@ -402,8 +715,6 @@ const AdminBooksPage = () => {
           await fetchCategories();
           break;
         default:
-          // Handle unexpected types or do nothing
-          console.warn(`Unexpected type for deletion: ${type}`);
           break;
       }
 
@@ -417,7 +728,7 @@ const AdminBooksPage = () => {
 
   return (
     <div className={styles.adminBooksContainer}>
-      <h1 className={styles.adminBooksTitle}>Управление книгами</h1>
+      {/* <h1 className={styles.adminBooksTitle}>Управление книгами</h1> */}
       
       {error && <div className={styles.adminBooksError}>{error}</div>}
       {isLoading && <div className={styles.adminBooksLoading}>Загрузка...</div>}
@@ -427,155 +738,89 @@ const AdminBooksPage = () => {
         <div className={styles.adminBooksPanel}>
           <div className={styles.adminBooksPanelHeader}>
             <h2 className={styles.adminBooksPanelTitle}>Книги</h2>
+            <button 
+              className={styles.adminBooksPrimaryBtn}
+              onClick={() => {
+                setSelectedBook(null);
+                setShowBookForm(true);
+              }}
+            >
+              Добавить книгу
+            </button>
           </div>
 
-          {books.length === 0 ? (
-            <div className={styles.adminBooksEmptyState}>
-              <div className={styles.adminBooksEmptyIcon}>📚</div>
-              <p>Нет доступных книг</p>
-            </div>
+          {showBookForm ? (
+            <BookForm
+              book={selectedBook}
+              authors={authors}
+              categories={categories}
+              tags={tags}
+              onSubmit={selectedBook ? handleUpdateBook : handleCreateBook}
+              onCancel={() => {
+                setSelectedBook(null);
+                setShowBookForm(false);
+              }}
+            />
           ) : (
-            <ul className={styles.adminBooksList}>
-              {books.map(book => (
-                <li 
-                  key={book.id} 
-                  className={`${styles.adminBooksListItem} ${
-                    selectedBook?.id === book.id ? styles.adminBooksSelectedItem : ''
-                  }`}
-                  onClick={() => fetchBookDetails(book.id)}
-                >
-                  <div>
-                    <strong>{book.title}</strong>
-                    <div className={styles.adminBooksAuthor}>
-                      {book.author?.nickname || `${book.author?.firstname} ${book.author?.surname}`}
-                    </div>
-                  </div>
-                  <button 
-                    className={styles.adminBooksDeleteBtn}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      confirmDelete('book', book.id);
-                    }}
-                  >
-                    Удалить
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className={styles.adminBooksForm}>
-            <h3 className={styles.adminBooksFormTitle}>
-              {selectedBook ? 'Редактировать книгу' : 'Добавить новую книгу'}
-            </h3>
-            
-            <div className={styles.adminBooksFormGroup}>
-              <label className={styles.adminBooksLabel}>Название</label>
-              <input
-                type="text"
-                name="title"
-                className={styles.adminBooksInput}
-                value={formData.title}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className={styles.adminBooksFormGroup}>
-              <label className={styles.adminBooksLabel}>Описание</label>
-              <textarea
-                name="description"
-                className={styles.adminBooksTextarea}
-                value={formData.description}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className={styles.adminBooksFormGroup}>
-              <label className={styles.adminBooksLabel}>Автор</label>
-              <select
-                name="author"
-                className={styles.adminBooksSelect}
-                value={formData.author}
-                onChange={handleInputChange}
-              >
-                <option value="">Выберите автора</option>
-                {authors.map(author => (
-                  <option key={author.id} value={author.id}>
-                    {author.nickname || `${author.firstname} ${author.surname}`}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className={styles.adminBooksFormGroup}>
-              <label className={styles.adminBooksLabel}>Категории</label>
-              <select
-                name="categories"
-                className={`${styles.adminBooksSelect} ${styles.adminBooksMultiSelect}`}
-                multiple
-                value={formData.categories}
-                onChange={handleMultiSelectChange}
-              >
-                {categories.map(category => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className={styles.adminBooksFormGroup}>
-              <label className={styles.adminBooksLabel}>Теги</label>
-              <select
-                name="tags"
-                className={`${styles.adminBooksSelect} ${styles.adminBooksMultiSelect}`}
-                multiple
-                value={formData.tags}
-                onChange={handleMultiSelectChange}
-              >
-                {tags.map(tag => (
-                  <option key={tag.id} value={tag.id}>
-                    {tag.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className={styles.adminBooksFormActions}>
-              {selectedBook ? (
-                <>
-                  <button 
-                    className={styles.adminBooksPrimaryBtn}
-                    onClick={updateBook}
-                  >
-                    Обновить
-                  </button>
-                  <button 
-                    className={styles.adminBooksSecondaryBtn}
-                    onClick={() => {
-                      setSelectedBook(null);
-                      setFormData({
-                        title: '',
-                        description: '',
-                        author: '',
-                        categories: [],
-                        tags: []
-                      });
-                    }}
-                  >
-                    Отмена
-                  </button>
-                </>
+            <>
+              {books.length === 0 ? (
+                <div className={styles.adminBooksEmptyState}>
+                  <div className={styles.adminBooksEmptyIcon}>📚</div>
+                  <p>Нет доступных книг</p>
+                </div>
               ) : (
-                <button 
-                  className={styles.adminBooksPrimaryBtn}
-                  onClick={createBook}
-                >
-                  Добавить
-                </button>
+                <ul className={styles.adminBooksList}>
+                  {books.map(book => (
+                    <li 
+                      key={book.id} 
+                      className={`${styles.adminBooksListItem} ${
+                        selectedBook?.id === book.id ? styles.adminBooksSelectedItem : ''
+                      }`}
+                      onClick={() => {
+                        fetchBookDetails(book.id);
+                        setShowBookForm(false);
+                      }}
+                    >
+                      <div>
+                        <strong>{book.title}</strong>
+                        <div className={styles.adminBooksAuthor}>
+                          {book.author?.nickname || `${book.author?.firstname} ${book.author?.surname}`}
+                        </div>
+                        <div className={styles.adminBooksTags}>
+                          {book.tags?.map(tag => (
+                            <span key={tag.id} className={styles.adminBooksTag}>
+                              {tag.name}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className={styles.adminBooksActionButtons}>
+                        <button 
+                          className={styles.adminBooksSecondaryBtn}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedBook(book);
+                            setShowBookForm(true);
+                          }}
+                        >
+                          Редактировать
+                        </button>
+                        <button 
+                          className={styles.adminBooksDeleteBtn}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            confirmDelete('book', book.id);
+                          }}
+                        >
+                          Удалить
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               )}
-            </div>
-          </div>
+            </>
+          )}
         </div>
 
         {/* Правая колонка */}
@@ -585,230 +830,190 @@ const AdminBooksPage = () => {
             <>
               <div className={styles.adminBooksPanelHeader}>
                 <h2 className={styles.adminBooksPanelTitle}>Главы: {selectedBook.title}</h2>
+                <button 
+                  className={styles.adminBooksPrimaryBtn}
+                  onClick={() => {
+                    setSelectedChapter(null);
+                    setShowChapterForm(true);
+                  }}
+                >
+                  Добавить главу
+                </button>
               </div>
 
-              {chapters.length === 0 ? (
-                <div className={styles.adminBooksEmptyState}>
-                  <div className={styles.adminBooksEmptyIcon}>📖</div>
-                  <p>Нет доступных глав</p>
-                </div>
+              {showChapterForm ? (
+                <ChapterForm
+                  chapter={selectedChapter}
+                  onSubmit={selectedChapter ? handleUpdateChapter : handleCreateChapter}
+                  onCancel={() => {
+                    setSelectedChapter(null);
+                    setShowChapterForm(false);
+                  }}
+                />
               ) : (
-                <ul className={styles.adminBooksList}>
-                  {chapters.map(chapter => (
-                    <li 
-                      key={chapter.id}
-                      className={`${styles.adminBooksListItem} ${
-                        selectedChapter?.id === chapter.id ? styles.adminBooksSelectedItem : ''
-                      }`}
-                      onClick={() => fetchChapterDetails(chapter.id)}
-                    >
-                      <div>
-                        <strong>Глава {chapter.num}: {chapter.title}</strong>
-                        <div className={styles.adminBooksDate}>
-                          {new Date(chapter.publishedDate).toLocaleDateString()}
-                        </div>
-                      </div>
-                      <button 
-                        className={styles.adminBooksDeleteBtn}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          confirmDelete('chapter', chapter.id);
-                        }}
-                      >
-                        Удалить
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <div className={styles.adminBooksForm}>
-                <h3 className={styles.adminBooksFormTitle}>
-                  {selectedChapter ? 'Редактировать главу' : 'Добавить новую главу'}
-                </h3>
-                
-                <div className={styles.adminBooksFormGroup}>
-                  <label className={styles.adminBooksLabel}>Номер главы</label>
-                  <input
-                    type="number"
-                    name="num"
-                    className={styles.adminBooksInput}
-                    value={chapterForm.num}
-                    onChange={handleChapterInputChange}
-                  />
-                </div>
-
-                <div className={styles.adminBooksFormGroup}>
-                  <label className={styles.adminBooksLabel}>Название</label>
-                  <input
-                    type="text"
-                    name="title"
-                    className={styles.adminBooksInput}
-                    value={chapterForm.title}
-                    onChange={handleChapterInputChange}
-                  />
-                </div>
-
-                <div className={styles.adminBooksFormGroup}>
-                  <label className={styles.adminBooksLabel}>Текст</label>
-                  <textarea
-                    name="text"
-                    className={styles.adminBooksTextarea}
-                    value={chapterForm.text}
-                    onChange={handleChapterInputChange}
-                  />
-                </div>
-
-                <div className={styles.adminBooksFormActions}>
-                  {selectedChapter ? (
-                    <>
-                      <button 
-                        className={styles.adminBooksPrimaryBtn}
-                        onClick={updateChapter}
-                      >
-                        Обновить
-                      </button>
-                      <button 
-                        className={styles.adminBooksSecondaryBtn}
-                        onClick={() => {
-                          setSelectedChapter(null);
-                          setChapterForm({
-                            num: 0,
-                            title: '',
-                            text: '',
-                            book: null
-                          });
-                        }}
-                      >
-                        Отмена
-                      </button>
-                    </>
+                <>
+                  {chapters.length === 0 ? (
+                    <div className={styles.adminBooksEmptyState}>
+                      <div className={styles.adminBooksEmptyIcon}>📖</div>
+                      <p>Нет доступных глав</p>
+                    </div>
                   ) : (
-                    <button 
-                      className={styles.adminBooksPrimaryBtn}
-                      onClick={createChapter}
-                    >
-                      Добавить
-                    </button>
+                    <ul className={styles.adminBooksList}>
+                      {chapters.map(chapter => (
+                        <li 
+                          key={chapter.id}
+                          className={`${styles.adminBooksListItem} ${
+                            selectedChapter?.id === chapter.id ? styles.adminBooksSelectedItem : ''
+                          }`}
+                          onClick={() => fetchChapterDetails(chapter.id)}
+                        >
+                          <div>
+                            <strong>Глава {chapter.num}: {chapter.title}</strong>
+                            <div className={styles.adminBooksDate}>
+                              {new Date(chapter.publishedDate).toLocaleDateString()}
+                            </div>
+                          </div>
+                          <div className={styles.adminBooksActionButtons}>
+                            <button 
+                              className={styles.adminBooksSecondaryBtn}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedChapter(chapter);
+                                setShowChapterForm(true);
+                              }}
+                            >
+                              Редактировать
+                            </button>
+                            <button 
+                              className={styles.adminBooksDeleteBtn}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                confirmDelete('chapter', chapter.id);
+                              }}
+                            >
+                              Удалить
+                            </button>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   )}
-                </div>
-              </div>
+                </>
+              )}
             </>
           )}
 
           {/* Секция тегов */}
           <div className={styles.adminBooksPanelHeader}>
             <h2 className={styles.adminBooksPanelTitle}>Теги</h2>
-          </div>
-
-          {tags.length === 0 ? (
-            <div className={styles.adminBooksEmptyState}>
-              <div className={styles.adminBooksEmptyIcon}>🏷️</div>
-              <p>Нет доступных тегов</p>
-            </div>
-          ) : (
-            <ul className={styles.adminBooksList}>
-              {tags.map(tag => (
-                <li key={tag.id} className={styles.adminBooksListItem}>
-                  <span className={styles.adminBooksTag}>{tag.name}</span>
-                  <div className={styles.adminBooksActionButtons}>
-                    <button 
-                      className={styles.adminBooksSecondaryBtn}
-                      onClick={() => {
-                        setTagForm({ name: tag.name });
-                        updateTag(tag.id);
-                      }}
-                    >
-                      Редактировать
-                    </button>
-                    <button 
-                      className={styles.adminBooksDeleteBtn}
-                      onClick={() => confirmDelete('tag', tag.id)}
-                    >
-                      Удалить
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className={styles.adminBooksForm}>
-            <h3 className={styles.adminBooksFormTitle}>Добавить новый тег</h3>
-            <div className={styles.adminBooksFormGroup}>
-              <input
-                type="text"
-                name="name"
-                className={styles.adminBooksInput}
-                placeholder="Название тега"
-                value={tagForm.name}
-                onChange={handleTagInputChange}
-              />
-            </div>
             <button 
               className={styles.adminBooksPrimaryBtn}
-              onClick={createTag}
+              onClick={() => {
+                setShowTagForm(true);
+              }}
             >
               Добавить тег
             </button>
           </div>
 
+          {showTagForm ? (
+            <SimpleForm
+              onSubmit={handleCreateTag}
+              onCancel={() => setShowTagForm(false)}
+              placeholder="Название тега"
+              title="тег"
+            />
+          ) : (
+            <>
+              {tags.length === 0 ? (
+                <div className={styles.adminBooksEmptyState}>
+                  <div className={styles.adminBooksEmptyIcon}>🏷️</div>
+                  <p>Нет доступных тегов</p>
+                </div>
+              ) : (
+                <ul className={styles.adminBooksList}>
+                  {tags.map(tag => (
+                    <li key={tag.id} className={styles.adminBooksListItem}>
+                      <span className={styles.adminBooksTag}>{tag.name}</span>
+                      <div className={styles.adminBooksActionButtons}>
+                        <button 
+                          className={styles.adminBooksSecondaryBtn}
+                          onClick={() => {
+                            setItemToDelete({ type: 'tag', data: tag });
+                            setShowTagForm(true);
+                          }}
+                        >
+                          Редактировать
+                        </button>
+                        <button 
+                          className={styles.adminBooksDeleteBtn}
+                          onClick={() => confirmDelete('tag', tag.id)}
+                        >
+                          Удалить
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          )}
+
           {/* Секция категорий */}
           <div className={styles.adminBooksPanelHeader}>
             <h2 className={styles.adminBooksPanelTitle}>Категории</h2>
-          </div>
-
-          {categories.length === 0 ? (
-            <div className={styles.adminBooksEmptyState}>
-              <div className={styles.adminBooksEmptyIcon}>🗂️</div>
-              <p>Нет доступных категорий</p>
-            </div>
-          ) : (
-            <ul className={styles.adminBooksList}>
-              {categories.map(category => (
-                <li key={category.id} className={styles.adminBooksListItem}>
-                  <span className={styles.adminBooksCategory}>{category.name}</span>
-                  <div className={styles.adminBooksActionButtons}>
-                    <button 
-                      className={styles.adminBooksSecondaryBtn}
-                      onClick={() => {
-                        setCategoryForm({ name: category.name });
-                        updateCategory(category.id);
-                      }}
-                    >
-                      Редактировать
-                    </button>
-                    <button 
-                      className={styles.adminBooksDeleteBtn}
-                      onClick={() => confirmDelete('category', category.id)}
-                    >
-                      Удалить
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className={styles.adminBooksForm}>
-            <h3 className={styles.adminBooksFormTitle}>Добавить новую категорию</h3>
-            <div className={styles.adminBooksFormGroup}>
-              <input
-                type="text"
-                name="name"
-                className={styles.adminBooksInput}
-                placeholder="Название категории"
-                value={categoryForm.name}
-                onChange={handleCategoryInputChange}
-              />
-            </div>
             <button 
               className={styles.adminBooksPrimaryBtn}
-              onClick={createCategory}
+              onClick={() => {
+                setShowCategoryForm(true);
+              }}
             >
               Добавить категорию
             </button>
           </div>
+
+          {showCategoryForm ? (
+            <SimpleForm
+              onSubmit={handleCreateCategory}
+              onCancel={() => setShowCategoryForm(false)}
+              placeholder="Название категории"
+              title="категорию"
+            />
+          ) : (
+            <>
+              {categories.length === 0 ? (
+                <div className={styles.adminBooksEmptyState}>
+                  <div className={styles.adminBooksEmptyIcon}>🗂️</div>
+                  <p>Нет доступных категорий</p>
+                </div>
+              ) : (
+                <ul className={styles.adminBooksList}>
+                  {categories.map(category => (
+                    <li key={category.id} className={styles.adminBooksListItem}>
+                      <span className={styles.adminBooksCategory}>{category.name}</span>
+                      <div className={styles.adminBooksActionButtons}>
+                        <button 
+                          className={styles.adminBooksSecondaryBtn}
+                          onClick={() => {
+                            setItemToDelete({ type: 'category', data: category });
+                            setShowCategoryForm(true);
+                          }}
+                        >
+                          Редактировать
+                        </button>
+                        <button 
+                          className={styles.adminBooksDeleteBtn}
+                          onClick={() => confirmDelete('category', category.id)}
+                        >
+                          Удалить
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          )}
         </div>
       </div>
 

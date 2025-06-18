@@ -1,5 +1,5 @@
 /* Основные стили */
-.adminBooksContainer {
+.adminContainer {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -7,14 +7,14 @@
   color: #333;
 }
 
-.adminBooksTitle {
+.adminTitle {
   color: #6D2CF7;
   margin-bottom: 30px;
   font-size: 28px;
   text-align: center;
 }
 
-.adminBooksError {
+.adminError {
   color: #d32f2f;
   padding: 15px;
   background-color: #ffebee;
@@ -23,35 +23,50 @@
   text-align: center;
 }
 
-.adminBooksLoading {
+.adminLoading {
   text-align: center;
   padding: 40px;
   font-size: 18px;
   color: #666;
 }
 
-/* Сетка и панели */
-.adminBooksGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+/* Вкладки */
+.adminTabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 992px) {
-  .adminBooksGrid {
-    grid-template-columns: 1fr;
-  }
+.adminTab {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
 }
 
-.adminBooksPanel {
+.adminTab:hover {
+  color: #6D2CF7;
+}
+
+.adminActiveTab {
+  color: #6D2CF7;
+  border-bottom-color: #6D2CF7;
+}
+
+/* Контент */
+.adminContent {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;
 }
 
-.adminBooksPanelHeader {
+.adminPanelHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,88 +75,97 @@
   border-bottom: 1px solid #eee;
 }
 
-.adminBooksPanelTitle {
+.adminPanelTitle {
   margin: 0;
   color: #6D2CF7;
   font-size: 22px;
 }
 
 /* Списки */
-.adminBooksList {
+.adminList {
   list-style: none;
   padding: 0;
   margin: 0 0 20px 0;
-  max-height: 850px;
+  max-height: 600px;
   overflow-y: auto;
 }
 
-.adminBooksListItem {
-  padding: 12px 15px;
-  margin-bottom: 8px;
+.adminListItem {
+  padding: 15px;
+  margin-bottom: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.adminBooksListItem:hover {
+.adminListItem:hover {
   background-color: #f0f0f0;
 }
 
-.adminBooksSelectedItem {
+.adminSelectedItem {
   background-color: #e6f7ff;
   border-left: 3px solid #6D2CF7;
 }
 
-/* Элементы */
-.adminBooksAuthor,
-.adminBooksDate {
-  font-size: 14px;
-  color: #666;
-  margin-top: 5px;
-}
-
-.adminBooksTag,
-.adminBooksCategory {
-  display: inline-block;
-  background-color: #f0f0f0;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 14px;
+.adminDetails {
+  margin: 10px 0;
   color: #555;
 }
 
+.adminMeta {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.adminComment {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border-left: 2px solid #ddd;
+}
+
+.adminCommentMeta {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  color: #888;
+  margin-top: 5px;
+}
+
 /* Формы */
-.adminBooksForm {
+.adminForm {
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
 }
 
-.adminBooksFormTitle {
+.adminFormTitle {
   font-size: 18px;
   color: #555;
   margin-bottom: 15px;
 }
 
-.adminBooksFormGroup {
+.adminFormGroup {
   margin-bottom: 15px;
 }
 
-.adminBooksLabel {
+.adminLabel {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
   color: #555;
 }
 
-.adminBooksInput,
-.adminBooksTextarea,
-.adminBooksSelect {
+.adminInput,
+.adminTextarea,
+.adminSelect {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -150,26 +174,22 @@
   font-size: 14px;
 }
 
-.adminBooksTextarea {
+.adminTextarea {
   min-height: 100px;
   resize: vertical;
 }
 
-.adminBooksMultiSelect {
-  height: auto;
-  min-height: 100px;
-}
-
-.adminBooksFormActions {
+.adminFormActions {
   display: flex;
   gap: 10px;
   margin-top: 15px;
 }
 
 /* Кнопки */
-.adminBooksPrimaryBtn,
-.adminBooksSecondaryBtn,
-.adminBooksDeleteBtn {
+.adminPrimaryBtn,
+.adminSecondaryBtn,
+.adminDeleteBtn,
+.adminSuccessBtn {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -179,41 +199,50 @@
   transition: all 0.2s ease;
 }
 
-.adminBooksPrimaryBtn {
+.adminPrimaryBtn {
   background-color: #6D2CF7;
   color: white;
 }
 
-.adminBooksPrimaryBtn:hover {
+.adminPrimaryBtn:hover {
   background-color: #5a23d6;
 }
 
-.adminBooksSecondaryBtn {
+.adminSecondaryBtn {
   background-color: white;
   color: #6D2CF7;
   border: 1px solid #6D2CF7;
 }
 
-.adminBooksSecondaryBtn:hover {
+.adminSecondaryBtn:hover {
   background-color: #f0f0f0;
 }
 
-.adminBooksDeleteBtn {
+.adminDeleteBtn {
   background-color: #d32f2f;
   color: white;
 }
 
-.adminBooksDeleteBtn:hover {
+.adminDeleteBtn:hover {
   background-color: #b71c1c;
 }
 
-.adminBooksActionButtons {
+.adminSuccessBtn {
+  background-color: #388e3c;
+  color: white;
+}
+
+.adminSuccessBtn:hover {
+  background-color: #2e7d32;
+}
+
+.adminActionButtons {
   display: flex;
   gap: 10px;
 }
 
 /* Пустые состояния */
-.adminBooksEmptyState {
+.adminEmptyState {
   text-align: center;
   padding: 30px;
   color: #666;
@@ -222,44 +251,14 @@
   margin: 20px 0;
 }
 
-.adminBooksEmptyIcon {
+.adminEmptyIcon {
   font-size: 40px;
   margin-bottom: 15px;
   color: #ccc;
 }
 
-
-.adminBooksSelectedCheckbox {
-  background-color: #e6f7ff;
-  border-color: #1890ff;
-}
-
-.adminBooksCheckboxInput {
-  margin-right: 8px;
-}
-
-.adminBooksLoadingText {
-  padding: 16px;
-  text-align: center;
-  color: #666;
-}
-
-.adminBooksLoadingText {
-  padding: 16px;
-  text-align: center;
-  color: #666;
-  border: 1px dashed #ddd;
-  background-color: #f9f9f9;
-  margin: 8px 0;
-}
-
-.adminBooksTextarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
 /* Модальное окно */
-.adminBooksModalOverlay {
+.adminModalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -272,7 +271,7 @@
   z-index: 1000;
 }
 
-.adminBooksModalContent {
+.adminModalContent {
   background-color: white;
   padding: 25px;
   border-radius: 10px;
@@ -281,37 +280,37 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.adminBooksModalTitle {
+.adminModalTitle {
   margin-top: 0;
   color: #6D2CF7;
   font-size: 20px;
 }
 
-.adminBooksModalText {
+.adminModalText {
   margin-bottom: 20px;
 }
 
-.adminBooksModalActions {
+.adminModalActions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
 
 /* Скроллбар */
-.adminBooksList::-webkit-scrollbar {
+.adminList::-webkit-scrollbar {
   width: 8px;
 }
 
-.adminBooksList::-webkit-scrollbar-track {
+.adminList::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
 
-.adminBooksList::-webkit-scrollbar-thumb {
+.adminList::-webkit-scrollbar-thumb {
   background: #c1c1c1;
   border-radius: 4px;
 }
 
-.adminBooksList::-webkit-scrollbar-thumb:hover {
+.adminList::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }

@@ -140,10 +140,10 @@ const Navbar = () => {
               Авторы
             </Link>
             <Link to="/admin/requests" className={styles.navLink} onClick={() => setIsUserMenuOpen(false)}>
-              Заявки
+              Заявки/Жалобы
             </Link>
-            <Link to="/admin/staff" className={styles.navLink} onClick={() => setIsUserMenuOpen(false)}>
-              Сотрудники
+            <Link to="/admin/user" className={styles.navLink} onClick={() => setIsUserMenuOpen(false)}>
+              Пользователи
             </Link>
           </>
         ) : (
