@@ -8,6 +8,8 @@ namespace Books.Repository
         Task<List<Author>> GetAuthorsAll();
         Task CreateAuthor(Author author);
         Task<Author?> GetAuthorById(int id);
+
+        Task<Author?> GetAuthorByIdUser(int id);
         Task SaveChanges();
         Task DeleteAuthor(Author Author);
 
@@ -34,6 +36,11 @@ namespace Books.Repository
         public async Task<Author?> GetAuthorById(int id)
         {
             return await _context.Authors.Include(a => a.Books).FirstOrDefaultAsync(a => a.IdAuthor == id);
+        }
+
+        public async Task<Author?> GetAuthorByIdUser(int id)
+        {
+            return await _context.Authors.Include(a => a.Books).FirstOrDefaultAsync(a => a.IdUser == id);
         }
         public async Task SaveChanges()
         {

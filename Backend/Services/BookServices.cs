@@ -62,7 +62,8 @@ namespace Books.Services
                         Id = book.Author.IdAuthor,
                         Nickname = book.Author.Nickname,
                         Surname = book.Author.Surname,
-                        Firstname = book.Author.Firstname
+                        Firstname = book.Author.Firstname,
+                        IdUser = book.Author.IdUser,
                     }
 
                 };
@@ -109,6 +110,7 @@ namespace Books.Services
                     Nickname = book.Author.Nickname,
                     Surname = book.Author.Surname,
                     Firstname = book.Author.Firstname,
+                    IdUser = book.Author.IdUser,
                 }
 
             };
@@ -148,7 +150,8 @@ namespace Books.Services
                         Id = book.Author.IdAuthor,
                         Nickname = book.Author.Nickname,
                         Surname = book.Author.Surname,
-                        Firstname = book.Author.Firstname
+                        Firstname = book.Author.Firstname,
+                        IdUser = book.Author.IdUser,
                     }
                 };
                 answer.Add(bookDto);

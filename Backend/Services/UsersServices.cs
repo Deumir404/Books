@@ -42,18 +42,20 @@ namespace Books.Services
         Task<UserDto?> GetUserByIdDTO(int id);
         Task<UserDto> AddUserDTO(CreateUserDto userDto);
         Task<string?> Autorization(LoginUserDto userDto);
-        Task<UserDto?> ChangeUserDto(CreateUserDto userDto, int id);
+        Task<UserDto?> ChangeUserDto(ChangeUserDto userDto, int id);
         Task<bool> DeleteUserById(int id);
     }
     public class UserService: IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IAuthorService _authorService;
         private readonly Token _token;
 
-        public UserService(IUserRepository userRepository, IConfiguration configuration)
+        public UserService(IUserRepository userRepository, IAuthorService authorService , IConfiguration configuration)
         {
             _token = new Token(configuration);
             _userRepository = userRepository;
+            _authorService = authorService;
         }
 
         public async Task<List<UserDto>> GetUserService()
@@ -107,7 +109,7 @@ namespace Books.Services
             return token;
         }
 
-        public async Task<UserDto?> ChangeUserDto(CreateUserDto userDto, int id)
+        public async Task<UserDto?> ChangeUserDto(ChangeUserDto userDto, int id)
         {
             var user = await _userRepository.GetUserById(id);
             if (user == null)
@@ -117,6 +119,13 @@ namespace Books.Services
             user.Username = userDto.Username;
             user.Email = userDto.Email;
             user.Role = userDto.Role;
+            var authorCheck = await _authorService.GetAuthorByIdUserDto(user.IdUser);
+            if (userDto.Role == RoleUser.Author && authorCheck == null)
+            {
+
+                var Author = new CreateAuthorDto { Nickname = userDto.Username , IdUser = user.IdUser};
+                await _authorService.CreateAuthorDto(Author);
+            }
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
             user.PasswordHash = passwordHash;
             await _userRepository.SaveChanges();

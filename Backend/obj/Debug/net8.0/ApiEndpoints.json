@@ -1076,7 +1076,7 @@
     "Parameters": [
       {
         "Name": "userDto",
-        "Type": "Books.DTO.CreateUserDto",
+        "Type": "Books.DTO.ChangeUserDto",
         "IsRequired": true
       },
       {
