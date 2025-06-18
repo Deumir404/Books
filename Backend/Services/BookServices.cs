@@ -25,7 +25,7 @@ namespace Books.Services
     {
         private readonly IBookRepository _bookRepository;
         private readonly IReviewRepository _reviewRepository;
-        private readonly static string[] FileFormats = [".fb2", ".epub", ".mobi"];
+        private readonly static string[] FileFormats = [".fb2", ".epub", ".mobi", ".pdf"];
 
         private static string GetCoverUrl(Book book)
         {

@@ -45,8 +45,7 @@
               "RelativeToolTip": "DTO\\DTO.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAmwDUAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T15:38:31.689Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-18T15:38:31.689Z"
             },
             {
               "$type": "Document",
@@ -56,7 +55,7 @@
               "RelativeDocumentMoniker": "Contollers\\Book.cs",
               "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
               "RelativeToolTip": "Contollers\\Book.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAcwHQAAABLAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHQAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T14:49:59.074Z",
               "EditorCaption": ""
@@ -71,8 +70,7 @@
               "RelativeToolTip": "Services\\BookServices.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAiwG0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T14:49:26.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-18T14:49:26.652Z"
             },
             {
               "$type": "Document",
@@ -84,8 +82,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:30:50.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T10:30:50.539Z"
             }
           ]
         },
@@ -101,7 +98,7 @@
               "RelativeDocumentMoniker": "..\\ORM\\DbContext.cs",
               "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\DbContext.cs",
               "RelativeToolTip": "..\\ORM\\DbContext.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA6wBEAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAywBEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T19:23:49.59Z",
               "EditorCaption": ""
