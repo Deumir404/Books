@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { saveAuthData, fetchUserProfile, parseJwtPayload } from '../../utils/auth';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { saveAuthData, parseJwtPayload } from '../../utils/auth';
 import styles from './AuthPages.module.css';
 
 const LoginPage = () => {
@@ -11,6 +11,7 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,11 +63,26 @@ const LoginPage = () => {
       // 2. Получение данных пользователя
       let userData = responseData.user || parseJwtPayload(token) || {};
       
-      // 3. Запрос к защищенному эндпоинту для получения полных данных
+      // 3. Запрос к защищенному эндпоинту для получения полных данных (включая роль)
       try {
-        const profileData = await fetchUserProfile();
+        const profileResponse = await fetch('/Users/MyProfile', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+          }
+        });
+
+        if (!profileResponse.ok) {
+          throw new Error(`Ошибка получения профиля: ${profileResponse.status}`);
+        }
+
+        const profileData = await profileResponse.json();
         if (profileData) {
-          userData = { ...userData, ...profileData };
+          userData = { 
+            ...userData, 
+            ...profileData,
+            role: profileData.role // Явно берем роль из ответа сервера
+          };
         }
       } catch (profileError) {
         console.error('Ошибка получения профиля:', profileError);
@@ -75,7 +91,13 @@ const LoginPage = () => {
 
       // 4. Сохранение данных
       saveAuthData(token, userData);
-      navigate('/', { replace: true });
+
+      // 5. Перенаправление в зависимости от роли
+      const redirectTo = location.state?.from?.pathname || (userData.role === 2 ? '/admin/books' : '/');
+      navigate(redirectTo, { replace: true });
+
+      // 6. Обновление страницы для применения изменений
+      window.location.reload();
     } catch (error) {
       setError(error.message || 'Произошла ошибка при входе');
       console.error('Ошибка входа:', error);

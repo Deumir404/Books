@@ -38,6 +38,12 @@ export const getUserData = () => {
   }
 };
 
+// Получение роли пользователя
+export const getUserRole = () => {
+  const userData = getUserData(); // Используем существующую функцию
+  return userData?.role ?? null; // Возвращаем роль или null если её нет
+};
+
 // Проверка авторизации
 export const isAuthenticated = () => {
   return !!getAuthToken();
@@ -77,7 +83,7 @@ export const fetchUserProfile = async () => {
     const response = await fetch('/Users/MyProfile', {
       headers: {
         'Authorization': `Bearer ${token}`,
-        'Accept': 'text/plain, application/json'
+        'Accept': 'application/json' // Упрощаем, ожидаем только JSON
       }
     });
 
@@ -85,25 +91,10 @@ export const fetchUserProfile = async () => {
       throw new Error(`Ошибка ${response.status}`);
     }
 
-    let userData;
-    const contentType = response.headers.get('content-type');
-    
-    if (contentType?.includes('application/json')) {
-      userData = await response.json();
-    } else {
-      const text = await response.text();
-      try {
-        userData = text ? JSON.parse(text) : {};
-      } catch {
-        userData = { username: text };
-      }
-    }
-
-    console.log('Данные пользователя с сервера:', userData);
+    const userData = await response.json();
     
     // Обновляем данные в localStorage
-    const currentUser = getUserData() || {};
-    saveAuthData(token, { ...currentUser, ...userData });
+    saveAuthData(token, userData);
     
     return userData;
   } catch (error) {

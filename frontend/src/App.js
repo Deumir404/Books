@@ -1,15 +1,39 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog';
 import Bookmarks from './pages/Bookmarks/Bookmarks';
 import Rules from './pages/Rules/Rules';
 import BookPage from './pages/Book/BookPage';
+import AdminBooksPage from './pages/Admin/AdminBooksPage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
 import Profile from './pages/Profile/Profile';
 import Authors from './pages/Authors/AuthorsPage';
+import { getAuthToken, getUserRole } from './utils/auth'; // Предполагается, что у вас есть эти функции
 import './App.css';
+
+// Компонент для защиты маршрутов
+const RequireAuth = ({ children, role }) => {
+  const token = getAuthToken();
+  const userRole = getUserRole(); // Получаем роль пользователя
+
+    console.log('Текущий пользователь:', {
+    role: userRole,
+  });
+  
+  if (!token) {
+    // Если нет токена, перенаправляем на страницу входа
+    return <Navigate to="/login" replace />;
+  }
+  
+  if (role && userRole !== role) {
+    // Если требуется определенная роль и у пользователя она не совпадает
+    return <Navigate to="/" replace />;
+  }
+  
+  return children;
+};
 
 function App() {
   return (
@@ -19,6 +43,14 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route 
+              path="/admin/books" 
+              element={
+                <RequireAuth role={2}>
+                  <AdminBooksPage />
+                </RequireAuth>
+              } 
+            />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
@@ -26,7 +58,14 @@ function App() {
             <Route path="/book/:id" element={<BookPage />} />
             <Route path="/rules" element={<Rules />} />
             <Route path="/authors" element={<Authors />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route 
+              path="/profile" 
+              element={
+                <RequireAuth>
+                  <Profile />
+                </RequireAuth>
+              } 
+            />
             {/* Страница 404 для несуществующих маршрутов */}
             <Route path="*" element={<div>Страница не найдена</div>} />
           </Routes>
