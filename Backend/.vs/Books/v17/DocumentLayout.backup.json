@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\bookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\bookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\dto\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:dto\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -33,33 +37,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "DTO.cs",
+              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
+              "RelativeDocumentMoniker": "DTO\\DTO.cs",
+              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\DTO\\DTO.cs",
+              "RelativeToolTip": "DTO\\DTO.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAmwDUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T15:38:31.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
               "RelativeDocumentMoniker": "Contollers\\Book.cs",
               "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Contollers\\Book.cs",
               "RelativeToolTip": "Contollers\\Book.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAjwBkAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAcwHQAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T14:49:59.074Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BookServices.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\BookServices.cs",
               "RelativeDocumentMoniker": "Services\\BookServices.cs",
               "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\BookServices.cs",
               "RelativeToolTip": "Services\\BookServices.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAswA0AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAiwG0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T14:49:26.652Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -78,7 +95,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "DbContext.cs",
               "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\DbContext.cs",
               "RelativeDocumentMoniker": "..\\ORM\\DbContext.cs",

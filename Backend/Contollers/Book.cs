@@ -102,7 +102,27 @@ namespace Books.Contollers
         }
 
 
+        [HttpGet("download")]
+        public async Task<IActionResult> DownloadFile([FromQuery] string path )
+        {
+            try
+            {
+                var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", path.TrimStart('/'));
+                if (string.IsNullOrEmpty(fullPath) || !System.IO.File.Exists(fullPath))
+                {
+                    return NotFound("File not found");
+                }
 
+                var fileName = Path.GetFileName(fullPath);
+                var fileBytes = await System.IO.File.ReadAllBytesAsync(fullPath);
+
+                return File(fileBytes, "application/octet-stream", fileName);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 

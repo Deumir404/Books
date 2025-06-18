@@ -380,6 +380,22 @@
   },
   {
     "ContainingType": "Books.Contollers.BooksController",
+    "Method": "DownloadFile",
+    "RelativePath": "Books/download",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "path",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Books.Contollers.BooksController",
     "Method": "GetBookByFilter",
     "RelativePath": "Books/search",
     "HttpMethod": "GET",
