@@ -1,0 +1,342 @@
+.authorPanel {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.authorPanelTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.authorPanelGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.authorPanelSection {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.authorPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.authorPanelSectionTitle {
+  font-size: 1.2rem;
+  color: #444;
+  margin: 0;
+}
+
+.authorPanelPrimaryBtn {
+  background-color: #4a6fa5;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.authorPanelPrimaryBtn:hover {
+  background-color: #3a5a8f;
+}
+
+.authorPanelSecondaryBtn {
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.authorPanelSecondaryBtn:hover {
+  background-color: #e0e0e0;
+}
+
+.authorPanelDeleteBtn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.authorPanelDeleteBtn:hover {
+  background-color: #c0392b;
+}
+
+.authorPanelForm {
+  margin-top: 20px;
+}
+
+.authorPanelFormTitle {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.authorPanelFormGroup {
+  margin-bottom: 15px;
+}
+
+.authorPanelLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+.authorPanelInput, 
+.authorPanelTextarea, 
+.authorPanelSelect {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.authorPanelTextarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.authorPanelCheckboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.authorPanelCheckboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.authorPanelCheckboxInput {
+  margin: 0;
+}
+
+.authorPanelFormActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.authorPanelList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.authorPanelListItem {
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s;
+}
+
+.authorPanelSelectedItem {
+  background-color: #f5f9ff;
+  border-color: #d0e0ff;
+}
+
+.authorPanelBookInfo {
+  display: flex;
+  gap: 15px;
+}
+
+.authorPanelBookCover {
+  width: 60px;
+  height: 80px;
+  flex-shrink: 0;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.authorPanelCoverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.authorPanelCoverPlaceholder {
+  font-size: 1.5rem;
+  color: #999;
+}
+
+.authorPanelBookTitle {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.authorPanelBookMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.authorPanelCategory {
+  background-color: #e1f5fe;
+  color: #0288d1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.authorPanelTag {
+  background-color: #f3e5f5;
+  color: #9c27b0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.authorPanelChapterTitle {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.authorPanelChapterDate {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.authorPanelActionButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.authorPanelEmptyState {
+  text-align: center;
+  padding: 30px 0;
+  color: #777;
+}
+
+.authorPanelEmptyIcon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.authorPanelError {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.authorPanelLoading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.authorPanelUploadSection {
+  margin-top: 30px;
+}
+
+.authorPanelFileInput {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.authorPanelCurrentCover {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.authorPanelCoverPreview {
+  max-width: 200px;
+  max-height: 300px;
+  border-radius: 4px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.authorPanelModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.authorPanelModalContent {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.authorPanelModalTitle {
+  margin-top: 0;
+  color: #333;
+}
+
+.authorPanelModalText {
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.authorPanelModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .authorPanelGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .authorPanelHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .authorPanelBookInfo {
+    flex-direction: column;
+  }
+  
+  .authorPanelBookCover {
+    width: 100%;
+    height: 120px;
+  }
+}

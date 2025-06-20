@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TrNKyAx0Tzm51TIjXS7Zf1VRBzBZCw4g6vKLm6zGflo=",
+  "Hash": "zhHX49mhmMzAM8yieoM7RHJlyn+aKQ+G1hyS8S7BcwU=",
   "Source": "Books",
   "BasePath": "_content/Books",
   "Mode": "Default",
@@ -17,6 +17,27 @@
   ],
   "Assets": [
     {
+      "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\books\\1\\1.fb2",
+      "SourceId": "Books",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\",
+      "BasePath": "_content/Books",
+      "RelativePath": "books/1/1#[.{fingerprint}]?.fb2",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1pmamhrhug",
+      "Integrity": "m8SozNiIB8yLwMl+x9HlrO4m96kuTY4d5DF4XEOhRHk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\books\\1\\1.fb2"
+    },
+    {
       "Identity": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\books\\1\\1.pdf",
       "SourceId": "Books",
       "SourceType": "Discovered",
@@ -31,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "9ht4uiisnu",
-      "Integrity": "wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=",
+      "Fingerprint": "t92z24l49q",
+      "Integrity": "QRg9FoWYQV8qRd3k5lbBFUWVv6rPOIze/wUejruJLkU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\books\\1\\1.pdf"
@@ -208,8 +229,8 @@
   ],
   "Endpoints": [
     {
-      "Route": "books/1/1.9ht4uiisnu.pdf",
-      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\books\\1\\1.pdf",
+      "Route": "books/1/1.1pmamhrhug.fb2",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\books\\1\\1.fb2",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -218,19 +239,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1224685"
+          "Value": "9517896"
         },
         {
           "Name": "Content-Type",
-          "Value": "application/pdf"
+          "Value": "application/octet-stream"
         },
         {
           "Name": "ETag",
-          "Value": "\"wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=\""
+          "Value": "\"m8SozNiIB8yLwMl+x9HlrO4m96kuTY4d5DF4XEOhRHk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 16:43:31 GMT"
+          "Value": "Wed, 18 Jun 2025 17:06:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -240,15 +261,52 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "9ht4uiisnu"
+          "Value": "1pmamhrhug"
         },
         {
           "Name": "label",
-          "Value": "books/1/1.pdf"
+          "Value": "books/1/1.fb2"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4="
+          "Value": "sha256-m8SozNiIB8yLwMl+x9HlrO4m96kuTY4d5DF4XEOhRHk="
+        }
+      ]
+    },
+    {
+      "Route": "books/1/1.fb2",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\books\\1\\1.fb2",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9517896"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"m8SozNiIB8yLwMl+x9HlrO4m96kuTY4d5DF4XEOhRHk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 17:06:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-m8SozNiIB8yLwMl+x9HlrO4m96kuTY4d5DF4XEOhRHk="
         }
       ]
     },
@@ -263,7 +321,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1224685"
+          "Value": "6560608"
         },
         {
           "Name": "Content-Type",
@@ -271,11 +329,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4=\""
+          "Value": "\"QRg9FoWYQV8qRd3k5lbBFUWVv6rPOIze/wUejruJLkU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 18 Jun 2025 16:43:31 GMT"
+          "Value": "Wed, 18 Jun 2025 16:59:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -285,7 +343,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-wwtv8VzC8syUmiNjqtbeltjsWeFopkUOKaP/WBOnUz4="
+          "Value": "sha256-QRg9FoWYQV8qRd3k5lbBFUWVv6rPOIze/wUejruJLkU="
+        }
+      ]
+    },
+    {
+      "Route": "books/1/1.t92z24l49q.pdf",
+      "AssetFile": "C:\\Users\\Тимофей\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\wwwroot\\books\\1\\1.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6560608"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QRg9FoWYQV8qRd3k5lbBFUWVv6rPOIze/wUejruJLkU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 18 Jun 2025 16:59:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "t92z24l49q"
+        },
+        {
+          "Name": "label",
+          "Value": "books/1/1.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QRg9FoWYQV8qRd3k5lbBFUWVv6rPOIze/wUejruJLkU="
         }
       ]
     },

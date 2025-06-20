@@ -30,6 +30,7 @@ const BookPage = () => {
   const [isSubmittingComplaint, setIsSubmittingComplaint] = useState(false);
   const [complaintError, setComplaintError] = useState(null);
   const [hasUserReviewed, setHasUserReviewed] = useState(false);
+  const [showDownloadOptions, setShowDownloadOptions] = useState(false);
   const MAX_REVIEW_LENGTH = 200;
 
   const getStarColor = (rating) => {
@@ -44,6 +45,12 @@ const BookPage = () => {
     if (reviewsSection) {
       reviewsSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleDownload = (format) => {
+    setShowDownloadOptions(false);
+    const downloadUrl = `https://localhost:7152/Books/download?path=books/${id}/${id}.${format}`;
+    window.open(downloadUrl, '_blank');
   };
 
   const fetchUserRating = useCallback(async () => {
@@ -591,7 +598,23 @@ const BookPage = () => {
       <div className={styles.headerRow}>
         <div className={styles.headerButtons}>
           <Link to="/catalog" className={styles.backLink}>← Вернуться в каталог</Link>
-          <button onClick={scrollToReviews} className={styles.reviewsButton}>Отзывы</button>
+          <div className={styles.actionButtons}>
+            <button onClick={scrollToReviews} className={styles.reviewsButton}>Отзывы</button>
+            <div className={styles.downloadContainer}>
+              <button 
+                onClick={() => setShowDownloadOptions(!showDownloadOptions)}
+                className={styles.downloadButton}
+              >
+                Скачать
+              </button>
+              {showDownloadOptions && (
+                <div className={styles.downloadOptions}>
+                  <button onClick={() => handleDownload('pdf')}>PDF</button>
+                  <button onClick={() => handleDownload('fb2')}>FB2</button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         {renderBookActions()}
       </div>

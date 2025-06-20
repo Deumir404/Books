@@ -120,6 +120,7 @@ const Navbar = () => {
   };
 
   const isAdmin = userRole === 2;
+  const isAuthor = userRole === 1;
 
   return (
     <nav className={styles.navbar}>
@@ -199,15 +200,22 @@ const Navbar = () => {
                   <span className={styles.username}>
                     {isLoading ? 'Загрузка...' : username || 'Пользователь'}
                     {isAdmin && <span className={styles.adminBadge}>Админ</span>}
+                    {isAuthor && <span className={styles.authorBadge}>Автор</span>}
                   </span>
                 </div>
                 <Link to="/profile" className={styles.menuItem} onClick={() => setIsUserMenuOpen(false)}>
                   Профиль
                 </Link>
                 {!isAdmin && (
-                  <Link to="/become-author" className={styles.menuItem} onClick={() => setIsUserMenuOpen(false)}>
-                    Стать автором
-                  </Link>
+                  isAuthor ? (
+                    <Link to="/author-panel" className={styles.menuItem} onClick={() => setIsUserMenuOpen(false)}>
+                      Панель автора
+                    </Link>
+                  ) : (
+                    <Link to="/become-author" className={styles.menuItem} onClick={() => setIsUserMenuOpen(false)}>
+                      Стать автором
+                    </Link>
+                  )
                 )}
                 <div className={styles.menuDivider}></div>
                 <div className={`${styles.menuItem} ${styles.logout}`} onClick={handleLogout}>

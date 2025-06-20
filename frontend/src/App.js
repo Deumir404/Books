@@ -12,7 +12,8 @@ import AdminAppPage from './pages/Admin/AdminAppPage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
 import Profile from './pages/Profile/Profile';
-import Authors from './pages/Authors/AuthorsPage';
+import AuthorPanel from './pages/Authors/AuthorPanel';
+import BecomeAuthor from './pages/Authors/BecomeAuthor';
 import { getAuthToken, getUserRole } from './utils/auth'; // Предполагается, что у вас есть эти функции
 import './App.css';
 
@@ -80,11 +81,12 @@ function App() {
             />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/become-author" element={<BecomeAuthor />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/author-panel" element={<AuthorPanel />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
             <Route path="/book/:id" element={<BookPage />} />
             <Route path="/rules" element={<Rules />} />
-            <Route path="/authors" element={<Authors />} />
             <Route 
               path="/profile" 
               element={

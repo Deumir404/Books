@@ -302,7 +302,7 @@ const AdminUsersPage = () => {
 
   return (
     <div className={styles.adminContainer}>
-      <h1 className={styles.adminTitle}>Управление пользователями</h1>
+      {/* <h1 className={styles.adminTitle}>Управление пользователями</h1> */}
       
       {error && <div className={styles.adminError}>{error}</div>}
       {isLoading && <div className={styles.adminLoading}>Загрузка...</div>}
