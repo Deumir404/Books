@@ -8,13 +8,26 @@ namespace Books.Repository
     {
         Task<List<User>> GetAllUsers();
         Task<User?> GetUserById(int id);
-        Task<User> AddUser(User user);
+        Task<User?> AddUser(User user);
         Task<User?> GetUserByEmail(LoginUserDto userDto);
         Task SaveChanges();
         Task DeleteUser(User user);
     }
+    public class DuplicateEmailException : Exception
+    {
+        // Конструктор по умолчанию
+        public DuplicateEmailException()
+        {
+        }
 
-    public class UserRepository : IUserRepository
+        // Конструктор, принимающий сообщение
+        public DuplicateEmailException(string message)
+            : base(message)
+        {
+        }
+    }
+
+        public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
         public UserRepository(ApplicationDbContext context)
@@ -30,11 +43,19 @@ namespace Books.Repository
         {
             return await _context.Users.FirstOrDefaultAsync(b => b.IdUser == id);
         }
-        public async Task<User> AddUser(User user)
+        public async Task<User?> AddUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return user;
+            try
+            {
+
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+                return user;
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new DuplicateEmailException("Пользователь с таким email уже существует.");
+            }
         }
         public async Task<User?> GetUserByEmail(LoginUserDto userDto)
         {

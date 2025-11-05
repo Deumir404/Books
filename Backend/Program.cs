@@ -17,7 +17,8 @@ internal class Program
             option.LogTo(Console.WriteLine);
             option.UseMySql(
                 Dbconfig,
-                new MySqlServerVersion(new Version(8, 0, 11)));
+                new MySqlServerVersion(new Version(8, 0, 11)),
+                b => b.MigrationsAssembly("ORM"));
         }
         );
         builder.Services.AddControllers();

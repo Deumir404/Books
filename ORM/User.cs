@@ -23,6 +23,7 @@ namespace ORM
         public string PasswordHash { get; set; } = string.Empty;
 
         [Required]
+        
         [MaxLength(250)]
         public string Email { get; set; } = string.Empty;
 
