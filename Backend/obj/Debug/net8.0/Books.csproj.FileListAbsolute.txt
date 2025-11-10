@@ -271,16 +271,29 @@ C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Swashbuckle.AspNetCo
 C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\deumir\source\repos\Books\Backend\obj\Debug\net8.0\Books.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\deumir\source\repos\Books\Backend\bin\Debug\net8.0\Books.staticwebassets.runtime.json
 C:\Users\deumir\source\repos\Books\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\appsettings.json
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.staticwebassets.runtime.json
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.staticwebassets.endpoints.json
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.exe
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.deps.json
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.runtimeconfig.json
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.pdb
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Humanizer.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -309,6 +322,12 @@ C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debu
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.NET.StringTools.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
@@ -343,6 +362,7 @@ C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debu
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.Security.Permissions.dll
@@ -510,22 +530,10 @@ C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debu
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Books.props
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Books.props
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\Books.csproj.Up2Date
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\Books.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\refint\Books.dll
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\Books.pdb
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\Books.genruntimeconfig.cache
 C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\ref\Books.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Books.staticwebassets.runtime.json
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Npgsql.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-C:\Users\Тимофей\Desktop\Game project  Sky Scraper\Books\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

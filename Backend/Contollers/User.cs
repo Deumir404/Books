@@ -3,6 +3,7 @@ using Books.DTO;
 using System.Security.Claims;
 using Books.Services;
 using Microsoft.AspNetCore.Authorization;
+using Books.Repository;
 
 namespace Books.Contollers
 {
@@ -52,8 +53,16 @@ namespace Books.Contollers
             {
                 return BadRequest();
             }
-            var answer = await _userService.AddUserDTO(userDto);
-            return Ok(answer);
+            try
+            {
+                var answer = await _userService.AddUserDTO(userDto);
+                return Ok(answer);
+            }
+            catch (DuplicateEmailException)
+            {
+                return Conflict("Пользователь с таким email уже существует.");
+            }
+         
         }
 
         [HttpPost("login")]

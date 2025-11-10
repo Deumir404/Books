@@ -345,6 +345,9 @@ namespace ORM.Migrations
 
                     b.HasKey("IdUser");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Users");
                 });
 
