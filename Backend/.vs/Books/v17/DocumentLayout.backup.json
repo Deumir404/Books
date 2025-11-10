@@ -1,23 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\",
+  "WorkspaceRootPath": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\\u0442\u0438\u043C\u043E\u0444\u0435\u0439\\desktop\\game project  sky scraper\\books\\backend\\contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\\u0442\u0438\u043C\u043E\u0444\u0435\u0439\\desktop\\game project  sky scraper\\books\\backend\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{69AEB68A-F34E-4E5A-8B0E-56392EA22FA2}|..\\ORM\\ORM.csproj|c:\\users\\deumir\\source\\repos\\books\\orm\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\deumir\\source\\repos\\books\\backend\\services\\bookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\bookservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\\u0442\u0438\u043C\u043E\u0444\u0435\u0439\\desktop\\game project  sky scraper\\books\\backend\\services\\usersservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:services\\usersservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,76 +22,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 740,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DbContext.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\DbContext.cs",
-              "RelativeDocumentMoniker": "..\\ORM\\DbContext.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\DbContext.cs",
-              "RelativeToolTip": "..\\ORM\\DbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T16:14:55.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\User.cs",
-              "RelativeDocumentMoniker": "..\\ORM\\User.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\User.cs",
-              "RelativeToolTip": "..\\ORM\\User.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAIAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeDocumentMoniker": "Contollers\\User.cs",
+              "ToolTip": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeToolTip": "Contollers\\User.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAiwD4AAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T16:13:52.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\Book.cs",
-              "RelativeDocumentMoniker": "..\\ORM\\Book.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\ORM\\Book.cs",
-              "RelativeToolTip": "..\\ORM\\Book.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T16:13:49.98Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BookServices.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\BookServices.cs",
-              "RelativeDocumentMoniker": "Services\\BookServices.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Services\\BookServices.cs",
-              "RelativeToolTip": "Services\\BookServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-09T13:53:53.858Z",
+              "WhenOpened": "2025-11-05T17:17:23.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\deumir\\source\\repos\\Books\\Backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAcAAAAAAAAAA==",
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Repository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Repository\\UserRepository.cs",
+              "RelativeToolTip": "Repository\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T10:30:50.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T17:13:52.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsersServices.cs",
+              "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Services\\UsersServices.cs",
+              "RelativeDocumentMoniker": "Services\\UsersServices.cs",
+              "ToolTip": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Services\\UsersServices.cs",
+              "RelativeToolTip": "Services\\UsersServices.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T17:11:18.371Z"
             }
           ]
         }
