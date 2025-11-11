@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\\u0442\u0438\u043C\u043E\u0444\u0435\u0439\\desktop\\game project  sky scraper\\books\\backend\\books.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:books.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|c:\\users\\\u0442\u0438\u043C\u043E\u0444\u0435\u0439\\desktop\\game project  sky scraper\\books\\backend\\contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5701320-5DD4-486C-860E-39645ED59A21}|Books.csproj|solutionrelative:contollers\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,19 +31,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Contollers\\User.cs",
-              "RelativeDocumentMoniker": "Contollers\\User.cs",
-              "ToolTip": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Contollers\\User.cs",
-              "RelativeToolTip": "Contollers\\User.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAiwD4AAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T17:17:23.491Z",
+              "Title": "Books.csproj",
+              "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Books.csproj",
+              "RelativeDocumentMoniker": "Books.csproj",
+              "ToolTip": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Books.csproj",
+              "RelativeToolTip": "Books.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-11T06:48:50.88Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeDocumentMoniker": "Contollers\\User.cs",
+              "ToolTip": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Contollers\\User.cs",
+              "RelativeToolTip": "Contollers\\User.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAA4wD4AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T17:17:23.491Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "Repository\\UserRepository.cs",
@@ -51,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UsersServices.cs",
               "DocumentMoniker": "C:\\Users\\\u0422\u0438\u043C\u043E\u0444\u0435\u0439\\Desktop\\Game project  Sky Scraper\\Books\\Backend\\Services\\UsersServices.cs",
               "RelativeDocumentMoniker": "Services\\UsersServices.cs",
